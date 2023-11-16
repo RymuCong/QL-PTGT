@@ -1,16 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package quanlyptgt;
+package org.example.data;
 
-/**
- *
- * @author 01689
- */
 public class XeOtoCon extends Vehicle{
     private int dungTichDongCo;
     private int dungTichCop;
+
+    @Override
+    public String toString() {
+        return "XeOtoCon{" +
+                "dungTichDongCo=" + dungTichDongCo +
+                ", dungTichCop=" + dungTichCop +
+                ", name='" + name + '\'' +
+                ", hangSanXuat='" + hangSanXuat + '\'' +
+                ", namSanXuat=" + namSanXuat +
+                ", giaTien=" + giaTien +
+                ", thueTruocBa=" + thueTruocBa +
+                '}';
+    }
+
+    public XeOtoCon(String name, String hangSanXuat, int namSanXuat, double giaTien, float thueTruocBa) {
+        super(name, hangSanXuat, namSanXuat, giaTien, thueTruocBa);
+    }
 
     public int getDungTichDongCo() {
         return dungTichDongCo;

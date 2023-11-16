@@ -2,24 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package quanlyptgt;
+package org.example.data;
 
 /**
  *
  * @author 01689
  */
 public abstract class Vehicle {
-    private String name;
-    private String hangSanXuat;
-    private int namSanXuat;
-    private double giaTien;
-    private float thueTruocBa;
-
-    @Override
-    public String toString() {
-        return "Vehicle{" + "name=" + name + ", hangSanXuat=" + hangSanXuat + ", namSanXuat=" + namSanXuat + ", giaTien=" + giaTien + '}';
-    }
-
+    protected String name;
+    protected String hangSanXuat;
+    protected int namSanXuat;
+    protected double giaTien;
+    protected float thueTruocBa;
 
     public String getName() {
         return name;
@@ -60,9 +54,17 @@ public abstract class Vehicle {
     public void setThueTruocBa(float thueTruocBa) {
         this.thueTruocBa = thueTruocBa;
     }
-    
-    public double TinhThueTruocBa(double giaTien,float thueTruocBa){
+
+    public double TinhThueTruocBa(double giaTien, float thueTruocBa){
         double Thue = giaTien*thueTruocBa;
         return Thue;
+    }
+
+    public Vehicle(String name, String hangSanXuat, int namSanXuat, double giaTien, float thueTruocBa) {
+        this.name = name;
+        this.hangSanXuat = hangSanXuat;
+        this.namSanXuat = namSanXuat;
+        this.giaTien = giaTien;
+        this.thueTruocBa = thueTruocBa;
     }
 }
