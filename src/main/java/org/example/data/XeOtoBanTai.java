@@ -9,26 +9,11 @@ package org.example.data;
  * @author 01689
  */
 public class XeOtoBanTai extends Vehicle{
-    @Override
-    public String toString() {
-        return "XeOtoBanTai{" +
-                "dungTichDongCo=" + dungTichDongCo +
-                ", taiTrong=" + taiTrong +
-                ", chieuDaiThungXe=" + chieuDaiThungXe +
-                ", name='" + name + '\'' +
-                ", hangSanXuat='" + hangSanXuat + '\'' +
-                ", namSanXuat=" + namSanXuat +
-                ", giaTien=" + giaTien +
-                ", thueTruocBa=" + thueTruocBa +
-                '}';
-    }
+
 
     private int dungTichDongCo;
     private int taiTrong;
-
-    public XeOtoBanTai(String name, String hangSanXuat, int namSanXuat, double giaTien, float thueTruocBa) {
-        super(name, hangSanXuat, namSanXuat, giaTien, thueTruocBa);
-    }
+    private int chieuDaiThungXe;
 
     public int getDungTichDongCo() {
         return dungTichDongCo;
@@ -53,5 +38,11 @@ public class XeOtoBanTai extends Vehicle{
     public void setChieuDaiThungXe(int chieuDaiThungXe) {
         this.chieuDaiThungXe = chieuDaiThungXe;
     }
-    private int chieuDaiThungXe;
+
+    public XeOtoBanTai(String tenPhuongTien, String hangSanXuat, int namSanXuat, double giaTien, float lePhiTruocBa, String maSoThue, String tenNguoiKhaiThue, int dungTichDongCo, int taiTrong, int chieuDaiThungXe) {
+        super(tenPhuongTien, hangSanXuat, namSanXuat, giaTien, lePhiTruocBa, maSoThue, tenNguoiKhaiThue);
+        this.dungTichDongCo = dungTichDongCo;
+        this.taiTrong = taiTrong;
+        this.chieuDaiThungXe = chieuDaiThungXe;
+    }
 }

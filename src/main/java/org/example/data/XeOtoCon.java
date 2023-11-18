@@ -4,21 +4,11 @@ public class XeOtoCon extends Vehicle{
     private int dungTichDongCo;
     private int dungTichCop;
 
-    @Override
-    public String toString() {
-        return "XeOtoCon{" +
-                "dungTichDongCo=" + dungTichDongCo +
-                ", dungTichCop=" + dungTichCop +
-                ", name='" + name + '\'' +
-                ", hangSanXuat='" + hangSanXuat + '\'' +
-                ", namSanXuat=" + namSanXuat +
-                ", giaTien=" + giaTien +
-                ", thueTruocBa=" + thueTruocBa +
-                '}';
-    }
 
-    public XeOtoCon(String name, String hangSanXuat, int namSanXuat, double giaTien, float thueTruocBa) {
-        super(name, hangSanXuat, namSanXuat, giaTien, thueTruocBa);
+    public XeOtoCon(String tenPhuongTien, String hangSanXuat, int namSanXuat, double giaTien, float lePhiTruocBa, String maSoThue, String tenNguoiKhaiThue, int dungTichDongCo, int dungTichCop) {
+        super(tenPhuongTien, hangSanXuat, namSanXuat, giaTien, lePhiTruocBa, maSoThue, tenNguoiKhaiThue);
+        this.dungTichDongCo = dungTichDongCo;
+        this.dungTichCop = dungTichCop;
     }
 
     public int getDungTichDongCo() {

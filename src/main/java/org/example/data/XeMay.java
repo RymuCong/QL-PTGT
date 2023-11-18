@@ -11,22 +11,6 @@ package org.example.data;
 public class XeMay extends Vehicle  {
     private int dungTichDongCo;
 
-    @Override
-    public String toString() {
-        return "XeMay{" +
-                "dungTichDongCo=" + dungTichDongCo +
-                ", name='" + name + '\'' +
-                ", hangSanXuat='" + hangSanXuat + '\'' +
-                ", namSanXuat=" + namSanXuat +
-                ", giaTien=" + giaTien +
-                ", thueTruocBa=" + thueTruocBa +
-                '}';
-    }
-
-    public XeMay(String name, String hangSanXuat, int namSanXuat, double giaTien, float thueTruocBa) {
-        super(name, hangSanXuat, namSanXuat, giaTien, thueTruocBa);
-    }
-
     public int getDungTichDongCo() {
         return dungTichDongCo;
     }
@@ -34,5 +18,9 @@ public class XeMay extends Vehicle  {
     public void setDungTichDongCo(int dungTichDongCo) {
         this.dungTichDongCo = dungTichDongCo;
     }
-    
+
+    public XeMay(String tenPhuongTien, String hangSanXuat, int namSanXuat, double giaTien, float lePhiTruocBa, String maSoThue, String tenNguoiKhaiThue, int dungTichDongCo) {
+        super(tenPhuongTien, hangSanXuat, namSanXuat, giaTien, lePhiTruocBa, maSoThue, tenNguoiKhaiThue);
+        this.dungTichDongCo = dungTichDongCo;
+    }
 }

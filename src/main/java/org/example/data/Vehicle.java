@@ -9,18 +9,25 @@ package org.example.data;
  * @author 01689
  */
 public abstract class Vehicle {
-    protected String name;
+    protected String tenPhuongTien;
     protected String hangSanXuat;
     protected int namSanXuat;
     protected double giaTien;
-    protected float thueTruocBa;
-
-    public String getName() {
-        return name;
+    protected float lePhiTruocBa;
+//    đây là % nên nhập 1 2% thôi
+    protected String maSoThue;
+    protected String tenNguoiKhaiThue;
+    public double TinhThueTruocBa(double giaTien, float lePhiTruocBa){
+        double Thue = giaTien*lePhiTruocBa;
+        return Thue;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getTenPhuongTien() {
+        return tenPhuongTien;
+    }
+
+    public void setTenPhuongTien(String tenPhuongTien) {
+        this.tenPhuongTien = tenPhuongTien;
     }
 
     public String getHangSanXuat() {
@@ -47,24 +54,53 @@ public abstract class Vehicle {
         this.giaTien = giaTien;
     }
 
-    public float getThueTruocBa() {
-        return thueTruocBa;
+    public float getLePhiTruocBa() {
+        return lePhiTruocBa;
     }
 
-    public void setThueTruocBa(float thueTruocBa) {
-        this.thueTruocBa = thueTruocBa;
+    public void setLePhiTruocBa(float lePhiTruocBa) {
+        this.lePhiTruocBa = lePhiTruocBa;
     }
 
-    public double TinhThueTruocBa(double giaTien, float thueTruocBa){
-        double Thue = giaTien*thueTruocBa;
-        return Thue;
+    public String getMaSoThue() {
+        return maSoThue;
     }
 
-    public Vehicle(String name, String hangSanXuat, int namSanXuat, double giaTien, float thueTruocBa) {
-        this.name = name;
+    public void setMaSoThue(String maSoThue) {
+        this.maSoThue = maSoThue;
+    }
+
+    public String getTenNguoiKhaiThue() {
+        return tenNguoiKhaiThue;
+    }
+
+    public void setTenNguoiKhaiThue(String tenNguoiKhaiThue) {
+        this.tenNguoiKhaiThue = tenNguoiKhaiThue;
+    }
+
+    public double TinhLePhiDangKyXeMoi(double giaTien){
+        double LePhiDangKyXe = 0;
+        if (giaTien <= 15000000){
+            LePhiDangKyXe = 500000;
+        } else if (giaTien>15000000 || giaTien<=40000000 ) {
+            LePhiDangKyXe = 1000000;
+        }else {
+            LePhiDangKyXe = 2000000;
+        }
+        return LePhiDangKyXe;
+    }
+    public double TinhThueGiaTriGiaTang(double giaTien){
+        double thueGiaTriGiaTang = giaTien*10/100;
+        return thueGiaTriGiaTang;
+    }
+
+    public Vehicle(String tenPhuongTien, String hangSanXuat, int namSanXuat, double giaTien, float lePhiTruocBa, String maSoThue, String tenNguoiKhaiThue) {
+        this.tenPhuongTien = tenPhuongTien;
         this.hangSanXuat = hangSanXuat;
         this.namSanXuat = namSanXuat;
         this.giaTien = giaTien;
-        this.thueTruocBa = thueTruocBa;
+        this.lePhiTruocBa = lePhiTruocBa;
+        this.maSoThue = maSoThue;
+        this.tenNguoiKhaiThue = tenNguoiKhaiThue;
     }
 }

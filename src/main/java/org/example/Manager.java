@@ -1,7 +1,6 @@
 package org.example;
 
 import org.example.data.Vehicle;
-import org.example.data.XeDap;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,13 +14,6 @@ public class Manager {
     public void addNewData(){
 
     }
-    public void test(){
-        XeDap xd;
-        for (int i =0;i<10;i++){
-            xd = new XeDap("esh"+i,"adsfdg"+i,2023,2000000,10000);
-            vehicles.add(xd);
-        }
-    }
     public void saveData(){
 
         try {
@@ -33,10 +25,8 @@ public class Manager {
             } else {
                 for (Vehicle vehicle : vehicles) {
                     myWriter.write(vehicle.toString()+";\n");
-
                 }
                 myWriter.close();
-
             }
         } catch (IOException e) {
             System.out.println("An error occurred.");
