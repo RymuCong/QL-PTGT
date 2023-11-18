@@ -10,7 +10,6 @@ package org.example.data;
  */
 public class XeMay extends Vehicle  {
     private int dungTichDongCo;
-    public String loaiXe = "XeMay";
 
     public int getDungTichDongCo() {
         return dungTichDongCo;
@@ -20,8 +19,8 @@ public class XeMay extends Vehicle  {
         this.dungTichDongCo = dungTichDongCo;
     }
 
-    public XeMay(String tenPhuongTien, String hangSanXuat, int namSanXuat, double giaTien, float lePhiTruocBa, String maSoThue, String tenNguoiKhaiThue, int dungTichDongCo) {
-        super(tenPhuongTien, hangSanXuat, namSanXuat, giaTien, lePhiTruocBa, maSoThue, tenNguoiKhaiThue);
+    public XeMay(String loaiXe, String tenPhuongTien, String hangSanXuat, int namSanXuat, double giaTien, float lePhiTruocBa, String maSoThue, String tenNguoiKhaiThue, int dungTichDongCo) {
+        super(loaiXe, tenPhuongTien, hangSanXuat, namSanXuat, giaTien, lePhiTruocBa, maSoThue, tenNguoiKhaiThue);
         this.dungTichDongCo = dungTichDongCo;
     }
 }

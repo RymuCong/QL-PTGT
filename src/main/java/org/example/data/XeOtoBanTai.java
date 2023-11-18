@@ -39,8 +39,8 @@ public class XeOtoBanTai extends Vehicle{
         this.chieuDaiThungXe = chieuDaiThungXe;
     }
 
-    public XeOtoBanTai(String tenPhuongTien, String hangSanXuat, int namSanXuat, double giaTien, float lePhiTruocBa, String maSoThue, String tenNguoiKhaiThue, int dungTichDongCo, int taiTrong, int chieuDaiThungXe) {
-        super(tenPhuongTien, hangSanXuat, namSanXuat, giaTien, lePhiTruocBa, maSoThue, tenNguoiKhaiThue);
+    public XeOtoBanTai(String loaiXe, String tenPhuongTien, String hangSanXuat, int namSanXuat, double giaTien, float lePhiTruocBa, String maSoThue, String tenNguoiKhaiThue, int dungTichDongCo, int taiTrong, int chieuDaiThungXe) {
+        super(loaiXe, tenPhuongTien, hangSanXuat, namSanXuat, giaTien, lePhiTruocBa, maSoThue, tenNguoiKhaiThue);
         this.dungTichDongCo = dungTichDongCo;
         this.taiTrong = taiTrong;
         this.chieuDaiThungXe = chieuDaiThungXe;

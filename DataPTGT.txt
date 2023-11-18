@@ -1,5 +1,0 @@
-{"loaiXe":"XeMay","tenPhuongTien":"wave","hangSanXuat":"honda","namSanXuat":2015,"giaTien":1000000.0,"lePhiTruocBa":1.2,"maSoThue":"SJ245646","tenNguoiKhaiThue":"Ta Tuan Anh","dungTichDongCo":100};
-{"loaiXe":"XeMay","tenPhuongTien":"wave","hangSanXuat":"honda","namSanXuat":2015,"giaTien":1000000.0,"lePhiTruocBa":1.2,"maSoThue":"SJ245646","tenNguoiKhaiThue":"Ta Tuan Anh","dungTichDongCo":100};
-{"loaiXe":"XeMay","tenPhuongTien":"wave","hangSanXuat":"honda","namSanXuat":2015,"giaTien":1000000.0,"lePhiTruocBa":1.2,"maSoThue":"SJ245646","tenNguoiKhaiThue":"Ta Tuan Anh","dungTichDongCo":100};
-{"loaiXe":"XeMay","tenPhuongTien":"wave","hangSanXuat":"honda","namSanXuat":2015,"giaTien":1000000.0,"lePhiTruocBa":1.2,"maSoThue":"SJ245646","tenNguoiKhaiThue":"Ta Tuan Anh","dungTichDongCo":100};
-{"loaiXe":"XeMay","tenPhuongTien":"wave","hangSanXuat":"honda","namSanXuat":2015,"giaTien":1000000.0,"lePhiTruocBa":1.2,"maSoThue":"SJ245646","tenNguoiKhaiThue":"Ta Tuan Anh","dungTichDongCo":100};

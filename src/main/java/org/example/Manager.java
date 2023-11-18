@@ -1,26 +1,25 @@
 package org.example;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.example.data.Vehicle;
 import org.example.data.XeMay;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Manager {
+    String filePath = "DataPTGT.json";
     ArrayList<Vehicle> vehicles = new ArrayList<>();
     public void addNewData(){
-        XeMay xeMay = new XeMay("wave","honda",2015,1000000,1.2f,"SJ245646","Ta Tuan Anh",100);
-        XeMay xeMay1 = new XeMay("wave","honda",2015,1000000,1.2f,"SJ245646","Ta Tuan Anh",100);
+        XeMay xeMay = new XeMay("XeMay","Wave","honda",2015,10000000,1.5F,"TN986876GV56","Ta Tuan Anh",100);
+        XeMay xeMay1 = new XeMay("XeMay","Wave","honda",2015,10000000,1.5F,"TN986876GV56","Ta Tuan Anh",100);
+        XeMay xeMay2 = new XeMay("XeMay","Wave","honda",2015,10000000,1.5F,"TN986876GV56","Ta Tuan Anh",100);
+        XeMay xeMay3 = new XeMay("XeMay","Wave","honda",2015,10000000,1.5F,"TN986876GV56","Ta Tuan Anh",100);
+        XeMay xeMay4 = new XeMay("XeMay","Wave","honda",2015,10000000,1.5F,"TN986876GV56","Ta Tuan Anh",100);
 
-        XeMay xeMay2 = new XeMay("wave","honda",2015,1000000,1.2f,"SJ245646","Ta Tuan Anh",100);
-        XeMay xeMay3 = new XeMay("wave","honda",2015,1000000,1.2f,"SJ245646","Ta Tuan Anh",100);
-        XeMay xeMay4 = new XeMay("wave","honda",2015,1000000,1.2f,"SJ245646","Ta Tuan Anh",100);
+//với thuộc tính loại xe thì gán luôn tên ko cho người dùng nhập
 
         vehicles.add(xeMay);
         vehicles.add(xeMay1);
@@ -30,19 +29,15 @@ public class Manager {
 
     }
     public void saveData(){
-        ObjectMapper objectMapper = new ObjectMapper();
         try {
-            File saveData = new File("DataPTGT.txt");
-            FileWriter myWriter = new FileWriter("DataPTGT.txt");
-
+            Writer writer = new FileWriter(filePath);
+            File saveData = new File(filePath);
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
             if (saveData.createNewFile()) {
                 System.out.println("File created: " + saveData.getName());
             } else {
-                for (Vehicle vehicle : vehicles) {
-                    String jsonString = objectMapper.writeValueAsString(vehicle);
-                    myWriter.write(jsonString+";\n");
-                }
-                myWriter.close();
+                gson.toJson(vehicles,writer);
+
             }
         } catch (IOException e) {
             System.out.println("An error occurred.");
@@ -51,19 +46,18 @@ public class Manager {
     }
     public void readData(){
         try {
-            File myObj = new File("DataPTGT.txt");
+            File myObj = new File("DataPTGT.json");
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                if (data.contains("XeDap")){
-//                    data
-//                    XeDap xeDap = new XeDap();
-                }
+
             }
             myReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
     public void editData(){

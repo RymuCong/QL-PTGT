@@ -98,7 +98,8 @@ public abstract class Vehicle {
         return thueGiaTriGiaTang;
     }
 
-    public Vehicle(String tenPhuongTien, String hangSanXuat, int namSanXuat, double giaTien, float lePhiTruocBa, String maSoThue, String tenNguoiKhaiThue) {
+    public Vehicle(String loaiXe, String tenPhuongTien, String hangSanXuat, int namSanXuat, double giaTien, float lePhiTruocBa, String maSoThue, String tenNguoiKhaiThue) {
+        this.loaiXe = loaiXe;
         this.tenPhuongTien = tenPhuongTien;
         this.hangSanXuat = hangSanXuat;
         this.namSanXuat = namSanXuat;
