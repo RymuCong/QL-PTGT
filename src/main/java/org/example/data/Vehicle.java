@@ -1,17 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.example.data;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-/**
- *
- * @author 01689
- */
-public abstract class Vehicle {
+public class Vehicle {
     public String loaiXe ="";
     protected String tenPhuongTien;
     protected String hangSanXuat;
@@ -107,5 +96,19 @@ public abstract class Vehicle {
         this.lePhiTruocBa = lePhiTruocBa;
         this.maSoThue = maSoThue;
         this.tenNguoiKhaiThue = tenNguoiKhaiThue;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "loaiXe='" + loaiXe + '\'' +
+                ", tenPhuongTien='" + tenPhuongTien + '\'' +
+                ", hangSanXuat='" + hangSanXuat + '\'' +
+                ", namSanXuat=" + namSanXuat +
+                ", giaTien=" + giaTien +
+                ", lePhiTruocBa=" + lePhiTruocBa +
+                ", maSoThue='" + maSoThue + '\'' +
+                ", tenNguoiKhaiThue='" + tenNguoiKhaiThue + '\'' +
+                '}';
     }
 }

@@ -6,6 +6,9 @@ import org.example.data.Vehicle;
 import org.example.data.XeMay;
 
 import java.io.*;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -28,6 +31,11 @@ public class Manager {
         vehicles.add(xeMay4);
 
     }
+    public void showData(){
+        for (Vehicle vehicle : vehicles) {
+            System.out.println(vehicle.toString());
+        }
+    }
     public void saveData(){
         try {
             Writer writer = new FileWriter(filePath);
@@ -37,7 +45,7 @@ public class Manager {
                 System.out.println("File created: " + saveData.getName());
             } else {
                 gson.toJson(vehicles,writer);
-
+                writer.close(); // Đóng Writer sau khi ghi dữ liệu vào tệp tin
             }
         } catch (IOException e) {
             System.out.println("An error occurred.");
@@ -46,30 +54,43 @@ public class Manager {
     }
     public void readData(){
         try {
-            File myObj = new File("DataPTGT.json");
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-
-            }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+            String jsonString = readFile(filePath);
+            Gson gson = new Gson();
+            Type listType = new TypeToken<ArrayList<Vehicle>>() {}.getType();
+            ArrayList<Vehicle> vehicleList = gson.fromJson(jsonString, listType);
+//            vehicles.addAll(vehicleList);
+            vehicleList.addAll(vehicles);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+
+
+    }
+    private  String readFile(String fileName) throws IOException {
+        StringBuilder content = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                content.append(line);
+            }
+        }
+        return content.toString();
     }
     public void editData(){
+//        nhớ ép kiểu từ vehical sang loại phương tiện tương ứng để sử dụng get set của class tương ứng
 
     }
     public void sort(){
+//        nhớ ép kiểu từ vehical sang loại phương tiện tương ứng để sử dụng get set của class tương ứng
 
     }
     public void search(){
+//        nhớ ép kiểu từ vehical sang loại phương tiện tương ứng để sử dụng get set của class tương ứng
 
     }
     public void thongKe(){
+//        nhớ ép kiểu từ vehical sang loại phương tiện tương ứng để sử dụng get set của class tương ứng
 
     }
 

@@ -9,8 +9,6 @@ package org.example.data;
  * @author 01689
  */
 public class XeOtoBanTai extends Vehicle{
-    public String loaiXe = "XeOtoBanTai";
-
     private int dungTichDongCo;
     private int taiTrong;
     private int chieuDaiThungXe;
@@ -37,6 +35,23 @@ public class XeOtoBanTai extends Vehicle{
 
     public void setChieuDaiThungXe(int chieuDaiThungXe) {
         this.chieuDaiThungXe = chieuDaiThungXe;
+    }
+
+    @Override
+    public String toString() {
+        return "XeOtoBanTai{" +
+                "dungTichDongCo=" + dungTichDongCo +
+                ", taiTrong=" + taiTrong +
+                ", chieuDaiThungXe=" + chieuDaiThungXe +
+                ", loaiXe='" + loaiXe + '\'' +
+                ", tenPhuongTien='" + tenPhuongTien + '\'' +
+                ", hangSanXuat='" + hangSanXuat + '\'' +
+                ", namSanXuat=" + namSanXuat +
+                ", giaTien=" + giaTien +
+                ", lePhiTruocBa=" + lePhiTruocBa +
+                ", maSoThue='" + maSoThue + '\'' +
+                ", tenNguoiKhaiThue='" + tenNguoiKhaiThue + '\'' +
+                '}';
     }
 
     public XeOtoBanTai(String loaiXe, String tenPhuongTien, String hangSanXuat, int namSanXuat, double giaTien, float lePhiTruocBa, String maSoThue, String tenNguoiKhaiThue, int dungTichDongCo, int taiTrong, int chieuDaiThungXe) {

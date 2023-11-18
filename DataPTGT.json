@@ -42,3 +42,16 @@
     "lePhiTruocBa": 1.5,
     "maSoThue": "TN986876GV56",
     "tenNguoiKhaiThue": "Ta Tuan Anh"
+  },
+  {
+    "dungTichDongCo": 100,
+    "loaiXe": "XeMay",
+    "tenPhuongTien": "Wave",
+    "hangSanXuat": "honda",
+    "namSanXuat": 2015,
+    "giaTien": 1.0E7,
+    "lePhiTruocBa": 1.5,
+    "maSoThue": "TN986876GV56",
+    "tenNguoiKhaiThue": "Ta Tuan Anh"
+  }
+]

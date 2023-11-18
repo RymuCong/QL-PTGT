@@ -6,8 +6,9 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
         Manager manager = new Manager();
-        manager.addNewData();
-        manager.saveData();
-//        manager.readData();
+//        manager.addNewData();
+//        manager.saveData();
+        manager.readData();
+        manager.showData();
     }
 }

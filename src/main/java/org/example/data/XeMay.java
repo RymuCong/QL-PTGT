@@ -23,4 +23,19 @@ public class XeMay extends Vehicle  {
         super(loaiXe, tenPhuongTien, hangSanXuat, namSanXuat, giaTien, lePhiTruocBa, maSoThue, tenNguoiKhaiThue);
         this.dungTichDongCo = dungTichDongCo;
     }
+
+    @Override
+    public String toString() {
+        return "XeMay{" +
+                "dungTichDongCo=" + dungTichDongCo +
+                ", loaiXe='" + loaiXe + '\'' +
+                ", tenPhuongTien='" + tenPhuongTien + '\'' +
+                ", hangSanXuat='" + hangSanXuat + '\'' +
+                ", namSanXuat=" + namSanXuat +
+                ", giaTien=" + giaTien +
+                ", lePhiTruocBa=" + lePhiTruocBa +
+                ", maSoThue='" + maSoThue + '\'' +
+                ", tenNguoiKhaiThue='" + tenNguoiKhaiThue + '\'' +
+                '}';
+    }
 }
