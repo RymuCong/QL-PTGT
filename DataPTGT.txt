@@ -1,10 +1,5 @@
-XeDap{name='esh0', hangSanXuat='adsfdg0', namSanXuat=2023, giaTien=2000000.0, thueTruocBa=10000.0};
-XeDap{name='esh1', hangSanXuat='adsfdg1', namSanXuat=2023, giaTien=2000000.0, thueTruocBa=10000.0};
-XeDap{name='esh2', hangSanXuat='adsfdg2', namSanXuat=2023, giaTien=2000000.0, thueTruocBa=10000.0};
-XeDap{name='esh3', hangSanXuat='adsfdg3', namSanXuat=2023, giaTien=2000000.0, thueTruocBa=10000.0};
-XeDap{name='esh4', hangSanXuat='adsfdg4', namSanXuat=2023, giaTien=2000000.0, thueTruocBa=10000.0};
-XeDap{name='esh5', hangSanXuat='adsfdg5', namSanXuat=2023, giaTien=2000000.0, thueTruocBa=10000.0};
-XeDap{name='esh6', hangSanXuat='adsfdg6', namSanXuat=2023, giaTien=2000000.0, thueTruocBa=10000.0};
-XeDap{name='esh7', hangSanXuat='adsfdg7', namSanXuat=2023, giaTien=2000000.0, thueTruocBa=10000.0};
-XeDap{name='esh8', hangSanXuat='adsfdg8', namSanXuat=2023, giaTien=2000000.0, thueTruocBa=10000.0};
-XeDap{name='esh9', hangSanXuat='adsfdg9', namSanXuat=2023, giaTien=2000000.0, thueTruocBa=10000.0};
+{"loaiXe":"XeMay","tenPhuongTien":"wave","hangSanXuat":"honda","namSanXuat":2015,"giaTien":1000000.0,"lePhiTruocBa":1.2,"maSoThue":"SJ245646","tenNguoiKhaiThue":"Ta Tuan Anh","dungTichDongCo":100};
+{"loaiXe":"XeMay","tenPhuongTien":"wave","hangSanXuat":"honda","namSanXuat":2015,"giaTien":1000000.0,"lePhiTruocBa":1.2,"maSoThue":"SJ245646","tenNguoiKhaiThue":"Ta Tuan Anh","dungTichDongCo":100};
+{"loaiXe":"XeMay","tenPhuongTien":"wave","hangSanXuat":"honda","namSanXuat":2015,"giaTien":1000000.0,"lePhiTruocBa":1.2,"maSoThue":"SJ245646","tenNguoiKhaiThue":"Ta Tuan Anh","dungTichDongCo":100};
+{"loaiXe":"XeMay","tenPhuongTien":"wave","hangSanXuat":"honda","namSanXuat":2015,"giaTien":1000000.0,"lePhiTruocBa":1.2,"maSoThue":"SJ245646","tenNguoiKhaiThue":"Ta Tuan Anh","dungTichDongCo":100};
+{"loaiXe":"XeMay","tenPhuongTien":"wave","hangSanXuat":"honda","namSanXuat":2015,"giaTien":1000000.0,"lePhiTruocBa":1.2,"maSoThue":"SJ245646","tenNguoiKhaiThue":"Ta Tuan Anh","dungTichDongCo":100};

@@ -10,6 +10,7 @@ package org.example.data;
  */
 public class XeMay extends Vehicle  {
     private int dungTichDongCo;
+    public String loaiXe = "XeMay";
 
     public int getDungTichDongCo() {
         return dungTichDongCo;

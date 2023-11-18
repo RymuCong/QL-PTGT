@@ -4,11 +4,15 @@
  */
 package org.example.data;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
  *
  * @author 01689
  */
 public abstract class Vehicle {
+    public String loaiXe ="";
     protected String tenPhuongTien;
     protected String hangSanXuat;
     protected int namSanXuat;

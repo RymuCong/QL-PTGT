@@ -1,6 +1,9 @@
 package org.example;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.data.Vehicle;
+import org.example.data.XeMay;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,10 +15,22 @@ import java.util.Scanner;
 public class Manager {
     ArrayList<Vehicle> vehicles = new ArrayList<>();
     public void addNewData(){
+        XeMay xeMay = new XeMay("wave","honda",2015,1000000,1.2f,"SJ245646","Ta Tuan Anh",100);
+        XeMay xeMay1 = new XeMay("wave","honda",2015,1000000,1.2f,"SJ245646","Ta Tuan Anh",100);
+
+        XeMay xeMay2 = new XeMay("wave","honda",2015,1000000,1.2f,"SJ245646","Ta Tuan Anh",100);
+        XeMay xeMay3 = new XeMay("wave","honda",2015,1000000,1.2f,"SJ245646","Ta Tuan Anh",100);
+        XeMay xeMay4 = new XeMay("wave","honda",2015,1000000,1.2f,"SJ245646","Ta Tuan Anh",100);
+
+        vehicles.add(xeMay);
+        vehicles.add(xeMay1);
+        vehicles.add(xeMay2);
+        vehicles.add(xeMay3);
+        vehicles.add(xeMay4);
 
     }
     public void saveData(){
-
+        ObjectMapper objectMapper = new ObjectMapper();
         try {
             File saveData = new File("DataPTGT.txt");
             FileWriter myWriter = new FileWriter("DataPTGT.txt");
@@ -24,7 +39,8 @@ public class Manager {
                 System.out.println("File created: " + saveData.getName());
             } else {
                 for (Vehicle vehicle : vehicles) {
-                    myWriter.write(vehicle.toString()+";\n");
+                    String jsonString = objectMapper.writeValueAsString(vehicle);
+                    myWriter.write(jsonString+";\n");
                 }
                 myWriter.close();
             }
@@ -49,6 +65,18 @@ public class Manager {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+    }
+    public void editData(){
+
+    }
+    public void sort(){
+
+    }
+    public void search(){
+
+    }
+    public void thongKe(){
+
     }
 
 }

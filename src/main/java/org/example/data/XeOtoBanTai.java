@@ -9,7 +9,7 @@ package org.example.data;
  * @author 01689
  */
 public class XeOtoBanTai extends Vehicle{
-
+    public String loaiXe = "XeOtoBanTai";
 
     private int dungTichDongCo;
     private int taiTrong;
