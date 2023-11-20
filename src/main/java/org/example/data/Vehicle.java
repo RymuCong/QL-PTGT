@@ -100,7 +100,7 @@ public class Vehicle {
 
     @Override
     public String toString() {
-        return "Vehicle{" +
+        return "{" +
                 "loaiXe='" + loaiXe + '\'' +
                 ", tenPhuongTien='" + tenPhuongTien + '\'' +
                 ", hangSanXuat='" + hangSanXuat + '\'' +

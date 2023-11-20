@@ -7,8 +7,10 @@ public class Main {
         System.out.println("Hello world!");
         Manager manager = new Manager();
 //        manager.addNewData();
+//        manager.testData();
 //        manager.saveData();
-        manager.readData();
+//        manager.addNewData();
+//        manager.saveData();
         manager.showData();
     }
 }

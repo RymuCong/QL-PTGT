@@ -7,29 +7,46 @@ import org.example.data.XeMay;
 
 import java.io.*;
 import com.google.gson.reflect.TypeToken;
+import org.example.data.XeOtoCon;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Manager {
     String filePath = "DataPTGT.json";
-    ArrayList<Vehicle> vehicles = new ArrayList<>();
+    ArrayList<Vehicle> vehicles = (ArrayList<Vehicle>) readData();
     public void addNewData(){
-        XeMay xeMay = new XeMay("XeMay","Wave","honda",2015,10000000,1.5F,"TN986876GV56","Ta Tuan Anh",100);
-        XeMay xeMay1 = new XeMay("XeMay","Wave","honda",2015,10000000,1.5F,"TN986876GV56","Ta Tuan Anh",100);
-        XeMay xeMay2 = new XeMay("XeMay","Wave","honda",2015,10000000,1.5F,"TN986876GV56","Ta Tuan Anh",100);
-        XeMay xeMay3 = new XeMay("XeMay","Wave","honda",2015,10000000,1.5F,"TN986876GV56","Ta Tuan Anh",100);
-        XeMay xeMay4 = new XeMay("XeMay","Wave","honda",2015,10000000,1.5F,"TN986876GV56","Ta Tuan Anh",100);
 
 //với thuộc tính loại xe thì gán luôn tên ko cho người dùng nhập
+        XeMay xeMay = new XeMay("XeMay","SH","honda",2015,100070000,1.5F,"TN986876GV56","Ta Tuan Anh",100);
+        vehicles.add(xeMay);
+    }
+    public void testData(){
+        XeMay xeMay = new XeMay("XeMay","Wave","honda",2015,10007000,1.5F,"TN986876GV56","Ta Tuan Anh",100);
+        XeMay xeMay1 = new XeMay("XeMay1","Wave","honda",2015,10300000,1.5F,"TN986876GV56","Ta Tuan Anh",100);
+        XeMay xeMay2 = new XeMay("XeMay2","Wave","honda",2015,10800000,1.5F,"TN986876GV56","Ta Tuan Anh",100);
+        XeMay xeMay3 = new XeMay("XeMay3","Wave","honda",2015,10300000,1.5F,"TN986876GV56","Ta Tuan Anh",100);
+        XeMay xeMay4 = new XeMay("XeMay4","Wave","honda",2015,10008000,1.5F,"TN986876GV56","Ta Tuan Anh",100);
+        XeOtoCon otoCon = new XeOtoCon("Oto","civic","honda",2019,190000800,2F,"BD98765896HY","Phung Ngoc Bao",1035,100);
+        XeOtoCon otoCon1 = new XeOtoCon("Oto1","civic","honda",2019,190400000,2F,"BD98765896HY","Phung Ngoc Bao",1035,100);
+        XeOtoCon otoCon2 = new XeOtoCon("Oto2","civic","honda",2019,190080000,2F,"BD98765896HY","Phung Ngoc Bao",1035,100);
+        XeOtoCon otoCon3 = new XeOtoCon("Oto3","civic","honda",2019,199000000,2F,"BD98765896HY","Phung Ngoc Bao",1035,100);
+        XeOtoCon otoCon4 = new XeOtoCon("Oto4","civic","honda",2019,190004000,2F,"BD98765896HY","Phung Ngoc Bao",1035,100);
+        XeOtoCon otoCon5 = new XeOtoCon("Oto5","civic","honda",2019,195000000,2F,"BD98765896HY","Phung Ngoc Bao",1035,100);
 
         vehicles.add(xeMay);
         vehicles.add(xeMay1);
         vehicles.add(xeMay2);
         vehicles.add(xeMay3);
         vehicles.add(xeMay4);
-
+        vehicles.add(otoCon1);
+        vehicles.add(otoCon2);
+        vehicles.add(otoCon);
+        vehicles.add(otoCon3);
+        vehicles.add(otoCon4);
+        vehicles.add(otoCon5);
     }
     public void showData(){
         for (Vehicle vehicle : vehicles) {
@@ -52,30 +69,18 @@ public class Manager {
             e.printStackTrace();
         }
     }
-    public void readData(){
-        try {
-            String jsonString = readFile(filePath);
+    public ArrayList<Vehicle> readData(){
+        ArrayList<Vehicle> dataFormFile = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            // Sử dụng Gson để chuyển đổi từ JSON sang ArrayList
             Gson gson = new Gson();
             Type listType = new TypeToken<ArrayList<Vehicle>>() {}.getType();
-            ArrayList<Vehicle> vehicleList = gson.fromJson(jsonString, listType);
-//            vehicles.addAll(vehicleList);
-            vehicleList.addAll(vehicles);
+            dataFormFile = gson.fromJson(reader, listType);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Đã xảy ra lỗi khi đọc tệp tin: " + e.getMessage());
         }
-
-
-
-    }
-    private  String readFile(String fileName) throws IOException {
-        StringBuilder content = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                content.append(line);
-            }
-        }
-        return content.toString();
+        return dataFormFile;
     }
     public void editData(){
 //        nhớ ép kiểu từ vehical sang loại phương tiện tương ứng để sử dụng get set của class tương ứng

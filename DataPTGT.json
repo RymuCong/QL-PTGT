@@ -1,11 +1,120 @@
 [
   {
-    "dungTichDongCo": 100,
     "loaiXe": "XeMay",
     "tenPhuongTien": "Wave",
     "hangSanXuat": "honda",
     "namSanXuat": 2015,
-    "giaTien": 1.0E7,
+    "giaTien": 1.0007E7,
+    "lePhiTruocBa": 1.5,
+    "maSoThue": "TN986876GV56",
+    "tenNguoiKhaiThue": "Ta Tuan Anh"
+  },
+  {
+    "loaiXe": "XeMay1",
+    "tenPhuongTien": "Wave",
+    "hangSanXuat": "honda",
+    "namSanXuat": 2015,
+    "giaTien": 1.03E7,
+    "lePhiTruocBa": 1.5,
+    "maSoThue": "TN986876GV56",
+    "tenNguoiKhaiThue": "Ta Tuan Anh"
+  },
+  {
+    "loaiXe": "XeMay2",
+    "tenPhuongTien": "Wave",
+    "hangSanXuat": "honda",
+    "namSanXuat": 2015,
+    "giaTien": 1.08E7,
+    "lePhiTruocBa": 1.5,
+    "maSoThue": "TN986876GV56",
+    "tenNguoiKhaiThue": "Ta Tuan Anh"
+  },
+  {
+    "loaiXe": "XeMay3",
+    "tenPhuongTien": "Wave",
+    "hangSanXuat": "honda",
+    "namSanXuat": 2015,
+    "giaTien": 1.03E7,
+    "lePhiTruocBa": 1.5,
+    "maSoThue": "TN986876GV56",
+    "tenNguoiKhaiThue": "Ta Tuan Anh"
+  },
+  {
+    "loaiXe": "XeMay4",
+    "tenPhuongTien": "Wave",
+    "hangSanXuat": "honda",
+    "namSanXuat": 2015,
+    "giaTien": 1.0008E7,
+    "lePhiTruocBa": 1.5,
+    "maSoThue": "TN986876GV56",
+    "tenNguoiKhaiThue": "Ta Tuan Anh"
+  },
+  {
+    "loaiXe": "Oto1",
+    "tenPhuongTien": "civic",
+    "hangSanXuat": "honda",
+    "namSanXuat": 2019,
+    "giaTien": 1.904E8,
+    "lePhiTruocBa": 2.0,
+    "maSoThue": "BD98765896HY",
+    "tenNguoiKhaiThue": "Phung Ngoc Bao"
+  },
+  {
+    "loaiXe": "Oto2",
+    "tenPhuongTien": "civic",
+    "hangSanXuat": "honda",
+    "namSanXuat": 2019,
+    "giaTien": 1.9008E8,
+    "lePhiTruocBa": 2.0,
+    "maSoThue": "BD98765896HY",
+    "tenNguoiKhaiThue": "Phung Ngoc Bao"
+  },
+  {
+    "loaiXe": "Oto",
+    "tenPhuongTien": "civic",
+    "hangSanXuat": "honda",
+    "namSanXuat": 2019,
+    "giaTien": 1.900008E8,
+    "lePhiTruocBa": 2.0,
+    "maSoThue": "BD98765896HY",
+    "tenNguoiKhaiThue": "Phung Ngoc Bao"
+  },
+  {
+    "loaiXe": "Oto3",
+    "tenPhuongTien": "civic",
+    "hangSanXuat": "honda",
+    "namSanXuat": 2019,
+    "giaTien": 1.99E8,
+    "lePhiTruocBa": 2.0,
+    "maSoThue": "BD98765896HY",
+    "tenNguoiKhaiThue": "Phung Ngoc Bao"
+  },
+  {
+    "loaiXe": "Oto4",
+    "tenPhuongTien": "civic",
+    "hangSanXuat": "honda",
+    "namSanXuat": 2019,
+    "giaTien": 1.90004E8,
+    "lePhiTruocBa": 2.0,
+    "maSoThue": "BD98765896HY",
+    "tenNguoiKhaiThue": "Phung Ngoc Bao"
+  },
+  {
+    "loaiXe": "Oto5",
+    "tenPhuongTien": "civic",
+    "hangSanXuat": "honda",
+    "namSanXuat": 2019,
+    "giaTien": 1.95E8,
+    "lePhiTruocBa": 2.0,
+    "maSoThue": "BD98765896HY",
+    "tenNguoiKhaiThue": "Phung Ngoc Bao"
+  },
+  {
+    "loaiXe": "XeMay",
+    "tenPhuongTien": "SH",
+    "hangSanXuat": "honda",
+    "namSanXuat": 2015,
+    "giaTien": 1.0007E8,
     "lePhiTruocBa": 1.5,
     "maSoThue": "TN986876GV56",
     "tenNguoiKhaiThue": "Ta Tuan Anh"
@@ -13,43 +122,10 @@
   {
     "dungTichDongCo": 100,
     "loaiXe": "XeMay",
-    "tenPhuongTien": "Wave",
+    "tenPhuongTien": "SH",
     "hangSanXuat": "honda",
     "namSanXuat": 2015,
-    "giaTien": 1.0E7,
-    "lePhiTruocBa": 1.5,
-    "maSoThue": "TN986876GV56",
-    "tenNguoiKhaiThue": "Ta Tuan Anh"
-  },
-  {
-    "dungTichDongCo": 100,
-    "loaiXe": "XeMay",
-    "tenPhuongTien": "Wave",
-    "hangSanXuat": "honda",
-    "namSanXuat": 2015,
-    "giaTien": 1.0E7,
-    "lePhiTruocBa": 1.5,
-    "maSoThue": "TN986876GV56",
-    "tenNguoiKhaiThue": "Ta Tuan Anh"
-  },
-  {
-    "dungTichDongCo": 100,
-    "loaiXe": "XeMay",
-    "tenPhuongTien": "Wave",
-    "hangSanXuat": "honda",
-    "namSanXuat": 2015,
-    "giaTien": 1.0E7,
-    "lePhiTruocBa": 1.5,
-    "maSoThue": "TN986876GV56",
-    "tenNguoiKhaiThue": "Ta Tuan Anh"
-  },
-  {
-    "dungTichDongCo": 100,
-    "loaiXe": "XeMay",
-    "tenPhuongTien": "Wave",
-    "hangSanXuat": "honda",
-    "namSanXuat": 2015,
-    "giaTien": 1.0E7,
+    "giaTien": 1.0007E8,
     "lePhiTruocBa": 1.5,
     "maSoThue": "TN986876GV56",
     "tenNguoiKhaiThue": "Ta Tuan Anh"
