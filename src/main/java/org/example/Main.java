@@ -11,6 +11,6 @@ public class Main {
 //        manager.saveData();
 //        manager.addNewData();
 //        manager.saveData();
-        manager.showData();
+//        manager.showData();
     }
 }
