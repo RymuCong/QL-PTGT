@@ -1,6 +1,5 @@
 package org.example;
 
-import org.example.data.XeMay;
 
 import java.util.Scanner;
 
