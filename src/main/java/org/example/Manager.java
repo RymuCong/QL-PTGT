@@ -31,6 +31,50 @@ public class Manager {
         vehicles.add(xeMay4);
 
     }
+
+    public void add_vehicles()
+    {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("nhập tên xe ");
+        String tenxe = scanner.nextLine();
+        
+        System.out.println("nhập tên hãng sản xuất ");
+        String hang_san_xuat = scanner.nextLine();
+        
+        System.out.println("nhập năm sản xuất ");
+        int nam_san_xuat = scanner.nextInt();
+
+        System.out.println("nhập dung tích ");
+        int dung_tich = scanner.nextInt();
+        
+        scanner.nextLine();
+        System.out.println("nhập loại xe ");
+        String loai_xe = scanner.nextLine();
+
+        System.out.print("Nhập giá tiền: ");
+        double gia_tien = scanner.nextInt();
+
+        System.out.print("Nhập Lệ Phí Trước Ba: ");
+        float le_phi_truoc_ba  = scanner.nextFloat();
+
+        System.out.print("Nhập mã số thuế: ");
+        String ma_so_thue = scanner.nextLine();
+
+        scanner.nextLine();
+
+        System.out.print("Nhập tên người khai thuế: ");
+        String ten_nguoi_khai_thue = scanner.nextLine();
+
+        XeMay xeMay = new XeMay( loai_xe ,tenxe, hang_san_xuat, nam_san_xuat, gia_tien, le_phi_truoc_ba, ma_so_thue, ten_nguoi_khai_thue,dung_tich);
+        
+        // thêm đối tượng xe máy vào danh sach vehicles \   
+        vehicles.add(xeMay);
+        //  lưu danh sách vehicles vào tệp tin 
+       
+
+    }
+    
     public void showData(){
         for (Vehicle vehicle : vehicles) {
             System.out.println(vehicle.toString());
@@ -53,9 +97,10 @@ public class Manager {
         }
     }
     public void readData(){
+        Gson gson = new Gson();
         try {
             String jsonString = readFile(filePath);
-            Gson gson = new Gson();
+            
             Type listType = new TypeToken<ArrayList<Vehicle>>() {}.getType();
             ArrayList<Vehicle> vehicleList = gson.fromJson(jsonString, listType);
 //            vehicles.addAll(vehicleList);
