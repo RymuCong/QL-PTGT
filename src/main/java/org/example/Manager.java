@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 public class Manager {
     static String filePath = "DataPTGT.json";
-    ArrayList<XeMay> vehicles = readData();
+    ArrayList<Vehicle> vehicles = readData();
     public void add_vehicles()
     {
         Scanner scanner = new Scanner(System.in);
@@ -66,31 +66,31 @@ public class Manager {
         saveData();
 
     }
-//    public void testData(){
-//        XeMay xeMay = new XeMay("XeMay","Wave","honda",2015,10007000,1.5F,"TN986876GV76","Ta Tuan Anh",100);
-//        XeMay xeMay1 = new XeMay("XeMay","Wave","honda",2015,10300000,1.5F,"TN9868764V56","Ta Tuan Anh",100);
-//        XeMay xeMay2 = new XeMay("XeMay","Wave","honda",2015,10800000,1.5F,"TN986873GV56","Ta Tuan Anh",100);
-//        XeMay xeMay3 = new XeMay("XeMay","Wave","honda",2015,10300000,1.5F,"TN986871GV56","Ta Tuan Anh",100);
-//        XeMay xeMay4 = new XeMay("XeMay","Wave","honda",2015,10008000,1.5F,"TN986879GV56","Ta Tuan Anh",100);
-//        XeMay otoCon0 = new XeOtoCon("Oto","civic","honda",2019,190000800,2F,"BD98965896HY","Phung Ngoc Bao",1035,100);
-//        XeMay otoCon1 = new XeOtoCon("Oto","civic","honda",2019,190400000,2F,"BD98795896HY","Phung Ngoc Bao",1035,100);
-//        XeMay otoCon2 = new XeOtoCon("Oto","civic","honda",2019,190080000,2F,"BD98705896HY","Phung Ngoc Bao",1035,100);
-//        XeMay otoCon3 = new XeOtoCon("Oto","civic","honda",2019,199000000,2F,"BD98715896HY","Phung Ngoc Bao",1035,100);
-//        XeMay otoCon4 = new XeOtoCon("Oto","civic","honda",2019,190004000,2F,"BD987905896HY","Phung Ngoc Bao",1035,100);
-//        XeMay otoCon5 = new XeOtoCon("Oto","civic","honda",2019,195000000,2F,"BD98764896HY","Phung Ngoc Bao",1035,100);
-//
-//        vehicles.add(xeMay);
-//        vehicles.add(xeMay1);
-//        vehicles.add(xeMay2);
-//        vehicles.add(xeMay3);
-//        vehicles.add(xeMay4);
-//        vehicles.add(otoCon1);
-//        vehicles.add(otoCon2);
-//        vehicles.add(otoCon0);
-//        vehicles.add(otoCon3);
-//        vehicles.add(otoCon4);
-//        vehicles.add(otoCon5);
-//    }
+    public void testData(){
+        XeMay xeMay = new XeMay("XeMay","Wave","honda",2015,10007000,1.5F,"TN986876GV76","Ta Tuan Anh",100);
+        XeMay xeMay1 = new XeMay("XeMay","Wave","honda",2015,10300000,1.5F,"TN9868764V56","Ta Tuan Anh",100);
+        XeMay xeMay2 = new XeMay("XeMay","Wave","honda",2015,10800000,1.5F,"TN986873GV56","Ta Tuan Anh",100);
+        XeMay xeMay3 = new XeMay("XeMay","Wave","honda",2015,10300000,1.5F,"TN986871GV56","Ta Tuan Anh",100);
+        XeMay xeMay4 = new XeMay("XeMay","Wave","honda",2015,10008000,1.5F,"TN986879GV56","Ta Tuan Anh",100);
+        XeOtoCon otoCon0 = new XeOtoCon("Oto","civic","honda",2019,190000800,2F,"BD98965896HY","Phung Ngoc Bao",1035,100);
+        XeOtoCon otoCon1 = new XeOtoCon("Oto","civic","honda",2019,190400000,2F,"BD98795896HY","Phung Ngoc Bao",1035,100);
+        XeOtoCon otoCon2 = new XeOtoCon("Oto","civic","honda",2019,190080000,2F,"BD98705896HY","Phung Ngoc Bao",1035,100);
+        XeOtoCon otoCon3 = new XeOtoCon("Oto","civic","honda",2019,199000000,2F,"BD98715896HY","Phung Ngoc Bao",1035,100);
+        XeOtoCon otoCon4 = new XeOtoCon("Oto","civic","honda",2019,190004000,2F,"BD987905896HY","Phung Ngoc Bao",1035,100);
+        XeOtoCon otoCon5 = new XeOtoCon("Oto","civic","honda",2019,195000000,2F,"BD98764896HY","Phung Ngoc Bao",1035,100);
+
+        vehicles.add(xeMay);
+        vehicles.add(xeMay1);
+        vehicles.add(xeMay2);
+        vehicles.add(xeMay3);
+        vehicles.add(xeMay4);
+        vehicles.add(otoCon1);
+        vehicles.add(otoCon2);
+        vehicles.add(otoCon0);
+        vehicles.add(otoCon3);
+        vehicles.add(otoCon4);
+        vehicles.add(otoCon5);
+    }
     public void showData(){
         System.out.println("Hiển thị thông tin phương tiện");
         System.out.println("1,Xe máy");
@@ -104,14 +104,14 @@ public class Manager {
                 XeMay xeMay;
                 System.out.println("\n+--------------------------------------------------------------------------------------------------------+");
                 System.out.println("\n+------------------------------------------------MENU----------------------------------------------------+");
-                System.out.println("\n| Mã số thuế | Loại xe | Tên | Hãng | Năm sản xuất | Giá Tiền | Lệ phí trước bạ(%) | Tên người khai thuế |");
+                System.out.println("\n| Mã số thuế | Loại xe | Tên | Hãng | Năm sản xuất | Giá Tiền | Lệ phí trước bạ(%) | Tên người khai thuế | Dung tích động cơ |");
                 System.out.println("\n+--------------------------------------------------------------------------------------------------------+");
                 for (Vehicle vehicle : vehicles) {
                     if (vehicle instanceof XeMay ){
                         xeMay = (XeMay) vehicle;
 
                         System.out.println("\n| "+xeMay.getMaSoThue()+" | "+" | "+xeMay.loaiXe+" | "+xeMay.getTenPhuongTien()+" | "+xeMay.getHangSanXuat()+
-                                " | "+xeMay.getNamSanXuat()+" | "+xeMay.getGiaTien()+" | "+xeMay.getLePhiTruocBa()+" | "+xeMay.getTenNguoiKhaiThue()+" |");
+                                " | "+xeMay.getNamSanXuat()+" | "+xeMay.getGiaTien()+" | "+xeMay.getLePhiTruocBa()+" | "+xeMay.getTenNguoiKhaiThue()+" | "+xeMay.getDungTichDongCo()+" | ");
                     }
                 }
                 break;
@@ -124,10 +124,10 @@ public class Manager {
                             xeOtoCon = (XeOtoCon) vehicle;
                             System.out.println("\n+------------------------------------------------------------------------------------------------------------------------+");
                             System.out.println("\n+----------------------------------------------------MENU----------------------------------------------------------------+");
-                            System.out.println("\n| Mã số thuế | Loại xe | Tên | Hãng | Năm sản xuất | Giá Tiền | Lệ phí trước bạ(%) | Tên người khai thuế | Dung tích cốp |");
+                            System.out.println("\n| Mã số thuế | Loại xe | Tên | Hãng | Năm sản xuất | Giá Tiền | Lệ phí trước bạ(%) | Tên người khai thuế | Dung tích động c | Dung tích cốp |");
                             System.out.println("\n+------------------------------------------------------------------------------------------------------------------------+");
                             System.out.println("\n| "+xeOtoCon.getMaSoThue()+" | "+" | "+xeOtoCon.loaiXe+" | "+xeOtoCon.getTenPhuongTien()+" | "+xeOtoCon.getHangSanXuat()+
-                                    " | "+xeOtoCon.getNamSanXuat()+" | "+xeOtoCon.getGiaTien()+" | "+xeOtoCon.getLePhiTruocBa()+" | "+xeOtoCon.getTenNguoiKhaiThue()+" | "+xeOtoCon.getDungTichCop()+ " | ");
+                                    " | "+xeOtoCon.getNamSanXuat()+" | "+xeOtoCon.getGiaTien()+" | "+xeOtoCon.getLePhiTruocBa()+" | "+xeOtoCon.getTenNguoiKhaiThue()+" | "+xeOtoCon.getDungTichDongCo()+" | "+xeOtoCon.getDungTichCop()+ " | ");
                         }
                     }
 
@@ -162,7 +162,7 @@ public class Manager {
             e.printStackTrace();
         }
     }
-    private boolean maSoThueChecker(ArrayList<XeMay> list, String taxId){
+    private boolean maSoThueChecker(ArrayList<Vehicle> list, String taxId){
         for (Vehicle vehicle : list) {
             if (vehicle.getMaSoThue().equals(taxId)){
                 return true;
@@ -170,8 +170,8 @@ public class Manager {
         }
         return false;
     }
-    private static ArrayList<XeMay> readData() {
-        ArrayList<XeMay> dataFromFile = new ArrayList<>();
+    private static ArrayList<Vehicle> readData() {
+        ArrayList<Vehicle> dataFromFile = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             Gson gson = new Gson();
