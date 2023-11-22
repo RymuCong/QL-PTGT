@@ -4,10 +4,14 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.example.data.Vehicle;
 import org.example.data.XeMay;
+import org.example.data.XeOtoBanTai;
 
 import java.io.*;
 import com.google.gson.reflect.TypeToken;
 import org.example.data.XeOtoCon;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -109,7 +113,6 @@ public class Manager {
                 for (Vehicle vehicle : vehicles) {
                     if (vehicle instanceof XeMay ){
                         xeMay = (XeMay) vehicle;
-
                         System.out.println("\n| "+xeMay.getMaSoThue()+" | "+" | "+xeMay.loaiXe+" | "+xeMay.getTenPhuongTien()+" | "+xeMay.getHangSanXuat()+
                                 " | "+xeMay.getNamSanXuat()+" | "+xeMay.getGiaTien()+" | "+xeMay.getLePhiTruocBa()+" | "+xeMay.getTenNguoiKhaiThue()+" | "+xeMay.getDungTichDongCo()+" | ");
                     }
@@ -119,7 +122,6 @@ public class Manager {
             case 2:{
                 XeOtoCon xeOtoCon;
                 for (Vehicle vehicle : vehicles) {
-                    if (vehicle.loaiXe == "Oto"){
                         if (vehicle instanceof XeOtoCon){
                             xeOtoCon = (XeOtoCon) vehicle;
                             System.out.println("\n+------------------------------------------------------------------------------------------------------------------------+");
@@ -129,7 +131,6 @@ public class Manager {
                             System.out.println("\n| "+xeOtoCon.getMaSoThue()+" | "+" | "+xeOtoCon.loaiXe+" | "+xeOtoCon.getTenPhuongTien()+" | "+xeOtoCon.getHangSanXuat()+
                                     " | "+xeOtoCon.getNamSanXuat()+" | "+xeOtoCon.getGiaTien()+" | "+xeOtoCon.getLePhiTruocBa()+" | "+xeOtoCon.getTenNguoiKhaiThue()+" | "+xeOtoCon.getDungTichDongCo()+" | "+xeOtoCon.getDungTichCop()+ " | ");
                         }
-                    }
 
                 }
                 break;
@@ -173,15 +174,46 @@ public class Manager {
     private static ArrayList<Vehicle> readData() {
         ArrayList<Vehicle> dataFromFile = new ArrayList<>();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            Gson gson = new Gson();
-            Type listType = new TypeToken<ArrayList<XeMay>>() {}.getType();
-            dataFromFile = gson.fromJson(reader, listType);
-        } catch (IOException e) {
+        try {
+            JSONParser parser = new JSONParser();
+            JSONArray jsonArray = (JSONArray) parser.parse(new FileReader(filePath));
+
+            for (Object jsonItem : jsonArray) {
+                JSONObject jsonObject = (JSONObject) jsonItem;
+
+                String loaiXe = (String) jsonObject.get("loaiXe");
+                String maSoThue = (String) jsonObject.get("maSoThue");
+                String tenPhuongTien = (String) jsonObject.get("tenPhuongTien");
+                String hangSanXuat = (String) jsonObject.get("hangSanXuat");
+                int namSanXuat = Math.toIntExact((long) jsonObject.get("namSanXuat"));
+                double giaTien = (double) jsonObject.get("giaTien");
+                float lePhiTruocBa = Float.parseFloat(jsonObject.get("lePhiTruocBa").toString());
+                String tenNguoiKhaiThue = (String) jsonObject.get("tenNguoiKhaiThue");
+
+                if ("XeMay".equals(loaiXe)) {
+                    int dungTichDongCo = Math.toIntExact((long) jsonObject.get("dungTichDongCo"));
+                    XeMay xeMay = new XeMay(loaiXe, tenPhuongTien, hangSanXuat, namSanXuat, giaTien, lePhiTruocBa, maSoThue, tenNguoiKhaiThue, dungTichDongCo);
+                    dataFromFile.add(xeMay);
+                } else if ("Oto".equals(loaiXe)) {
+                    int dungTichDongCo = Math.toIntExact((long) jsonObject.get("dungTichDongCo"));
+                    int dungTichCop = Math.toIntExact((long) jsonObject.get("dungTichCop"));
+                    XeOtoCon xeOtoCon = new XeOtoCon(loaiXe, tenPhuongTien, hangSanXuat, namSanXuat, giaTien, lePhiTruocBa, maSoThue, tenNguoiKhaiThue, dungTichDongCo, dungTichCop);
+                    dataFromFile.add(xeOtoCon);
+                } else if ("XeOtoBanTai".equals(loaiXe)) {
+                int dungTichDongCo = Math.toIntExact((long) jsonObject.get("dungTichDongCo"));
+                int taiTrong = Math.toIntExact((long) jsonObject.get("taiTrong"));
+                int chieuDaiThungXe = Math.toIntExact((long) jsonObject.get("chieuDaiThungXe"));
+                XeOtoBanTai xeOtoBanTai = new XeOtoBanTai(loaiXe, tenPhuongTien, hangSanXuat, namSanXuat, giaTien, lePhiTruocBa, maSoThue, tenNguoiKhaiThue, dungTichDongCo, taiTrong, chieuDaiThungXe);
+                dataFromFile.add(xeOtoBanTai);
+            }
+            }
+        } catch (Exception e) {
             System.out.println("Đã xảy ra lỗi khi đọc tệp tin: " + e.getMessage());
         }
+
         return dataFromFile;
     }
+
     public void editData(){
 //        nhớ ép kiểu từ vehical sang loại phương tiện tương ứng để sử dụng get set của class tương ứng
 

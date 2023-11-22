@@ -1,6 +1,17 @@
 package org.example;
 
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import org.example.data.Vehicle;
+import org.example.data.XeMay;
+import org.example.data.XeOtoCon;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -9,7 +20,6 @@ public class Main {
         // manager.add_vehicles();
         // // manager.saveData();
         // // manager.readData();
-        // manager.showData();
         while (true) {
             System.out.println("\n+----------------------------------------------------------------------+");
             System.out.println("\n| CHƯƠNG TRÌNH QUẢN LÝ SINH VIÊN. (c) 2022.04.22 11h54                 |");
