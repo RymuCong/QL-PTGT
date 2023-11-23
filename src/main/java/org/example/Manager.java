@@ -338,8 +338,62 @@ public class Manager {
     }
     public void sort(){
 //        nhớ ép kiểu từ vehical sang loại phương tiện tương ứng để sử dụng get set của class tương ứng
-
+        System.out.println("--------- Sắp Xếp -----------");
+        System.out.println("1. Giá tiền giảm dần.");
+        System.out.println("2. Giá tiền tăng dần.");
+        System.out.println("0. Thoát.");
+        Scanner scanner = new Scanner(System.in);
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1: {
+                sortGiaTienGiamDan();
+                break;
+            }
+            case 2: {
+                sortGiaTienTangDan();
+                break;
+            }
+            case 0: {
+                break;
+            }
+            default:
+                break;
+        }
     }
+    public void sortGiaTienGiamDan ()
+    {
+        for (int i = 0; i < vehicles.size() - 1; i++)
+        {
+            for (int j = i; j < vehicles.size(); j++)
+            {
+                if (vehicles.get(i).getGiaTien() < vehicles.get(j).getGiaTien())
+                {
+                    Vehicle tam = vehicles.get(i);
+                    vehicles.set(i,vehicles.get(j));
+                    vehicles.set(j,tam);
+                }
+            }
+        }
+        showData();
+    }
+
+    public void sortGiaTienTangDan ()
+    {
+        for (int i = 0; i < vehicles.size() - 1; i++)
+        {
+            for (int j = i; j < vehicles.size(); j++)
+            {
+                if (vehicles.get(i).getGiaTien() > vehicles.get(j).getGiaTien())
+                {
+                    Vehicle tam = vehicles.get(i);
+                    vehicles.set(i,vehicles.get(j));
+                    vehicles.set(j,tam);
+                }
+            }
+        }
+        showData();
+    }
+
     public void search(){
 //        nhớ ép kiểu từ vehical sang loại phương tiện tương ứng để sử dụng get set của class tương ứng
 
