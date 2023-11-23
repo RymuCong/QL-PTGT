@@ -43,7 +43,7 @@ public class Main {
                     break;
                 case 5:
                     // làm việc 5
-                    // manager.PhânLoạiTheoNhómMáu();
+                     manager.thongKe();
                     break;
                 case 6:
                     // làm việc 6

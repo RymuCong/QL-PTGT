@@ -15,6 +15,7 @@ import org.json.simple.parser.JSONParser;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -197,6 +198,13 @@ public class Manager {
                 break;
             }
         }
+        pause();
+    }
+
+    static void pause ()
+    {
+        System.out.println("\nNhấn enter để tiếp tục");
+        new java.util.Scanner(System.in).nextLine();
     }
     static void cot() {
         System.out.println("+----------------------------------------------------------------------------------------------------------------------------------------+");
@@ -339,18 +347,65 @@ public class Manager {
     public void sort(){
 //        nhớ ép kiểu từ vehical sang loại phương tiện tương ứng để sử dụng get set của class tương ứng
         System.out.println("--------- Sắp Xếp -----------");
-        System.out.println("1. Giá tiền giảm dần.");
-        System.out.println("2. Giá tiền tăng dần.");
+        System.out.println("1. Giá tiền.");
+        System.out.println("2. Năm sản xuất.");
+        System.out.println("3. Lệ phí trước bạ.");
         System.out.println("0. Thoát.");
         Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
         switch (choice) {
             case 1: {
-                sortGiaTienGiamDan();
+                System.out.println("1. Tăng dần.");
+                System.out.println("2. Giảm dần.");
+                int choice1 = scanner.nextInt();
+                switch (choice1) {
+                    case 1: {
+                        sortGiaTienGiamDan();
+                        break;
+                    }
+                    case 2: {
+                        sortGiaTienTangDan();
+                        break;
+                    }
+                    default:
+                        break;
+                }
                 break;
             }
             case 2: {
-                sortGiaTienTangDan();
+                System.out.println("1. Tăng dần.");
+                System.out.println("2. Giảm dần.");
+                int choice2 = scanner.nextInt();
+                switch (choice2) {
+                    case 1: {
+                        sortNamSanXuatGiamDan();
+                        break;
+                    }
+                    case 2: {
+                        sortNamSanXuatTangDan();
+                        break;
+                    }
+                    default:
+                        break;
+                }
+                break;
+            }
+            case 3: {
+                System.out.println("1. Tăng dần.");
+                System.out.println("2. Giảm dần.");
+                int choice3 = scanner.nextInt();
+                switch (choice3) {
+                    case 1: {
+                        sortLePhiTruocBaGiamDan();
+                        break;
+                    }
+                    case 2: {
+                        sortLePhiTruocBaTangDan();
+                        break;
+                    }
+                    default:
+                        break;
+                }
                 break;
             }
             case 0: {
@@ -359,6 +414,7 @@ public class Manager {
             default:
                 break;
         }
+        showData();
     }
     public void sortGiaTienGiamDan ()
     {
@@ -374,7 +430,6 @@ public class Manager {
                 }
             }
         }
-        showData();
     }
 
     public void sortGiaTienTangDan ()
@@ -391,7 +446,70 @@ public class Manager {
                 }
             }
         }
-        showData();
+    }
+
+    public void sortNamSanXuatGiamDan ()
+    {
+        for (int i = 0; i < vehicles.size() - 1; i++)
+        {
+            for (int j = i; j < vehicles.size(); j++)
+            {
+                if (vehicles.get(i).getNamSanXuat() < vehicles.get(j).getNamSanXuat())
+                {
+                    Vehicle tam = vehicles.get(i);
+                    vehicles.set(i,vehicles.get(j));
+                    vehicles.set(j,tam);
+                }
+            }
+        }
+    }
+
+    public void sortNamSanXuatTangDan ()
+    {
+        for (int i = 0; i < vehicles.size() - 1; i++)
+        {
+            for (int j = i; j < vehicles.size(); j++)
+            {
+                if (vehicles.get(i).getNamSanXuat() > vehicles.get(j).getNamSanXuat())
+                {
+                    Vehicle tam = vehicles.get(i);
+                    vehicles.set(i,vehicles.get(j));
+                    vehicles.set(j,tam);
+                }
+            }
+        }
+    }
+
+    public void sortLePhiTruocBaGiamDan ()
+    {
+        for (int i = 0; i < vehicles.size() - 1; i++)
+        {
+            for (int j = i; j < vehicles.size(); j++)
+            {
+                if (vehicles.get(i).getLePhiTruocBa() > vehicles.get(j).getLePhiTruocBa())
+                {
+                    Vehicle tam = vehicles.get(i);
+                    vehicles.set(i,vehicles.get(j));
+                    vehicles.set(j,tam);
+                }
+            }
+        }
+    }
+
+    public void sortLePhiTruocBaTangDan ()
+    {
+        for (int i = 0; i < vehicles.size() - 1; i++)
+        {
+            for (int j = i; j < vehicles.size(); j++)
+            {
+                if (vehicles.get(i).getLePhiTruocBa() < vehicles.get(j).getLePhiTruocBa())
+                {
+                    Vehicle tam = vehicles.get(i);
+                    vehicles.set(i,vehicles.get(j));
+                    vehicles.set(j,tam);
+                }
+            }
+        }
     }
 
     public void search(){
@@ -400,7 +518,35 @@ public class Manager {
     }
     public void thongKe(){
 //        nhớ ép kiểu từ vehical sang loại phương tiện tương ứng để sử dụng get set của class tương ứng
-
+        System.out.print("Thông kê số lượng xe theo loại phương tiện giao thông: \n"); // làm tạm thống kê loại xe
+        thongkeTheoLoaiXe();
+        pause();
     }
 
+    public void thongkeTheoLoaiXe() {
+
+        // Mảng chứa dữ liệu thống kê
+        int[] sl = new int[vehicles.size()]; // mỗi phần tử = 0
+        Arrays.fill(sl, 1); // gán phần tử = 1
+
+        // Tinh chỉnh dữ liệu thống kê
+        for (int i = 0; i < vehicles.size(); i++) {
+            for (int j = i + 1; j < vehicles.size(); j++) {
+                var i_j_cùng_loại = vehicles.get(i).getLoaiXe().equals(vehicles.get(j).getLoaiXe());
+
+                if// nếu
+                (i_j_cùng_loại && sl[j] != 0) {
+                    sl[i]++;
+                    sl[j]--;
+                }
+            }
+        }
+
+        // In dữ liệu thống kê, phân loại ra màn hình
+        for (int i = 0; i < sl.length; i++) {
+            if (sl[i] != 0) {
+                System.out.printf("\n Phương tiện giao thông %s có %d chiếc.", vehicles.get(i).getLoaiXe(), sl[i]);
+            }
+        }
+    }
 }

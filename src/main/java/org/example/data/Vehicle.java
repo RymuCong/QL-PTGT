@@ -23,6 +23,14 @@ public class Vehicle {
         this.tenPhuongTien = tenPhuongTien;
     }
 
+    public String getLoaiXe() {
+        return loaiXe;
+    }
+
+    public void setLoaiXe(String loaiXe) {
+        this.loaiXe = loaiXe;
+    }
+
     public String getHangSanXuat() {
         return hangSanXuat;
     }
