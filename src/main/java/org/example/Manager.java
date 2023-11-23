@@ -102,6 +102,7 @@ public class Manager {
 
         // thêm đối tượng xe máy vào danh sach vehicles \
         vehicles.add(xeMay);
+        System.out.print("Thêm vehicle thành công: ");
         //  lưu danh sách vehicles vào tệp tin
         saveData();
 
@@ -168,7 +169,7 @@ public class Manager {
                             System.out.println("\n| Mã số thuế | Loại xe | Tên | Hãng | Năm sản xuất | Giá Tiền | Lệ phí trước bạ(%) | Tên người khai thuế | Dung tích động c | Dung tích cốp |");
                             System.out.println("\n+------------------------------------------------------------------------------------------------------------------------+");
                             System.out.println("\n| "+xeOtoCon.getMaSoThue()+" | "+" | "+xeOtoCon.loaiXe+" | "+xeOtoCon.getTenPhuongTien()+" | "+xeOtoCon.getHangSanXuat()+
-                                    " | "+xeOtoCon.getNamSanXuat()+" | "+xeOtoCon.getGiaTien()+" | "+xeOtoCon.getLePhiTruocBa()+" | "+xeOtoCon.getTenNguoiKhaiThue()+" | "+xeOtoCon.getDungTichDongCo()+" | "+xeOtoCon.getDungTichCop()+ " | ");
+                                    " | "+xeOtoCon.getNamSanXuat()+" | "+Math.round(xeOtoCon.getGiaTien())+" | "+xeOtoCon.getLePhiTruocBa()+" | "+xeOtoCon.getTenNguoiKhaiThue()+" | "+xeOtoCon.getDungTichDongCo()+" | "+xeOtoCon.getDungTichCop()+ " | ");
                         }
                 }
                 break;
@@ -183,7 +184,7 @@ public class Manager {
                         System.out.println("\n| Mã số thuế | Loại xe | Tên | Hãng | Năm sản xuất | Giá Tiền | Lệ phí trước bạ(%) | Tên người khai thuế | Dung tích động c | Tai trong | Chieu dai thung xe |");
                         System.out.println("\n+------------------------------------------------------------------------------------------------------------------------+");
                         System.out.println("\n| "+xeOtoBanTai.getMaSoThue()+" | "+" | "+xeOtoBanTai.loaiXe+" | "+xeOtoBanTai.getTenPhuongTien()+" | "+xeOtoBanTai.getHangSanXuat()+
-                                " | "+xeOtoBanTai.getNamSanXuat()+" | "+xeOtoBanTai.getGiaTien()+" | "+xeOtoBanTai.getLePhiTruocBa()+" | "+xeOtoBanTai.getTenNguoiKhaiThue()+" | "+xeOtoBanTai.getDungTichDongCo()+" | "+xeOtoBanTai.getTaiTrong()+ " | "+xeOtoBanTai.getChieuDaiThungXe()+" | ");
+                                " | "+xeOtoBanTai.getNamSanXuat()+" | "+Math.round(xeOtoBanTai.getGiaTien())+" | "+xeOtoBanTai.getLePhiTruocBa()+" | "+xeOtoBanTai.getTenNguoiKhaiThue()+" | "+xeOtoBanTai.getDungTichDongCo()+" | "+xeOtoBanTai.getTaiTrong()+ " | "+xeOtoBanTai.getChieuDaiThungXe()+" | ");
                     }
                 }
                 break;
@@ -207,7 +208,7 @@ public class Manager {
     static void Dong(XeMay xeMay, int stt) {
         System.out.printf("| %-3s | %-12s | %-7s | %-6s | %-6s | %-10s | %-8s | %-18s | %-20s | %-17s |",
                 stt, xeMay.getMaSoThue(), xeMay.loaiXe, xeMay.getTenPhuongTien(), xeMay.getHangSanXuat(),
-                xeMay.getNamSanXuat(), xeMay.getGiaTien(), xeMay.getLePhiTruocBa(), xeMay.getTenNguoiKhaiThue(),
+                xeMay.getNamSanXuat(), Math.round(xeMay.getGiaTien()), xeMay.getLePhiTruocBa(), xeMay.getTenNguoiKhaiThue(),
                 xeMay.getDungTichDongCo());
         // System.out.println(formattedRow);
         System.out.println("\n+---------------------------------------------------------------------------------------------------------------------------------------+");
