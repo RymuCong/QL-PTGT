@@ -15,6 +15,7 @@ import org.json.simple.parser.JSONParser;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Manager {
@@ -23,46 +24,81 @@ public class Manager {
     public void add_vehicles()
     {
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println("nhập tên xe ");
-        String tenxe = scanner.nextLine();
-
-        System.out.println("nhập tên hãng sản xuất ");
-        String hang_san_xuat = scanner.nextLine();
-
-        System.out.println("nhập năm sản xuất ");
-        int nam_san_xuat = scanner.nextInt();
-
-        System.out.println("nhập dung tích ");
-        int dung_tich = scanner.nextInt();
-
-        scanner.nextLine();
-        String loai_xe = "XeMay";
-
-        System.out.print("Nhập giá tiền: ");
-        double gia_tien = scanner.nextInt();
-
-        System.out.print("Nhập Lệ Phí Trước Bạ(%): ");
-        float le_phi_truoc_ba  = scanner.nextFloat();
-        String ma_so_thue;
-        while (true) {
-            System.out.print("Nhập mã số thuế: ");
-            ma_so_thue = scanner.nextLine();
-
-            if (maSoThueChecker(vehicles, ma_so_thue)) {
-                System.out.println("Mã số thuế đã tồn tại. Vui lòng nhập lại.");
-            } else {
-                System.out.println("Mã số thuế hợp lệ.");
-                break;
+        String tenxe;
+        do {
+            System.out.println("Nhập tên xe: ");
+            tenxe = scanner.nextLine();
+            // Kiểm tra đầu vào với biểu thức chính quy
+            if (!tenxe.matches("[a-zA-Z0-9]+")) {
+                System.out.println("Tên xe hợp lệ mời nhập lại.");
             }
-        }
+        } while (!tenxe.matches("[a-zA-Z0-9]+"));
+        String hang_san_xuat;
+        do {
+            System.out.println("nhập tên hãng sản xuất ");
+            hang_san_xuat = scanner.nextLine();
+            // Kiểm tra đầu vào với biểu thức chính quy
+            if (!hang_san_xuat.matches("[a-zA-Z]+")) {
+                System.out.println("Tên hãng sản xuất hợp lệ mời nhập lại.");
+            }
+        } while (!hang_san_xuat.matches("[a-zA-Z]+"));
+        // System.out.println("nhập năm sản xuất ");
+        int nam_san_xuat;
+        do {
+            System.out.println("Nhập năm sản xuất: ");
+            if (scanner.hasNextInt()) {
+                nam_san_xuat = scanner.nextInt();
+                break;
+            } else {
+                System.out.println("Năm sản xuất không hợp lệ. Vui lòng nhập lại.");
+                scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
+            }
+        } while (true);
+        int dung_tich;
+        do {
+            System.out.println("Nhập dung tích xe: ");
+            if (scanner.hasNextInt()) {
+                dung_tich = scanner.nextInt();
+                break;
+            } else {
+                System.out.println("dung tích xe không hợp lệ. Vui lòng nhập lại.");
+                scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
+            }
+        } while (true);
 
-        scanner.nextLine();
+
+
+        double gia_tien;
+        do {
+            System.out.println("Nhập giá tiền : ");
+            if (scanner.hasNextInt()) {
+                gia_tien = scanner.nextInt();
+                break;
+            } else {
+                System.out.println("giá tiền không hợp lệ. Vui lòng nhập lại.");
+                scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
+            }
+        } while (true);
+
+        System.out.print("Nhập Lệ Phí Trước Ba: ");
+        float le_phi_truoc_ba;
+        do {
+            if (scanner.hasNextInt()) {
+                le_phi_truoc_ba = scanner.nextInt();
+                break;
+            } else {
+                System.out.println("Lệ Phí Trước Ba không hợp lệ. Vui lòng nhập lại.");
+                scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
+            }} while (true);
+
+            System.out.println("Nhập mã số thuế : ");
+            String ma_so_thue = scanner.nextLine();
+
 
         System.out.print("Nhập tên người khai thuế: ");
         String ten_nguoi_khai_thue = scanner.nextLine();
 
-        XeMay xeMay = new XeMay( loai_xe ,tenxe, hang_san_xuat, nam_san_xuat, gia_tien, le_phi_truoc_ba, ma_so_thue, ten_nguoi_khai_thue,dung_tich);
+        XeMay xeMay = new XeMay( "XeMay" ,tenxe, hang_san_xuat, nam_san_xuat, gia_tien, le_phi_truoc_ba, ma_so_thue, ten_nguoi_khai_thue,dung_tich);
 
         // thêm đối tượng xe máy vào danh sach vehicles \
         vehicles.add(xeMay);
@@ -70,6 +106,7 @@ public class Manager {
         saveData();
 
     }
+
     public void testData(){
         XeMay xeMay = new XeMay("XeMay","Wave","honda",2015,10007000,1.5F,"TN986876GV76","Ta Tuan Anh",100);
         XeMay xeMay1 = new XeMay("XeMay","Wave","honda",2015,10300000,1.5F,"TN9868764V56","Ta Tuan Anh",100);
@@ -106,15 +143,17 @@ public class Manager {
         switch (choice){
             case 1:{
                 XeMay xeMay;
-                System.out.println("\n+--------------------------------------------------------------------------------------------------------+");
-                System.out.println("\n+------------------------------------------------MENU----------------------------------------------------+");
-                System.out.println("\n| Mã số thuế | Loại xe | Tên | Hãng | Năm sản xuất | Giá Tiền | Lệ phí trước bạ(%) | Tên người khai thuế | Dung tích động cơ |");
-                System.out.println("\n+--------------------------------------------------------------------------------------------------------+");
+                cot();
+
+                // In các Dong
+                int stt = 1;
                 for (Vehicle vehicle : vehicles) {
-                    if (vehicle instanceof XeMay ){
-                        xeMay = (XeMay) vehicle;
-                        System.out.println("\n| "+xeMay.getMaSoThue()+" | "+" | "+xeMay.loaiXe+" | "+xeMay.getTenPhuongTien()+" | "+xeMay.getHangSanXuat()+
-                                " | "+xeMay.getNamSanXuat()+" | "+xeMay.getGiaTien()+" | "+xeMay.getLePhiTruocBa()+" | "+xeMay.getTenNguoiKhaiThue()+" | "+xeMay.getDungTichDongCo()+" | ");
+                    if (vehicle.loaiXe.equalsIgnoreCase("XeMay")){
+                        if (vehicle instanceof XeMay) {
+                            xeMay = (XeMay) vehicle;
+                            Dong(xeMay, stt);
+                            stt++;
+                        }
                     }
                 }
                 break;
@@ -131,22 +170,65 @@ public class Manager {
                             System.out.println("\n| "+xeOtoCon.getMaSoThue()+" | "+" | "+xeOtoCon.loaiXe+" | "+xeOtoCon.getTenPhuongTien()+" | "+xeOtoCon.getHangSanXuat()+
                                     " | "+xeOtoCon.getNamSanXuat()+" | "+xeOtoCon.getGiaTien()+" | "+xeOtoCon.getLePhiTruocBa()+" | "+xeOtoCon.getTenNguoiKhaiThue()+" | "+xeOtoCon.getDungTichDongCo()+" | "+xeOtoCon.getDungTichCop()+ " | ");
                         }
-
                 }
                 break;
             }
             case 3:{
-
+                XeOtoBanTai xeOtoBanTai;
+                for (Vehicle vehicle : vehicles) {
+                    if (vehicle instanceof XeOtoCon){
+                        xeOtoBanTai = (XeOtoBanTai) vehicle;
+                        System.out.println("\n+------------------------------------------------------------------------------------------------------------------------+");
+                        System.out.println("\n+----------------------------------------------------MENU----------------------------------------------------------------+");
+                        System.out.println("\n| Mã số thuế | Loại xe | Tên | Hãng | Năm sản xuất | Giá Tiền | Lệ phí trước bạ(%) | Tên người khai thuế | Dung tích động c | Tai trong | Chieu dai thung xe |");
+                        System.out.println("\n+------------------------------------------------------------------------------------------------------------------------+");
+                        System.out.println("\n| "+xeOtoBanTai.getMaSoThue()+" | "+" | "+xeOtoBanTai.loaiXe+" | "+xeOtoBanTai.getTenPhuongTien()+" | "+xeOtoBanTai.getHangSanXuat()+
+                                " | "+xeOtoBanTai.getNamSanXuat()+" | "+xeOtoBanTai.getGiaTien()+" | "+xeOtoBanTai.getLePhiTruocBa()+" | "+xeOtoBanTai.getTenNguoiKhaiThue()+" | "+xeOtoBanTai.getDungTichDongCo()+" | "+xeOtoBanTai.getTaiTrong()+ " | "+xeOtoBanTai.getChieuDaiThungXe()+" | ");
+                    }
+                }
+                break;
             }
 
             case 0:{
-
+                break;
             }
             default:{
-
+                break;
             }
         }
     }
+    static void cot() {
+        System.out.println("+----------------------------------------------------------------------------------------------------------------------------------------+");
+        System.out.println("| STT | Mã số thuế   | Loại xe | Tên    | Hãng  | Năm sản xuất | Giá Tiền | Lệ phí trước bạ(%) | Tên người khai thuế | Dung tích động cơ |");
+        System.out.println("+----------------------------------------------------------------------------------------------------------------------------------------+");
+    }
+
+
+    static void Dong(XeMay xeMay, int stt) {
+        System.out.printf("| %-3s | %-12s | %-7s | %-6s | %-6s | %-10s | %-8s | %-18s | %-20s | %-17s |",
+                stt, xeMay.getMaSoThue(), xeMay.loaiXe, xeMay.getTenPhuongTien(), xeMay.getHangSanXuat(),
+                xeMay.getNamSanXuat(), xeMay.getGiaTien(), xeMay.getLePhiTruocBa(), xeMay.getTenNguoiKhaiThue(),
+                xeMay.getDungTichDongCo());
+        // System.out.println(formattedRow);
+        System.out.println("\n+---------------------------------------------------------------------------------------------------------------------------------------+");
+    }
+    static void Xuất(List<Vehicle> vehicles) {
+        // In cột
+        cot();
+
+        // In các Dong
+        int stt = 1;
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle.loaiXe.equalsIgnoreCase("XeMay")){
+                if (vehicle instanceof XeMay) {
+                    XeMay xeMay = (XeMay) vehicle;
+                    Dong(xeMay, stt);
+                    stt++;
+                }
+            }
+        }
+    }
+
     public void saveData(){
         try {
             Writer writer = new FileWriter(filePath);
@@ -213,11 +295,45 @@ public class Manager {
 
         return dataFromFile;
     }
+    public void xoa()
+    {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Nhập mã số thuế của bản ghi cần xóa: ");
+        String maSoThueXoa = scanner.nextLine();
+        boolean found = false;
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle.getMaSoThue().equals(maSoThueXoa)) {
+                vehicles.remove(vehicle);
+                found = true;
+                break;
+            }
+        }
+        if (found) {
+            System.out.println("Xóa thành công Vehicle có mã số thuế: " + maSoThueXoa);
+        } else {
+            System.out.println("Không tìm thấy Vehicle nào với mã số thuế: " + maSoThueXoa);
+        }
+    }
+    public void edit_vehicle() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Nhập mã số thuế của bản ghi cần sửa: ");
+        String maSoThue = scanner.nextLine();
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle instanceof XeMay && vehicle.getMaSoThue().equals(maSoThue)) {
+                XeMay xeMay = (XeMay) vehicle;
 
-    public void editData(){
-//        nhớ ép kiểu từ vehical sang loại phương tiện tương ứng để sử dụng get set của class tương ứng
+                xeMay.setTenPhuongTien("Tên mới");
+                xeMay.setDungTichDongCo(555);
+                xeMay.setHangSanXuat("toyota");
+                xeMay.setNamSanXuat(2003);
+                xeMay.setGiaTien(1555);
+                xeMay.setLePhiTruocBa(55);
+                xeMay.setTenNguoiKhaiThue("baocoder");
 
-
+                System.out.println("Đã sửa thông tin xủa xe thành công");
+                break;
+            }
+        }
     }
     public void sort(){
 //        nhớ ép kiểu từ vehical sang loại phương tiện tương ứng để sử dụng get set của class tương ứng

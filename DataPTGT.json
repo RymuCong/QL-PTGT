@@ -1,25 +1,14 @@
 [
   {
-    "dungTichDongCo": 100,
+    "dungTichDongCo": 555,
     "loaiXe": "XeMay",
-    "tenPhuongTien": "Wave",
-    "hangSanXuat": "honda",
-    "namSanXuat": 2015,
-    "giaTien": 1.0007E7,
-    "lePhiTruocBa": 1.5,
-    "maSoThue": "TN986876GV76",
-    "tenNguoiKhaiThue": "Ta Tuan Anh"
-  },
-  {
-    "dungTichDongCo": 100,
-    "loaiXe": "XeMay",
-    "tenPhuongTien": "Wave",
-    "hangSanXuat": "honda",
-    "namSanXuat": 2015,
-    "giaTien": 1.03E7,
-    "lePhiTruocBa": 1.5,
+    "tenPhuongTien": "Tên mới",
+    "hangSanXuat": "toyota",
+    "namSanXuat": 2003,
+    "giaTien": 1555.0,
+    "lePhiTruocBa": 55.0,
     "maSoThue": "TN9868764V56",
-    "tenNguoiKhaiThue": "Ta Tuan Anh"
+    "tenNguoiKhaiThue": "baocoder"
   },
   {
     "dungTichDongCo": 100,
@@ -125,5 +114,16 @@
     "lePhiTruocBa": 2.0,
     "maSoThue": "BD98764896HY",
     "tenNguoiKhaiThue": "Phung Ngoc Bao"
+  },
+  {
+    "dungTichDongCo": 100,
+    "loaiXe": "XeMay",
+    "tenPhuongTien": "wave",
+    "hangSanXuat": "honda",
+    "namSanXuat": 2019,
+    "giaTien": 19999.0,
+    "lePhiTruocBa": 1.0,
+    "maSoThue": "BHVG09876544546H",
+    "tenNguoiKhaiThue": "Tuan ANh"
   }
 ]
