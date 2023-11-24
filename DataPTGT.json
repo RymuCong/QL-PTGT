@@ -125,5 +125,16 @@
     "lePhiTruocBa": 1.0,
     "maSoThue": "BHVG09876544546H",
     "tenNguoiKhaiThue": "Tuan ANh"
+  },
+  {
+    "dungTichDongCo": 10000,
+    "loaiXe": "XeMay",
+    "tenPhuongTien": "asdfsf",
+    "hangSanXuat": "aefgsg",
+    "namSanXuat": 1222,
+    "giaTien": 2.3525235E7,
+    "lePhiTruocBa": 2.0,
+    "maSoThue": "312",
+    "tenNguoiKhaiThue": ""
   }
 ]

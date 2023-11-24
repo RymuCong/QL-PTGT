@@ -22,8 +22,7 @@ import java.util.Scanner;
 public class Manager {
     static String filePath = "DataPTGT.json";
     ArrayList<Vehicle> vehicles = readData();
-    public void add_vehicles()
-    {
+    public void add_vehicles() {
         Scanner scanner = new Scanner(System.in);
         String tenxe;
         do {
@@ -68,7 +67,6 @@ public class Manager {
         } while (true);
 
 
-
         double gia_tien;
         do {
             System.out.println("Nhập giá tiền : ");
@@ -90,16 +88,20 @@ public class Manager {
             } else {
                 System.out.println("Lệ Phí Trước Ba không hợp lệ. Vui lòng nhập lại.");
                 scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
-            }} while (true);
-
-            System.out.println("Nhập mã số thuế : ");
-            String ma_so_thue = scanner.nextLine();
-
-
+            }
+        } while (true);
         System.out.print("Nhập tên người khai thuế: ");
-        String ten_nguoi_khai_thue = scanner.nextLine();
+        String ten_nguoi_khai_thue = scanner.next();
+        String ma_so_thue;
+        do {
+            System.out.println("Nhập mã số thuế : ");
+            ma_so_thue = scanner.nextLine();
+            if (maSoThueChecker(vehicles,ma_so_thue)){
+                System.out.println("Mã số thuế không hợp lệ");
+            }
+        }while (maSoThueChecker(vehicles,ma_so_thue));
 
-        XeMay xeMay = new XeMay( "XeMay" ,tenxe, hang_san_xuat, nam_san_xuat, gia_tien, le_phi_truoc_ba, ma_so_thue, ten_nguoi_khai_thue,dung_tich);
+        XeMay xeMay = new XeMay("XeMay", tenxe, hang_san_xuat, nam_san_xuat, gia_tien, le_phi_truoc_ba, ma_so_thue, ten_nguoi_khai_thue, dung_tich);
 
         // thêm đối tượng xe máy vào danh sach vehicles \
         vehicles.add(xeMay);
@@ -108,7 +110,46 @@ public class Manager {
         saveData();
 
     }
+    static void cot_print_oto_con() {
+        System.out.println("+----------------------------------------------------------------------------------------------------------------------------------------------------------+");
+        System.out.println("| STT | Mã số thuế    | Loại xe |  Tên  |  Hãng  | Năm sản xuất |  Giá Tiền  | Lệ phí trước bạ(%) | Tên người khai thuế | Dung tích động c | Dung tích cốp |");
+        System.out.println("+----------------------------------------------------------------------------------------------------------------------------------------------------------+");
+    }
+    static void cot_print_oto_ban_tai() {
+        System.out.println("+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+");
+        System.out.println("| STT | Mã số thuế | Loại xe | Tên | Hãng | Năm sản xuất | Giá Tiền | Lệ phí trước bạ(%) | Tên người khai thuế | Dung tích động c | Tai trong | Chieu dai thung xe  |");
+        System.out.println("+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+");
+    }
 
+    static void Dong_print_oto_ban_tai(XeOtoBanTai xe_ban_tai, int stt) {
+        System.out.printf("| %-3s | %-13s | %-7s | %-5s | %-7s | %-12s | %-8s | %-18s | %-19s | %-17s | %-13s |%-13s |",
+                stt, xe_ban_tai.getMaSoThue(), xe_ban_tai.loaiXe, xe_ban_tai.getTenPhuongTien(), xe_ban_tai.getHangSanXuat(),
+                xe_ban_tai.getNamSanXuat(), Math.round(xe_ban_tai.getGiaTien()), xe_ban_tai.getLePhiTruocBa(), xe_ban_tai.getTenNguoiKhaiThue(),
+                xe_ban_tai.getDungTichDongCo(),xe_ban_tai.getTaiTrong(),xe_ban_tai.getChieuDaiThungXe());
+        // System.out.println(formattedRow);
+        System.out.println("\n+----------------------------------------------------------------------------------------------------------------------------------------------------------------+");
+    }
+    static void Dong_print_oto_con(XeOtoCon xecon, int stt) {
+        System.out.printf("| %-3s | %-13s | %-7s | %-5s | %-7s | %-12s | %-8s | %-18s | %-19s | %-17s | %-13s |",
+                stt, xecon.getMaSoThue(), xecon.loaiXe, xecon.getTenPhuongTien(), xecon.getHangSanXuat(),
+                xecon.getNamSanXuat(), Math.round(xecon.getGiaTien()), xecon.getLePhiTruocBa(), xecon.getTenNguoiKhaiThue(),
+                xecon.getDungTichDongCo(),xecon.getDungTichCop(),xecon.getDungTichCop());
+        // System.out.println(formattedRow);
+        System.out.println("\n+-----------------------------------------------------------------------------------------------------------------------------------------------------------+");
+    }
+    static void cot_xe_may() {
+        System.out.println("+----------------------------------------------------------------------------------------------------------------------------------------+");
+        System.out.println("| STT | Mã số thuế   | Loại xe | Tên    | Hãng  | Năm sản xuất | Giá Tiền | Lệ phí trước bạ(%) | Tên người khai thuế | Dung tích động cơ |");
+        System.out.println("+----------------------------------------------------------------------------------------------------------------------------------------+");
+    }
+    static void Dong_xe_may(XeMay xeMay, int stt) {
+        System.out.printf("| %-3s | %-12s | %-7s | %-6s | %-6s | %-10s | %-8s | %-18s | %-20s | %-17s |",
+                stt, xeMay.getMaSoThue(), xeMay.loaiXe, xeMay.getTenPhuongTien(), xeMay.getHangSanXuat(),
+                xeMay.getNamSanXuat(), Math.round(xeMay.getGiaTien()), xeMay.getLePhiTruocBa(), xeMay.getTenNguoiKhaiThue(),
+                xeMay.getDungTichDongCo());
+        // System.out.println(formattedRow);
+        System.out.println("\n+---------------------------------------------------------------------------------------------------------------------------------------+");
+    }
     public void testData(){
         XeMay xeMay = new XeMay("XeMay","Wave","honda",2015,10007000,1.5F,"TN986876GV76","Ta Tuan Anh",100);
         XeMay xeMay1 = new XeMay("XeMay","Wave","honda",2015,10300000,1.5F,"TN9868764V56","Ta Tuan Anh",100);
@@ -145,60 +186,60 @@ public class Manager {
         switch (choice){
             case 1:{
                 XeMay xeMay;
-                cot();
 
-                // In các Dong
+                cot_xe_may();
                 int stt = 1;
                 for (Vehicle vehicle : vehicles) {
-                    if (vehicle.loaiXe.equalsIgnoreCase("XeMay")){
-                        if (vehicle instanceof XeMay) {
-                            xeMay = (XeMay) vehicle;
-                            Dong(xeMay, stt);
-                            stt++;
-                        }
+
+                    if (vehicle instanceof XeMay) {
+                        xeMay = (XeMay) vehicle;
+                        Dong_xe_may(xeMay, stt);
+                        stt++;
                     }
+
                 }
                 break;
             }
             case 2:{
                 XeOtoCon xeOtoCon;
+
+                cot_print_oto_con();
+                int stt = 1;
                 for (Vehicle vehicle : vehicles) {
-                        if (vehicle instanceof XeOtoCon){
-                            xeOtoCon = (XeOtoCon) vehicle;
-                            System.out.println("\n+------------------------------------------------------------------------------------------------------------------------+");
-                            System.out.println("\n+----------------------------------------------------MENU----------------------------------------------------------------+");
-                            System.out.println("\n| Mã số thuế | Loại xe | Tên | Hãng | Năm sản xuất | Giá Tiền | Lệ phí trước bạ(%) | Tên người khai thuế | Dung tích động c | Dung tích cốp |");
-                            System.out.println("\n+------------------------------------------------------------------------------------------------------------------------+");
-                            System.out.println("\n| "+xeOtoCon.getMaSoThue()+" | "+" | "+xeOtoCon.loaiXe+" | "+xeOtoCon.getTenPhuongTien()+" | "+xeOtoCon.getHangSanXuat()+
-                                    " | "+xeOtoCon.getNamSanXuat()+" | "+Math.round(xeOtoCon.getGiaTien())+" | "+xeOtoCon.getLePhiTruocBa()+" | "+xeOtoCon.getTenNguoiKhaiThue()+" | "+xeOtoCon.getDungTichDongCo()+" | "+xeOtoCon.getDungTichCop()+ " | ");
-                        }
+
+                    if (vehicle instanceof XeOtoCon) {
+                        xeOtoCon = (XeOtoCon) vehicle;
+                        Dong_print_oto_con(xeOtoCon, stt);
+                        stt++;
+                    }
+
                 }
                 break;
             }
             case 3:{
                 XeOtoBanTai xeOtoBanTai;
+
+                cot_print_oto_ban_tai();
+                int stt = 1;
                 for (Vehicle vehicle : vehicles) {
-                    if (vehicle instanceof XeOtoCon){
+
+                    if (vehicle instanceof XeOtoBanTai) {
                         xeOtoBanTai = (XeOtoBanTai) vehicle;
-                        System.out.println("\n+------------------------------------------------------------------------------------------------------------------------+");
-                        System.out.println("\n+----------------------------------------------------MENU----------------------------------------------------------------+");
-                        System.out.println("\n| Mã số thuế | Loại xe | Tên | Hãng | Năm sản xuất | Giá Tiền | Lệ phí trước bạ(%) | Tên người khai thuế | Dung tích động c | Tai trong | Chieu dai thung xe |");
-                        System.out.println("\n+------------------------------------------------------------------------------------------------------------------------+");
-                        System.out.println("\n| "+xeOtoBanTai.getMaSoThue()+" | "+" | "+xeOtoBanTai.loaiXe+" | "+xeOtoBanTai.getTenPhuongTien()+" | "+xeOtoBanTai.getHangSanXuat()+
-                                " | "+xeOtoBanTai.getNamSanXuat()+" | "+Math.round(xeOtoBanTai.getGiaTien())+" | "+xeOtoBanTai.getLePhiTruocBa()+" | "+xeOtoBanTai.getTenNguoiKhaiThue()+" | "+xeOtoBanTai.getDungTichDongCo()+" | "+xeOtoBanTai.getTaiTrong()+ " | "+xeOtoBanTai.getChieuDaiThungXe()+" | ");
+                        Dong_print_oto_ban_tai(xeOtoBanTai, stt);
+                        stt++;
                     }
+
                 }
                 break;
             }
 
             case 0:{
-                break;
+
             }
             default:{
-                break;
+
             }
         }
-        pause();
     }
 
     static void pause ()
@@ -538,10 +579,6 @@ public class Manager {
         }
     }
 
-    public void search(){
-//        nhớ ép kiểu từ vehical sang loại phương tiện tương ứng để sử dụng get set của class tương ứng
-
-    }
     public void thongKe(){
 //        nhớ ép kiểu từ vehical sang loại phương tiện tương ứng để sử dụng get set của class tương ứng
         System.out.print("Thông kê số lượng xe theo loại phương tiện giao thông: \n"); // làm tạm thống kê loại xe

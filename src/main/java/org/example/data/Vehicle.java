@@ -7,7 +7,6 @@ public class Vehicle {
     protected int namSanXuat;
     protected double giaTien;
     protected float lePhiTruocBa;
-//    đây là % nên nhập 1 2% thôi
     protected String maSoThue;
     protected String tenNguoiKhaiThue;
     public double TinhThueTruocBa(double giaTien, float lePhiTruocBa){
