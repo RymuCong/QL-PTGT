@@ -317,29 +317,109 @@ public class Manager {
     }
     public void edit_vehicle() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Nhập mã số thuế của bản ghi cần sửa: ");
-        String maSoThue = scanner.nextLine();
+        System.out.println("Nhap ma so thue can sua");
+        String maSoThue = scanner.next();
+
+
         for (Vehicle vehicle : vehicles) {
             if (vehicle instanceof XeMay && vehicle.getMaSoThue().equals(maSoThue)) {
                 XeMay xeMay = (XeMay) vehicle;
+                System.out.println("nhập tên cần sửa");
+                String name = scanner.next();
+                // Sử dụng các phương thức của lớp XeMay để sửa đổi thông tin
+                xeMay.setTenPhuongTien(name);
 
-                xeMay.setTenPhuongTien("Tên mới");
-                xeMay.setDungTichDongCo(555);
-                xeMay.setHangSanXuat("toyota");
-                xeMay.setNamSanXuat(2003);
-                xeMay.setGiaTien(1555);
-                xeMay.setLePhiTruocBa(55);
-                xeMay.setTenNguoiKhaiThue("baocoder");
+                System.out.println("nhập dung tích cần sửa");
+                int dung_tich = scanner.nextInt();
+                xeMay.setDungTichDongCo(dung_tich);
 
+                System.out.println("nhập tên hãng cần sửa");
+                String ten_hang = scanner.next();
+                xeMay.setHangSanXuat(ten_hang);
+
+                System.out.println("nhập năm sản xuất cần sửa");
+                int nsx = scanner.nextInt();
+                xeMay.setNamSanXuat(nsx);
+
+                System.out.println("nhập giá tiền cần sửa");
+                double gia = scanner.nextDouble();
+
+                xeMay.setGiaTien(gia);
+
+                System.out.println("nhập lệ phí trước bạ cần sửa(%)");
+                int le_phi_truoc_ba = scanner.nextInt();
+
+                xeMay.setLePhiTruocBa(le_phi_truoc_ba);
+
+                System.out.println("nhập tên người khai thuế cần sửa");
+                String nguoikhaithue = scanner.next();
+                xeMay.setTenNguoiKhaiThue(nguoikhaithue);
+                // Thực hiện các thay đổi khác tùy theo yêu cầu
+
+                // Hiển thị thông tin xe máy sau khi sửa
                 System.out.println("Đã sửa thông tin xủa xe thành công");
-                break;
-            }
+                // System.out.println(xeMay.toString());
+        }
         }
     }
     public void sort(){
 //        nhớ ép kiểu từ vehical sang loại phương tiện tương ứng để sử dụng get set của class tương ứng
-
+        System.out.println("--------- Sắp Xếp -----------");
+        System.out.println("1. Giá tiền giảm dần.");
+        System.out.println("2. Giá tiền tăng dần.");
+        System.out.println("0. Thoát.");
+        Scanner scanner = new Scanner(System.in);
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1: {
+                sortGiaTienGiamDan();
+                break;
+            }
+            case 2: {
+                sortGiaTienTangDan();
+                break;
+            }
+            case 0: {
+                break;
+            }
+            default:
+                break;
+        }
     }
+    public void sortGiaTienGiamDan ()
+    {
+        for (int i = 0; i < vehicles.size() - 1; i++)
+        {
+            for (int j = i; j < vehicles.size(); j++)
+            {
+                if (vehicles.get(i).getGiaTien() < vehicles.get(j).getGiaTien())
+                {
+                    Vehicle tam = vehicles.get(i);
+                    vehicles.set(i,vehicles.get(j));
+                    vehicles.set(j,tam);
+                }
+            }
+        }
+        showData();
+    }
+
+    public void sortGiaTienTangDan ()
+    {
+        for (int i = 0; i < vehicles.size() - 1; i++)
+        {
+            for (int j = i; j < vehicles.size(); j++)
+            {
+                if (vehicles.get(i).getGiaTien() > vehicles.get(j).getGiaTien())
+                {
+                    Vehicle tam = vehicles.get(i);
+                    vehicles.set(i,vehicles.get(j));
+                    vehicles.set(j,tam);
+                }
+            }
+        }
+        showData();
+    }
+
     public void search(){
 //        nhớ ép kiểu từ vehical sang loại phương tiện tương ứng để sử dụng get set của class tương ứng
 
