@@ -1,6 +1,6 @@
 package org.example.data;
 
-public class Vehicle {
+public class Vehicle implements TinhThue{
     public String loaiXe ="";
     protected String tenPhuongTien;
     protected String hangSanXuat;
@@ -77,7 +77,6 @@ public class Vehicle {
     public void setTenNguoiKhaiThue(String tenNguoiKhaiThue) {
         this.tenNguoiKhaiThue = tenNguoiKhaiThue;
     }
-
     public double TinhLePhiDangKyXeMoi(double giaTien){
         double LePhiDangKyXe = 0;
         if (giaTien <= 15000000){
