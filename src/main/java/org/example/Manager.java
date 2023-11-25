@@ -365,50 +365,212 @@ public class Manager {
         }
     }
     public void edit_vehicle() {
+        System.out.println("Sửa thông tin phương tiện");
+        System.out.println("1. Xe máy");
+        System.out.println("2. Xe ô tô");
+        System.out.println("3. Xe ô tô bán tải");
+        System.out.println("0. Exit");
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhap ma so thue can sua");
-        String maSoThue = scanner.next();
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1: {
+                // Làm việc 1
+                System.out.println("Nhập mã số thuế cần sửa của phương tiện");
+                String maSoThue = scanner.next();
+                scanner.nextLine(); // Bỏ qua dòng trống
+                boolean found = false;
+                for (Vehicle vehicle : vehicles) {
+                    if (vehicle instanceof XeMay && vehicle.getMaSoThue().equals(maSoThue)) {
+                        XeMay xeMay = (XeMay) vehicle;
+                        found = true;
+                        System.out.println("Nhập tên cần sửa");
+                        String name = scanner.nextLine();
+                        // Sử dụng các phương thức của lớp XeMay để sửa đổi thông tin
+                        xeMay.setTenPhuongTien(name);
 
+                        System.out.println("Nhập dung tích cần sửa");
+                        int dung_tich = scanner.nextInt();
+                        xeMay.setDungTichDongCo(dung_tich);
 
-        for (Vehicle vehicle : vehicles) {
-            if (vehicle instanceof XeMay && vehicle.getMaSoThue().equals(maSoThue)) {
-                XeMay xeMay = (XeMay) vehicle;
-                System.out.println("nhập tên cần sửa");
-                String name = scanner.next();
-                // Sử dụng các phương thức của lớp XeMay để sửa đổi thông tin
-                xeMay.setTenPhuongTien(name);
+                        scanner.nextLine(); // Bỏ qua dòng trống
 
-                System.out.println("nhập dung tích cần sửa");
-                int dung_tich = scanner.nextInt();
-                xeMay.setDungTichDongCo(dung_tich);
+                        System.out.println("Nhập tên hãng cần sửa");
+                        String ten_hang = scanner.nextLine();
+                        xeMay.setHangSanXuat(ten_hang);
 
-                System.out.println("nhập tên hãng cần sửa");
-                String ten_hang = scanner.next();
-                xeMay.setHangSanXuat(ten_hang);
+                        System.out.println("Nhập năm sản xuất cần sửa");
+                        int nsx = scanner.nextInt();
+                        xeMay.setNamSanXuat(nsx);
 
-                System.out.println("nhập năm sản xuất cần sửa");
-                int nsx = scanner.nextInt();
-                xeMay.setNamSanXuat(nsx);
+                        System.out.println("Nhập giá tiền cần sửa");
+                        double gia = scanner.nextDouble();
+                        xeMay.setGiaTien(gia);
 
-                System.out.println("nhập giá tiền cần sửa");
-                double gia = scanner.nextDouble();
+                        System.out.println("Nhập lệ phí trước bạ cần sửa");
+                        int le_phi_truoc_ba = scanner.nextInt();
+                        xeMay.setLePhiTruocBa(le_phi_truoc_ba);
 
-                xeMay.setGiaTien(gia);
+                        scanner.nextLine(); // Bỏ qua dòng trống
 
-                System.out.println("nhập lệ phí trước bạ cần sửa(%)");
-                int le_phi_truoc_ba = scanner.nextInt();
+                        System.out.println("Nhập tên người khai thuế cần sửa");
+                        String nguoikhaithue = scanner.nextLine();
+                        xeMay.setTenNguoiKhaiThue(nguoikhaithue);
 
-                xeMay.setLePhiTruocBa(le_phi_truoc_ba);
+                        // Thực hiện các thay đổi khác tùy theo yêu cầu
 
-                System.out.println("nhập tên người khai thuế cần sửa");
-                String nguoikhaithue = scanner.next();
-                xeMay.setTenNguoiKhaiThue(nguoikhaithue);
-                // Thực hiện các thay đổi khác tùy theo yêu cầu
+                        // Hiển thị thông tin xe máy sau khi sửa
 
-                // Hiển thị thông tin xe máy sau khi sửa
-                System.out.println("Đã sửa thông tin xủa xe thành công");
+                        break;
+                    }
+                }
+                if(found)
+                {
+                    System.out.println("Đã sửa thông tin xe thành công");
+                }
+                else{
+                    System.out.println("không tìm thấy mã số thuế ");
+                }
                 break;
             }
+            case 2: {
+                System.out.println("Nhập mã số thuế cần sửa của phương tiện");
+                String maSoThue = scanner.next();
+                scanner.nextLine(); // Bỏ qua dòng trống
+                boolean found = false;
+                for (Vehicle vehicle : vehicles) {
+                    if (vehicle instanceof XeOtoCon && vehicle.getMaSoThue().equals(maSoThue)) {
+                        XeOtoCon xe_oto_con = (XeOtoCon) vehicle;
+                        found = true;
+                        System.out.println("Nhập tên cần sửa");
+                        String name = scanner.nextLine();
+                        // Sử dụng các phương thức của lớp XeMay để sửa đổi thông tin
+                        xe_oto_con.setTenPhuongTien(name);
+
+                        System.out.println("Nhập dung tích cần sửa");
+                        int dung_tich = scanner.nextInt();
+                        xe_oto_con.setDungTichDongCo(dung_tich);
+
+                        scanner.nextLine(); // Bỏ qua dòng trống
+
+                        System.out.println("Nhập tên hãng cần sửa");
+                        String ten_hang = scanner.nextLine();
+                        xe_oto_con.setHangSanXuat(ten_hang);
+
+                        System.out.println("Nhập năm sản xuất cần sửa");
+                        int nsx = scanner.nextInt();
+                        xe_oto_con.setNamSanXuat(nsx);
+
+                        System.out.println("Nhập giá tiền cần sửa");
+                        double gia = scanner.nextDouble();
+                        xe_oto_con.setGiaTien(gia);
+
+                        System.out.println("Nhập dung tích cốp cần sửa");
+                        int dung_tich_cop = scanner.nextInt();
+                        xe_oto_con.setDungTichCop(dung_tich_cop);
+
+                        System.out.println("Nhập lệ phí trước bạ cần sửa");
+                        int le_phi_truoc_ba = scanner.nextInt();
+                        xe_oto_con.setLePhiTruocBa(le_phi_truoc_ba);
+
+                        scanner.nextLine(); // Bỏ qua dòng trống
+
+                        System.out.println("Nhập tên người khai thuế cần sửa");
+                        String nguoikhaithue = scanner.nextLine();
+                        xe_oto_con.setTenNguoiKhaiThue(nguoikhaithue);
+
+                        // Thực hiện các thay đổi khác tùy theo yêu cầu
+
+                        // Hiển thị thông tin xe máy sau khi sửa
+                        System.out.println("Đã sửa thông tin xe thành công");
+                        break;
+                    }
+                }
+                if(found)
+                {
+                    System.out.println("Đã sửa thông tin xe thành công");
+                }
+                else{
+                    System.out.println("không tìm thấy mã số thuế ");
+                }
+                // Làm việc 2
+                break;
+            }
+            case 3: {
+                System.out.println("Nhập mã số thuế cần sửa của phương tiện");
+                String maSoThue = scanner.next();
+                scanner.nextLine(); // Bỏ qua dòng trống
+                boolean found = false;
+                for (Vehicle vehicle : vehicles) {
+                    if (vehicle instanceof XeOtoBanTai && vehicle.getMaSoThue().equals(maSoThue)) {
+                        XeOtoBanTai xe_oto_ban_tai = (XeOtoBanTai) vehicle;
+                        found = true;
+                        System.out.println("Nhập tên cần sửa");
+                        String name = scanner.nextLine();
+                        // Sử dụng các phương thức của lớp XeMay để sửa đổi thông tin
+                        xe_oto_ban_tai.setTenPhuongTien(name);
+
+                        System.out.println("Nhập dung tích cần sửa");
+                        int dung_tich = scanner.nextInt();
+                        xe_oto_ban_tai.setDungTichDongCo(dung_tich);
+
+                        scanner.nextLine(); // Bỏ qua dòng trống
+
+                        System.out.println("Nhập tên hãng cần sửa");
+                        String ten_hang = scanner.nextLine();
+                        xe_oto_ban_tai.setHangSanXuat(ten_hang);
+
+                        System.out.println("Nhập năm sản xuất cần sửa");
+                        int nsx = scanner.nextInt();
+                        xe_oto_ban_tai.setNamSanXuat(nsx);
+
+                        System.out.println("Nhập giá tiền cần sửa");
+                        double gia = scanner.nextDouble();
+                        xe_oto_ban_tai.setGiaTien(gia);
+
+                        System.out.println("Nhập tải trọng xe cần sửa");
+                        int tai_trong = scanner.nextInt();
+                        xe_oto_ban_tai.setTaiTrong(tai_trong);
+
+                        System.out.println("Nhập chiều dài thùng xe cần sửa");
+                        int chieu_dai_thung_xe = scanner.nextInt();
+                        xe_oto_ban_tai.setChieuDaiThungXe(chieu_dai_thung_xe);
+
+                        System.out.println("Nhập lệ phí trước bạ cần sửa");
+                        int le_phi_truoc_ba = scanner.nextInt();
+                        xe_oto_ban_tai.setLePhiTruocBa(le_phi_truoc_ba);
+
+                        scanner.nextLine(); // Bỏ qua dòng trống
+
+                        System.out.println("Nhập tên người khai thuế cần sửa");
+                        String nguoikhaithue = scanner.nextLine();
+                        xe_oto_ban_tai.setTenNguoiKhaiThue(nguoikhaithue);
+
+                        // Thực hiện các thay đổi khác tùy theo yêu cầu
+
+                        // Hiển thị thông tin xe máy sau khi sửa
+                        System.out.println("Đã sửa thông tin xe thành công");
+                        break;
+                    }
+                }
+                if(found)
+                {
+                    System.out.println("Đã sửa thông tin xe thành công");
+                }
+                else{
+                    System.out.println("không tìm thấy mã số thuế ");
+                }
+                // Làm việc 2
+                break;
+            }
+            case 0: {
+                System.out.println("\nĐang thoát...");
+                // Thread.sleep(3000);
+                System.exit(0);
+                break;
+            }
+            default:
+                System.out.println("\nHãy nhập menu hợp lệ!");
+                break;
         }
     }
     public void sort(){

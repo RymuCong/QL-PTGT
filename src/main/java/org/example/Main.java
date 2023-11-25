@@ -21,7 +21,7 @@ public class Main {
             System.out.println("\n+-------------------------------------------------------------------------------------------------------+");
             System.out.println("\n| CHƯƠNG TRÌNH QUẢN LÝ THUẾ ĐĂNG KÝ PHƯƠNG TIỆN GIAO THÔNG.                                             |");
             System.out.println("\n+---------------------------------------------MENU------------------------------------------------------+");
-            System.out.println("\n| 1.Thêm | 2.Hiển thị | 3.Sửa | 4.Xóa| 5.Sắp xếp | 6. Thống kê | 0. Thoát |                |");
+            System.out.println("\n| 1.Thêm | 2.Hiển thị | 3.Sửa | 4.Xóa| 5.Sắp xếp | 6. Thống kê | 0. Thoát |                             |");
             System.out.println("\n+-------------------------------------------------------------------------------------------------------+");
 
             System.out.println("\n Chọn menu: ");
