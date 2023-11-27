@@ -110,46 +110,59 @@ public class Manager {
         saveData();
 
     }
-    static void cot_print_oto_con() {
-        System.out.println("+----------------------------------------------------------------------------------------------------------------------------------------------------------+");
-        System.out.println("| STT | Mã số thuế    | Loại xe |  Tên  |  Hãng  | Năm sản xuất |  Giá Tiền  | Lệ phí trước bạ(%) | Tên người khai thuế | Dung tích động c | Dung tích cốp |");
-        System.out.println("+----------------------------------------------------------------------------------------------------------------------------------------------------------+");
+    static void cot_xe_may() {
+        System.out.println("+--------------------------------------------------------------------------------------------------------------------------+");
+        System.out.println("| STT | Mã số thuế   | Loại xe | Tên     | Hãng  | Năm sản xuất | Giá Tiền | Lệ phí trước bạ(%) | người khai thuế |  CC    |");
+        System.out.println("+--------------------------------------------------------------------------------------------------------------------------+");
     }
+    static void Dong_xe_may(XeMay xeMay, int stt) {
+        String formattedGiaTien = String.format("%,d", Math.round(xeMay.getGiaTien())).replace(",", ".");
+        // format giá tiền thành dạng có dấu chấm cách hàng nghìn sau đó thay thế dấu phẩy thành dấu chấm thành
+        System.out.printf("| %-3s | %-12s | %-7s | %-6s | %-6s | %-10s | %-8s | %-18s | %-17s | %-5s |",
+                stt, xeMay.getMaSoThue(), xeMay.loaiXe, xeMay.getTenPhuongTien(), xeMay.getHangSanXuat(),
+                xeMay.getNamSanXuat(), formattedGiaTien, xeMay.getLePhiTruocBa(), xeMay.getTenNguoiKhaiThue(),
+                xeMay.getDungTichDongCo());
+        // System.out.println(formattedRow);
+        System.out.println("\n+--------------------------------------------------------------------------------------------------------------------------+");
+    }
+
+
+    static void cot_print_oto_con() {
+        System.out.println("+---------------------------------------------------------------------------------------------------------------------------------------------+");
+        System.out.println("| STT | Mã số thuế    | Loại xe |  Tên  |  Hãng  | Năm sản xuất |    Giá Tiền   | Lệ phí trước bạ(%) | người khai thuế |  cc  | Dung tích cốp |");
+        System.out.println("+---------------------------------------------------------------------------------------------------------------------------------------------+");
+    }
+
+    static void Dong_print_oto_con(XeOtoCon xecon, int stt) {
+        String formattedGiaTien = String.format("%,d", Math.round(xecon.getGiaTien())).replace(",", ".");
+        // format giá tiền thành dạng có dấu chấm cách hàng nghìn sau đó thay thế dấu phẩy thành dấu chấm thành
+        System.out.printf("| %-3s | %-13s | %-7s | %-5s | %-7s | %-12s | %-8s | %-18s | %-16s | %-5s | %-12s |",
+                stt, xecon.getMaSoThue(), xecon.loaiXe, xecon.getTenPhuongTien(), xecon.getHangSanXuat(),
+                xecon.getNamSanXuat(),formattedGiaTien, xecon.getLePhiTruocBa(), xecon.getTenNguoiKhaiThue(),
+                xecon.getDungTichDongCo(),xecon.getDungTichCop(),xecon.getDungTichCop());
+        // System.out.println(formattedRow);
+        System.out.println("\n+---------------------------------------------------------------------------------------------------------------------------------------------+");
+    }
+
+
+
     static void cot_print_oto_ban_tai() {
-        System.out.println("+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+");
-        System.out.println("| STT | Mã số thuế | Loại xe | Tên | Hãng | Năm sản xuất | Giá Tiền | Lệ phí trước bạ(%) | Tên người khai thuế | Dung tích động c | Tai trong | Chieu dai thung xe  |");
-        System.out.println("+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+");
+        System.out.println("+-------------------------------------------------------------------------------------------------------------------------------------------------+");
+        System.out.println("| STT | Mã số thuế | Loại xe | Tên | Hãng | Năm sản xuất | Giá Tiền | Lệ phí trước bạ(%) | người khai thuế | CC | Tai trong | Chieu dai thung xe  |");
+        System.out.println("+-------------------------------------------------------------------------------------------------------------------------------------------------+");
     }
 
     static void Dong_print_oto_ban_tai(XeOtoBanTai xe_ban_tai, int stt) {
+        String formattedGiaTien = String.format("%,d", Math.round(xe_ban_tai.getGiaTien())).replace(",", ".");
+        // format giá tiền thành dạng có dấu chấm cách hàng nghìn sau đó thay thế dấu phẩy thành dấu chấm thành
         System.out.printf("| %-3s | %-13s | %-7s | %-5s | %-7s | %-12s | %-8s | %-18s | %-19s | %-17s | %-13s |%-13s |",
                 stt, xe_ban_tai.getMaSoThue(), xe_ban_tai.loaiXe, xe_ban_tai.getTenPhuongTien(), xe_ban_tai.getHangSanXuat(),
-                xe_ban_tai.getNamSanXuat(), Math.round(xe_ban_tai.getGiaTien()), xe_ban_tai.getLePhiTruocBa(), xe_ban_tai.getTenNguoiKhaiThue(),
+                xe_ban_tai.getNamSanXuat(), formattedGiaTien, xe_ban_tai.getLePhiTruocBa(), xe_ban_tai.getTenNguoiKhaiThue(),
                 xe_ban_tai.getDungTichDongCo(),xe_ban_tai.getTaiTrong(),xe_ban_tai.getChieuDaiThungXe());
         // System.out.println(formattedRow);
-        System.out.println("\n+----------------------------------------------------------------------------------------------------------------------------------------------------------------+");
+        System.out.println("\n+-----------------------------------------------------------------------------------------------------------------------------------------------+");
     }
-    static void Dong_print_oto_con(XeOtoCon xecon, int stt) {
-        System.out.printf("| %-3s | %-13s | %-7s | %-5s | %-7s | %-12s | %-8s | %-18s | %-19s | %-17s | %-13s |",
-                stt, xecon.getMaSoThue(), xecon.loaiXe, xecon.getTenPhuongTien(), xecon.getHangSanXuat(),
-                xecon.getNamSanXuat(), Math.round(xecon.getGiaTien()), xecon.getLePhiTruocBa(), xecon.getTenNguoiKhaiThue(),
-                xecon.getDungTichDongCo(),xecon.getDungTichCop(),xecon.getDungTichCop());
-        // System.out.println(formattedRow);
-        System.out.println("\n+-----------------------------------------------------------------------------------------------------------------------------------------------------------+");
-    }
-    static void cot_xe_may() {
-        System.out.println("+----------------------------------------------------------------------------------------------------------------------------------------+");
-        System.out.println("| STT | Mã số thuế   | Loại xe | Tên    | Hãng  | Năm sản xuất | Giá Tiền | Lệ phí trước bạ(%) | Tên người khai thuế | Dung tích động cơ |");
-        System.out.println("+----------------------------------------------------------------------------------------------------------------------------------------+");
-    }
-    static void Dong_xe_may(XeMay xeMay, int stt) {
-        System.out.printf("| %-3s | %-12s | %-7s | %-6s | %-6s | %-10s | %-8s | %-18s | %-20s | %-17s |",
-                stt, xeMay.getMaSoThue(), xeMay.loaiXe, xeMay.getTenPhuongTien(), xeMay.getHangSanXuat(),
-                xeMay.getNamSanXuat(), Math.round(xeMay.getGiaTien()), xeMay.getLePhiTruocBa(), xeMay.getTenNguoiKhaiThue(),
-                xeMay.getDungTichDongCo());
-        // System.out.println(formattedRow);
-        System.out.println("\n+---------------------------------------------------------------------------------------------------------------------------------------+");
-    }
+
     public void testData(){
         XeMay xeMay = new XeMay("XeMay","Wave","honda",2015,10007000,1.5F,"TN986876GV76","Ta Tuan Anh",100);
         XeMay xeMay1 = new XeMay("XeMay","Wave","honda",2015,10300000,1.5F,"TN9868764V56","Ta Tuan Anh",100);
@@ -175,6 +188,8 @@ public class Manager {
         vehicles.add(otoCon4);
         vehicles.add(otoCon5);
     }
+
+
     public void showData(){
         System.out.println("Hiển thị thông tin phương tiện");
         System.out.println("1,Xe máy");
@@ -241,6 +256,7 @@ public class Manager {
             }
         }
     }
+
 
     static void pause ()
     {
@@ -332,12 +348,12 @@ public class Manager {
                     XeOtoCon xeOtoCon = new XeOtoCon(loaiXe, tenPhuongTien, hangSanXuat, namSanXuat, giaTien, lePhiTruocBa, maSoThue, tenNguoiKhaiThue, dungTichDongCo, dungTichCop);
                     dataFromFile.add(xeOtoCon);
                 } else if ("XeOtoBanTai".equals(loaiXe)) {
-                int dungTichDongCo = Math.toIntExact((long) jsonObject.get("dungTichDongCo"));
-                int taiTrong = Math.toIntExact((long) jsonObject.get("taiTrong"));
-                int chieuDaiThungXe = Math.toIntExact((long) jsonObject.get("chieuDaiThungXe"));
-                XeOtoBanTai xeOtoBanTai = new XeOtoBanTai(loaiXe, tenPhuongTien, hangSanXuat, namSanXuat, giaTien, lePhiTruocBa, maSoThue, tenNguoiKhaiThue, dungTichDongCo, taiTrong, chieuDaiThungXe);
-                dataFromFile.add(xeOtoBanTai);
-            }
+                    int dungTichDongCo = Math.toIntExact((long) jsonObject.get("dungTichDongCo"));
+                    int taiTrong = Math.toIntExact((long) jsonObject.get("taiTrong"));
+                    int chieuDaiThungXe = Math.toIntExact((long) jsonObject.get("chieuDaiThungXe"));
+                    XeOtoBanTai xeOtoBanTai = new XeOtoBanTai(loaiXe, tenPhuongTien, hangSanXuat, namSanXuat, giaTien, lePhiTruocBa, maSoThue, tenNguoiKhaiThue, dungTichDongCo, taiTrong, chieuDaiThungXe);
+                    dataFromFile.add(xeOtoBanTai);
+                }
             }
         } catch (Exception e) {
             System.out.println("Đã xảy ra lỗi khi đọc tệp tin: " + e.getMessage());
