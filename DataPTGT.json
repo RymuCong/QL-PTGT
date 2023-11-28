@@ -136,5 +136,16 @@
     "lePhiTruocBa": 2.0,
     "maSoThue": "312",
     "tenNguoiKhaiThue": ""
+  },
+  {
+    "dungTichDongCo": 12,
+    "loaiXe": "XeMay",
+    "tenPhuongTien": "fec",
+    "hangSanXuat": "dw",
+    "namSanXuat": 2,
+    "giaTien": 121.0,
+    "lePhiTruocBa": 2.0,
+    "maSoThue": "",
+    "tenNguoiKhaiThue": "cogn"
   }
 ]

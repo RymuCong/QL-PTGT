@@ -14,10 +14,11 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+
+// thư viện để tìm kiếm được chữ cái tiếng việt
+import java.text.Normalizer;
+import java.util.regex.Pattern;
 
 public class Manager {
     static String filePath = "DataPTGT.json";
@@ -255,6 +256,7 @@ public class Manager {
 
             }
         }
+        pause();
     }
 
 
@@ -759,8 +761,32 @@ public class Manager {
 
     public void thongKe(){
 //        nhớ ép kiểu từ vehical sang loại phương tiện tương ứng để sử dụng get set của class tương ứng
-        System.out.print("Thông kê số lượng xe theo loại phương tiện giao thông: \n"); // làm tạm thống kê loại xe
-        thongkeTheoLoaiXe();
+        System.out.println("Thông kê số lượng xe theo loại phương tiện giao thông"); // làm tạm thống kê loại xe
+        System.out.println("1. Loại xe.");
+        System.out.println("2. Hãng sản xuất.");
+        System.out.println("3. Năm sản xuất.");
+        System.out.println("0. Thoát.");
+        Scanner scanner = new Scanner(System.in);
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1: {
+                thongkeTheoLoaiXe();
+                break;
+            }
+            case 2: {
+                thongkeTheoHang();
+                break;
+            }
+            case 3: {
+                thongkeTheoNamSanXuat();
+            }
+            case 0: {
+                break;
+            }
+            default: {
+                System.out.println("Vui lòng nhập lại !");
+            }
+        }
         pause();
     }
 
@@ -789,5 +815,140 @@ public class Manager {
                 System.out.printf("\n Phương tiện giao thông %s có %d chiếc.", vehicles.get(i).getLoaiXe(), sl[i]);
             }
         }
+    }
+    public void thongkeTheoHang() {
+
+        // Mảng chứa dữ liệu thống kê
+        int[] sl = new int[vehicles.size()]; // mỗi phần tử = 0
+        Arrays.fill(sl, 1); // gán phần tử = 1
+
+        // Tinh chỉnh dữ liệu thống kê
+        for (int i = 0; i < vehicles.size(); i++) {
+            for (int j = i + 1; j < vehicles.size(); j++) {
+                var i_j_cùng_loại = vehicles.get(i).getHangSanXuat().equals(vehicles.get(j).getHangSanXuat());
+
+                if// nếu
+                (i_j_cùng_loại && sl[j] != 0) {
+                    sl[i]++;
+                    sl[j]--;
+                }
+            }
+        }
+
+        // In dữ liệu thống kê, phân loại ra màn hình
+        for (int i = 0; i < sl.length; i++) {
+            if (sl[i] != 0) {
+                System.out.printf("\n Phương tiện giao thông hãng %s có %d chiếc.", vehicles.get(i).getHangSanXuat(), sl[i]);
+            }
+        }
+    }
+    public void thongkeTheoNamSanXuat() {
+
+        // Mảng chứa dữ liệu thống kê
+        int[] sl = new int[vehicles.size()]; // mỗi phần tử = 0
+        Arrays.fill(sl, 1); // gán phần tử = 1
+
+        // Tinh chỉnh dữ liệu thống kê
+        for (int i = 0; i < vehicles.size(); i++) {
+            for (int j = i + 1; j < vehicles.size(); j++) {
+                var i_j_cùng_loại = (vehicles.get(i).getNamSanXuat() == vehicles.get(j).getNamSanXuat());
+
+                if// nếu
+                (i_j_cùng_loại && sl[j] != 0) {
+                    sl[i]++;
+                    sl[j]--;
+                }
+            }
+        }
+
+        // In dữ liệu thống kê, phân loại ra màn hình
+        for (int i = 0; i < sl.length; i++) {
+            if (sl[i] != 0) {
+                System.out.printf("\n Phương tiện giao thông sản xuất năm %s có %d chiếc.", vehicles.get(i).getNamSanXuat(), sl[i]);
+            }
+        }
+    }
+
+    public static String xoaDauTV(String s) {
+        String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
+        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+        return pattern.matcher(temp).replaceAll("");
+    }
+
+    public void timKiem ()
+    {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Bạn muốn tìm kiếm loại xe nào?");
+        System.out.println("1,Xe máy");
+        System.out.println("2,Xe ô tô");
+        System.out.println("3,Xe ô tô bán tải");
+
+        System.out.print("\n Nhập lựa chọn: ");
+        var choice = scanner.nextInt();
+
+        System.out.print("\n Nhập từ khóa cần tìm kiếm: ");
+        var key = scanner.next();
+
+        switch (choice){
+            case 1:{
+                XeMay xeMay;
+
+                cot_xe_may();
+                int stt = 1;
+                for (Vehicle vehicle : vehicles) {
+
+                    if ((vehicle instanceof XeMay) && (xoaDauTV(vehicle.getTenPhuongTien()).toLowerCase().contains(key.toLowerCase()))) {
+                        xeMay = (XeMay) vehicle;
+                        Dong_xe_may(xeMay, stt);
+                        stt++;
+                    }
+
+                }
+                if (stt == 1)
+                    System.out.println("Không tìm thấy phương tiện phù hợp");
+                break;
+            }
+            case 2:{
+                XeOtoCon xeOtoCon;
+
+                cot_print_oto_con();
+                int stt = 1;
+                for (Vehicle vehicle : vehicles) {
+
+                    if ((vehicle instanceof XeOtoCon) && (xoaDauTV(vehicle.getTenPhuongTien()).toLowerCase().contains(key.toLowerCase()))) {
+                        xeOtoCon = (XeOtoCon) vehicle;
+                        Dong_print_oto_con(xeOtoCon, stt);
+                        stt++;
+                    }
+
+                }
+                if (stt == 1)
+                    System.out.println("Không tìm thấy phương tiện phù hợp");
+                break;
+            }
+            case 3:{
+                XeOtoBanTai xeOtoBanTai;
+
+                cot_print_oto_ban_tai();
+                int stt = 1;
+                for (Vehicle vehicle : vehicles) {
+
+                    if ((vehicle instanceof XeOtoBanTai) && (xoaDauTV(vehicle.getTenPhuongTien()).toLowerCase().contains(key.toLowerCase()))) {
+                        xeOtoBanTai = (XeOtoBanTai) vehicle;
+                        Dong_print_oto_ban_tai(xeOtoBanTai, stt);
+                        stt++;
+                    }
+
+                }
+                if (stt == 1)
+                    System.out.println("Không tìm thấy phương tiện phù hợp");
+                break;
+            }
+            default:{
+                System.out.print("Vui lòng nhập lại!");
+            }
+        }
+        pause();
     }
 }
