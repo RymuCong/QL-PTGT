@@ -112,19 +112,19 @@ public class Manager {
 
     }
     static void cot_xe_may() {
-        System.out.println("+--------------------------------------------------------------------------------------------------------------------------+");
-        System.out.println("| STT | Mã số thuế   | Loại xe | Tên     | Hãng  | Năm sản xuất | Giá Tiền | Lệ phí trước bạ(%) | người khai thuế |  CC    |");
-        System.out.println("+--------------------------------------------------------------------------------------------------------------------------+");
+        System.out.println("+----------------------------------------------------------------------------------------------------------------------------------------+");
+        System.out.println("| STT |     Mã số thuế    | Loại xe |     Tên     |   Hãng   | Năm sản xuất |   Giá Tiền   | Phí trước bạ(%) | Người khai thuế | Động cơ |");
+        System.out.println("+----------------------------------------------------------------------------------------------------------------------------------------+");
     }
     static void Dong_xe_may(XeMay xeMay, int stt) {
         String formattedGiaTien = String.format("%,d", Math.round(xeMay.getGiaTien())).replace(",", ".");
         // format giá tiền thành dạng có dấu chấm cách hàng nghìn sau đó thay thế dấu phẩy thành dấu chấm thành
-        System.out.printf("| %-3s | %-12s | %-7s | %-6s | %-6s | %-10s | %-8s | %-18s | %-17s | %-5s |",
+        System.out.printf("| %-3s | %-17s | %-7s | %-11s | %-8s | %-12s | %-12s | %-15s | %-15s | %-7s |",
                 stt, xeMay.getMaSoThue(), xeMay.loaiXe, xeMay.getTenPhuongTien(), xeMay.getHangSanXuat(),
                 xeMay.getNamSanXuat(), formattedGiaTien, xeMay.getLePhiTruocBa(), xeMay.getTenNguoiKhaiThue(),
                 xeMay.getDungTichDongCo());
         // System.out.println(formattedRow);
-        System.out.println("\n+--------------------------------------------------------------------------------------------------------------------------+");
+        System.out.println("\n+----------------------------------------------------------------------------------------------------------------------------------------+");
     }
 
 
