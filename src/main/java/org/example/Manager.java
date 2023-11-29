@@ -24,91 +24,322 @@ public class Manager {
     static String filePath = "DataPTGT.json";
     ArrayList<Vehicle> vehicles = readData();
     public void add_vehicles() {
+        System.out.println("Hiển thị thông tin phương tiện bạn muốn thêm");
+        System.out.println("1,Xe máy");
+        System.out.println("2,Xe ô tô");
+        System.out.println("3,Xe ô tô bán tải");
+        System.out.println("0,Exit");
         Scanner scanner = new Scanner(System.in);
-        String tenxe;
-        do {
-            System.out.println("Nhập tên xe: ");
-            tenxe = scanner.nextLine();
-            // Kiểm tra đầu vào với biểu thức chính quy
-            if (!tenxe.matches("[a-zA-Z0-9]+")) {
-                System.out.println("Tên xe hợp lệ mời nhập lại.");
-            }
-        } while (!tenxe.matches("[a-zA-Z0-9]+"));
-        String hang_san_xuat;
-        do {
-            System.out.println("nhập tên hãng sản xuất ");
-            hang_san_xuat = scanner.nextLine();
-            // Kiểm tra đầu vào với biểu thức chính quy
-            if (!hang_san_xuat.matches("[a-zA-Z]+")) {
-                System.out.println("Tên hãng sản xuất hợp lệ mời nhập lại.");
-            }
-        } while (!hang_san_xuat.matches("[a-zA-Z]+"));
-        // System.out.println("nhập năm sản xuất ");
-        int nam_san_xuat;
-        do {
-            System.out.println("Nhập năm sản xuất: ");
-            if (scanner.hasNextInt()) {
-                nam_san_xuat = scanner.nextInt();
+        int choice = scanner.nextInt();
+        switch (choice){
+            case 1:{
+                // Scanner scanner = new Scanner(System.in);
+                String tenxe;
+                do {
+                    System.out.println("Nhập tên xe: ");
+                    tenxe = scanner.next();
+                    // Kiểm tra đầu vào với biểu thức chính quy
+                    if (!tenxe.matches("[a-zA-Z0-9]+")) {
+                        System.out.println("Tên xe hợp lệ mời nhập lại.");
+                    }
+                } while (!tenxe.matches("[a-zA-Z0-9]+"));
+                String hang_san_xuat;
+                do {
+                    System.out.println("nhập tên hãng sản xuất ");
+                    hang_san_xuat = scanner.next();
+                    // Kiểm tra đầu vào với biểu thức chính quy
+                    if (!hang_san_xuat.matches("[a-zA-Z]+")) {
+                        System.out.println("Tên hãng sản xuất hợp lệ mời nhập lại.");
+                    }
+                } while (!hang_san_xuat.matches("[a-zA-Z]+"));
+                // System.out.println("nhập năm sản xuất ");
+                int nam_san_xuat;
+                do {
+                    System.out.println("Nhập năm sản xuất: ");
+                    if (scanner.hasNextInt()) {
+                        nam_san_xuat = scanner.nextInt();
+                        break;
+                    } else {
+                        System.out.println("Năm sản xuất không hợp lệ. Vui lòng nhập lại.");
+                        scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
+                    }
+                } while (true);
+                int dung_tich;
+                do {
+                    System.out.println("Nhập dung tích xe: ");
+                    if (scanner.hasNextInt()) {
+                        dung_tich = scanner.nextInt();
+                        break;
+                    } else {
+                        System.out.println("dung tích xe không hợp lệ. Vui lòng nhập lại.");
+                        scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
+                    }
+                } while (true);
+
+
+                double gia_tien;
+                do {
+                    System.out.println("Nhập giá tiền : ");
+                    if (scanner.hasNextInt()) {
+                        gia_tien = scanner.nextInt();
+                        break;
+                    } else {
+                        System.out.println("giá tiền không hợp lệ. Vui lòng nhập lại.");
+                        scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
+                    }
+                } while (true);
+
+                System.out.print("Nhập Lệ Phí Trước Ba: ");
+                float le_phi_truoc_ba;
+                do {
+                    if (scanner.hasNextInt()) {
+                        le_phi_truoc_ba = scanner.nextInt();
+                        break;
+                    } else {
+                        System.out.println("Lệ Phí Trước Ba không hợp lệ. Vui lòng nhập lại.");
+                        scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
+                    }
+                } while (true);
+                System.out.print("Nhập tên người khai thuế: ");
+                String ten_nguoi_khai_thue = scanner.next();
+                String ma_so_thue;
+                do {
+                    System.out.println("Nhập mã số thuế : ");
+                    ma_so_thue = scanner.nextLine();
+                    if (maSoThueChecker(vehicles,ma_so_thue)){
+                        System.out.println("Mã số thuế không hợp lệ");
+                    }
+                }while (maSoThueChecker(vehicles,ma_so_thue));
+
+                XeMay xeMay = new XeMay("XeMay", tenxe, hang_san_xuat, nam_san_xuat, gia_tien, le_phi_truoc_ba, ma_so_thue, ten_nguoi_khai_thue, dung_tich);
+
+                // thêm đối tượng xe máy vào danh sach vehicles \
+                vehicles.add(xeMay);
+                System.out.print("Thêm vehicle thành công: ");
+                //  lưu danh sách vehicles vào tệp tin
+                saveData();
                 break;
-            } else {
-                System.out.println("Năm sản xuất không hợp lệ. Vui lòng nhập lại.");
-                scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
             }
-        } while (true);
-        int dung_tich;
-        do {
-            System.out.println("Nhập dung tích xe: ");
-            if (scanner.hasNextInt()) {
-                dung_tich = scanner.nextInt();
+            case 2:{
+
+                String tenxe;
+                do {
+                    System.out.println("Nhập tên xe: ");
+                    tenxe = scanner.next();
+                    // Kiểm tra đầu vào với biểu thức chính quy
+                    if (!tenxe.matches("[a-zA-Z0-9]+")) {
+                        System.out.println("Tên xe hợp lệ mời nhập lại.");
+                    }
+                } while (!tenxe.matches("[a-zA-Z0-9]+"));
+                String hang_san_xuat;
+                do {
+                    System.out.println("nhập tên hãng sản xuất ");
+                    hang_san_xuat = scanner.next();
+                    // Kiểm tra đầu vào với biểu thức chính quy
+                    if (!hang_san_xuat.matches("[a-zA-Z]+")) {
+                        System.out.println("Tên hãng sản xuất hợp lệ mời nhập lại.");
+                    }
+                } while (!hang_san_xuat.matches("[a-zA-Z]+"));
+                // System.out.println("nhập năm sản xuất ");
+                int nam_san_xuat;
+                do {
+                    System.out.println("Nhập năm sản xuất: ");
+                    if (scanner.hasNextInt()) {
+                        nam_san_xuat = scanner.nextInt();
+                        break;
+                    } else {
+                        System.out.println("Năm sản xuất không hợp lệ. Vui lòng nhập lại.");
+                        scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
+                    }
+                } while (true);
+                int dung_tich;
+                do {
+                    System.out.println("Nhập dung tích xe: ");
+                    if (scanner.hasNextInt()) {
+                        dung_tich = scanner.nextInt();
+                        break;
+                    } else {
+                        System.out.println("dung tích xe không hợp lệ. Vui lòng nhập lại.");
+                        scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
+                    }
+                } while (true);
+
+                int dung_tich_cop;
+                do {
+                    System.out.println("Nhập dung tích cốp xe: ");
+                    if (scanner.hasNextInt()) {
+                        dung_tich_cop = scanner.nextInt();
+                        break;
+                    } else {
+                        System.out.println("dung tích xe không hợp lệ. Vui lòng nhập lại.");
+                        scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
+                    }
+                } while (true);
+
+                double gia_tien;
+                do {
+                    System.out.println("Nhập giá tiền : ");
+                    if (scanner.hasNextInt()) {
+                        gia_tien = scanner.nextInt();
+                        break;
+                    } else {
+                        System.out.println("giá tiền không hợp lệ. Vui lòng nhập lại.");
+                        scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
+                    }
+                } while (true);
+
+                System.out.print("Nhập Lệ Phí Trước Ba: ");
+                float le_phi_truoc_ba;
+                do {
+                    if (scanner.hasNextInt()) {
+                        le_phi_truoc_ba = scanner.nextInt();
+                        break;
+                    } else {
+                        System.out.println("Lệ Phí Trước Ba không hợp lệ. Vui lòng nhập lại.");
+                        scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
+                    }
+                } while (true);
+                System.out.print("Nhập tên người khai thuế: ");
+                String ten_nguoi_khai_thue = scanner.next();
+                String ma_so_thue;
+                do {
+                    System.out.println("Nhập mã số thuế : ");
+                    ma_so_thue = scanner.next();
+                    if (maSoThueChecker(vehicles,ma_so_thue)){
+                        System.out.println("Mã số thuế không hợp lệ");
+                    }
+                }while (maSoThueChecker(vehicles,ma_so_thue));
+
+                XeOtoCon xe_oto_con = new XeOtoCon("XeOtoCon", tenxe, hang_san_xuat, nam_san_xuat, gia_tien, le_phi_truoc_ba, ma_so_thue, ten_nguoi_khai_thue, dung_tich,dung_tich_cop );
+
+                // thêm đối tượng xe máy vào danh sach vehicles \
+                vehicles.add(xe_oto_con);
+                System.out.print("Thêm vehicle thành công: ");
+                //  lưu danh sách vehicles vào tệp tin
+                saveData();
                 break;
-            } else {
-                System.out.println("dung tích xe không hợp lệ. Vui lòng nhập lại.");
-                scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
             }
-        } while (true);
+            case 3:{
+                // Scanner scanner = new Scanner(System.in);
+                String tenxe;
+                do {
+                    System.out.println("Nhập tên xe: ");
+                    tenxe = scanner.next();
+                    // Kiểm tra đầu vào với biểu thức chính quy
+                    if (!tenxe.matches("[a-zA-Z0-9]+")) {
+                        System.out.println("Tên xe hợp lệ mời nhập lại.");
+                    }
+                } while (!tenxe.matches("[a-zA-Z0-9]+"));
+                String hang_san_xuat;
+                do {
+                    System.out.println("nhập tên hãng sản xuất ");
+                    hang_san_xuat = scanner.next();
+                    // Kiểm tra đầu vào với biểu thức chính quy
+                    if (!hang_san_xuat.matches("[a-zA-Z]+")) {
+                        System.out.println("Tên hãng sản xuất hợp lệ mời nhập lại.");
+                    }
+                } while (!hang_san_xuat.matches("[a-zA-Z]+"));
+                // System.out.println("nhập năm sản xuất ");
+                int nam_san_xuat;
+                do {
+                    System.out.println("Nhập năm sản xuất: ");
+                    if (scanner.hasNextInt()) {
+                        nam_san_xuat = scanner.nextInt();
+                        break;
+                    } else {
+                        System.out.println("Năm sản xuất không hợp lệ. Vui lòng nhập lại.");
+                        scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
+                    }
+                } while (true);
+                int tai_trong;
+                do {
+                    System.out.println("Nhập Tải trọng xe: ");
+                    if (scanner.hasNextInt()) {
+                        tai_trong = scanner.nextInt();
+                        break;
+                    } else {
+                        System.out.println("trọng tải xe không hợp lệ. Vui lòng nhập lại.");
+                        scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
+                    }
+                } while (true);
 
 
-        double gia_tien;
-        do {
-            System.out.println("Nhập giá tiền : ");
-            if (scanner.hasNextInt()) {
-                gia_tien = scanner.nextInt();
+                int dung_tich;
+                do {
+                    System.out.println("Nhập dung tích xe: ");
+                    if (scanner.hasNextInt()) {
+                        dung_tich = scanner.nextInt();
+                        break;
+                    } else {
+                        System.out.println("dung tích xe không hợp lệ. Vui lòng nhập lại.");
+                        scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
+                    }
+                } while (true);
+
+                int chieu_dai_thung_xe;
+                do {
+                    System.out.println("Nhập chiều dài thùng xe: ");
+                    if (scanner.hasNextInt()) {
+                        chieu_dai_thung_xe = scanner.nextInt();
+                        break;
+                    } else {
+                        System.out.println("chiều dài thùng xe không hợp lệ. Vui lòng nhập lại.");
+                        scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
+                    }
+                } while (true);
+
+                double gia_tien;
+                do {
+                    System.out.println("Nhập giá tiền : ");
+                    if (scanner.hasNextInt()) {
+                        gia_tien = scanner.nextInt();
+                        break;
+                    } else {
+                        System.out.println("giá tiền không hợp lệ. Vui lòng nhập lại.");
+                        scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
+                    }
+                } while (true);
+
+                System.out.print("Nhập Lệ Phí Trước Ba: ");
+                float le_phi_truoc_ba;
+                do {
+                    if (scanner.hasNextInt()) {
+                        le_phi_truoc_ba = scanner.nextInt();
+                        break;
+                    } else {
+                        System.out.println("Lệ Phí Trước Ba không hợp lệ. Vui lòng nhập lại.");
+                        scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
+                    }
+                } while (true);
+                System.out.print("Nhập tên người khai thuế: ");
+                String ten_nguoi_khai_thue = scanner.next();
+                String ma_so_thue;
+                do {
+                    System.out.println("Nhập mã số thuế : ");
+                    ma_so_thue = scanner.next();
+                    if (maSoThueChecker(vehicles,ma_so_thue)){
+                        System.out.println("Mã số thuế không hợp lệ");
+                    }
+                }while (maSoThueChecker(vehicles,ma_so_thue));
+
+
+                XeOtoBanTai xe_ban_tai = new XeOtoBanTai("XeOtoBanTai", tenxe, hang_san_xuat, nam_san_xuat, gia_tien, le_phi_truoc_ba, ma_so_thue, ten_nguoi_khai_thue,dung_tich,tai_trong,chieu_dai_thung_xe);
+
+                // thêm đối tượng xe máy vào danh sach vehicles \
+                vehicles.add(xe_ban_tai);
+                System.out.print("Thêm vehicle thành công: ");
+                //  lưu danh sách vehicles vào tệp tin
+                saveData();
                 break;
-            } else {
-                System.out.println("giá tiền không hợp lệ. Vui lòng nhập lại.");
-                scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
             }
-        } while (true);
 
-        System.out.print("Nhập Lệ Phí Trước Ba: ");
-        float le_phi_truoc_ba;
-        do {
-            if (scanner.hasNextInt()) {
-                le_phi_truoc_ba = scanner.nextInt();
-                break;
-            } else {
-                System.out.println("Lệ Phí Trước Ba không hợp lệ. Vui lòng nhập lại.");
-                scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
+            case 0:{
+
             }
-        } while (true);
-        System.out.print("Nhập tên người khai thuế: ");
-        String ten_nguoi_khai_thue = scanner.next();
-        String ma_so_thue;
-        do {
-            System.out.println("Nhập mã số thuế : ");
-            ma_so_thue = scanner.nextLine();
-            if (maSoThueChecker(vehicles,ma_so_thue)){
-                System.out.println("Mã số thuế không hợp lệ");
+            default:{
+
             }
-        }while (maSoThueChecker(vehicles,ma_so_thue));
-
-        XeMay xeMay = new XeMay("XeMay", tenxe, hang_san_xuat, nam_san_xuat, gia_tien, le_phi_truoc_ba, ma_so_thue, ten_nguoi_khai_thue, dung_tich);
-
-        // thêm đối tượng xe máy vào danh sach vehicles \
-        vehicles.add(xeMay);
-        System.out.print("Thêm vehicle thành công: ");
-        //  lưu danh sách vehicles vào tệp tin
-        saveData();
+        }
 
     }
     static void cot_xe_may() {
