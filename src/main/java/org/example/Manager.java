@@ -2,27 +2,26 @@ package org.example;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.example.data.Vehicle;
-import org.example.data.XeMay;
-import org.example.data.XeOtoBanTai;
+import org.example.data.*;
 
 import java.io.*;
-import com.google.gson.reflect.TypeToken;
-import org.example.data.XeOtoCon;
+
+import org.example.data.action.Crud;
+import org.example.data.action.IOJson;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.lang.reflect.Type;
 import java.util.*;
 
 // thư viện để tìm kiếm được chữ cái tiếng việt
 import java.text.Normalizer;
 import java.util.regex.Pattern;
 
-public class Manager {
+public class Manager implements Crud, IOJson {
     static String filePath = "DataPTGT.json";
     ArrayList<Vehicle> vehicles = readData();
+    @Override
     public void add_vehicles() {
         System.out.println("Hiển thị thông tin phương tiện bạn muốn thêm");
         System.out.println("1,Xe máy");
@@ -357,14 +356,11 @@ public class Manager {
         // System.out.println(formattedRow);
         System.out.println("\n+----------------------------------------------------------------------------------------------------------------------------------------+");
     }
-
-
     static void cot_print_oto_con() {
         System.out.println("+---------------------------------------------------------------------------------------------------------------------------------------------+");
         System.out.println("| STT | Mã số thuế    | Loại xe |  Tên  |  Hãng  | Năm sản xuất |    Giá Tiền   | Lệ phí trước bạ(%) | người khai thuế |  cc  | Dung tích cốp |");
         System.out.println("+---------------------------------------------------------------------------------------------------------------------------------------------+");
     }
-
     static void Dong_print_oto_con(XeOtoCon xecon, int stt) {
         String formattedGiaTien = String.format("%,d", Math.round(xecon.getGiaTien())).replace(",", ".");
         // format giá tiền thành dạng có dấu chấm cách hàng nghìn sau đó thay thế dấu phẩy thành dấu chấm thành
@@ -376,14 +372,11 @@ public class Manager {
         System.out.println("\n+---------------------------------------------------------------------------------------------------------------------------------------------+");
     }
 
-
-
     static void cot_print_oto_ban_tai() {
         System.out.println("+-------------------------------------------------------------------------------------------------------------------------------------------------+");
         System.out.println("| STT | Mã số thuế | Loại xe | Tên | Hãng | Năm sản xuất | Giá Tiền | Lệ phí trước bạ(%) | người khai thuế | CC | Tai trong | Chieu dai thung xe  |");
         System.out.println("+-------------------------------------------------------------------------------------------------------------------------------------------------+");
     }
-
     static void Dong_print_oto_ban_tai(XeOtoBanTai xe_ban_tai, int stt) {
         String formattedGiaTien = String.format("%,d", Math.round(xe_ban_tai.getGiaTien())).replace(",", ".");
         // format giá tiền thành dạng có dấu chấm cách hàng nghìn sau đó thay thế dấu phẩy thành dấu chấm thành
@@ -394,7 +387,6 @@ public class Manager {
         // System.out.println(formattedRow);
         System.out.println("\n+-----------------------------------------------------------------------------------------------------------------------------------------------+");
     }
-
     public void testData(){
         XeMay xeMay = new XeMay("XeMay","Wave","honda",2015,10007000,1.5F,"TN986876GV76","Ta Tuan Anh",100);
         XeMay xeMay1 = new XeMay("XeMay","Wave","honda",2015,10300000,1.5F,"TN9868764V56","Ta Tuan Anh",100);
@@ -420,8 +412,7 @@ public class Manager {
         vehicles.add(otoCon4);
         vehicles.add(otoCon5);
     }
-
-
+    @Override
     public void showData(){
         System.out.println("Hiển thị thông tin phương tiện");
         System.out.println("1,Xe máy");
@@ -489,8 +480,6 @@ public class Manager {
         }
         pause();
     }
-
-
     static void pause ()
     {
         System.out.println("\nNhấn enter để tiếp tục");
@@ -501,8 +490,6 @@ public class Manager {
         System.out.println("| STT | Mã số thuế   | Loại xe | Tên    | Hãng  | Năm sản xuất | Giá Tiền | Lệ phí trước bạ(%) | Tên người khai thuế | Dung tích động cơ |");
         System.out.println("+----------------------------------------------------------------------------------------------------------------------------------------+");
     }
-
-
     static void Dong(XeMay xeMay, int stt) {
         System.out.printf("| %-3s | %-12s | %-7s | %-6s | %-6s | %-10s | %-8s | %-18s | %-20s | %-17s |",
                 stt, xeMay.getMaSoThue(), xeMay.loaiXe, xeMay.getTenPhuongTien(), xeMay.getHangSanXuat(),
@@ -527,7 +514,7 @@ public class Manager {
             }
         }
     }
-
+    @Override
     public void saveData(){
         try {
             Writer writer = new FileWriter(filePath);
@@ -552,7 +539,7 @@ public class Manager {
         }
         return false;
     }
-    private static ArrayList<Vehicle> readData() {
+    public ArrayList<Vehicle> readData() {
         ArrayList<Vehicle> dataFromFile = new ArrayList<>();
 
         try {
@@ -594,6 +581,7 @@ public class Manager {
 
         return dataFromFile;
     }
+    @Override
     public void xoa()
     {
         Scanner scanner = new Scanner(System.in);
@@ -613,6 +601,7 @@ public class Manager {
             System.out.println("Không tìm thấy Vehicle nào với mã số thuế: " + maSoThueXoa);
         }
     }
+    @Override
     public void edit_vehicle() {
         System.out.println("Sửa thông tin phương tiện");
         System.out.println("1. Xe máy");

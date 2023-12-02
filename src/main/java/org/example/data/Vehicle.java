@@ -1,6 +1,6 @@
 package org.example.data;
 
-public class Vehicle implements TinhThue{
+public abstract class Vehicle {
     public String loaiXe ="";
     protected String tenPhuongTien;
     protected String hangSanXuat;
@@ -77,21 +77,6 @@ public class Vehicle implements TinhThue{
     public void setTenNguoiKhaiThue(String tenNguoiKhaiThue) {
         this.tenNguoiKhaiThue = tenNguoiKhaiThue;
     }
-    public double TinhLePhiDangKyXeMoi(double giaTien){
-        double LePhiDangKyXe = 0;
-        if (giaTien <= 15000000){
-            LePhiDangKyXe = 500000;
-        } else if (giaTien>15000000 || giaTien<=40000000 ) {
-            LePhiDangKyXe = 1000000;
-        }else {
-            LePhiDangKyXe = 2000000;
-        }
-        return LePhiDangKyXe;
-    }
-    public double TinhThueGiaTriGiaTang(double giaTien){
-        double thueGiaTriGiaTang = giaTien*10/100;
-        return thueGiaTriGiaTang;
-    }
 
     public Vehicle(String loaiXe, String tenPhuongTien, String hangSanXuat, int namSanXuat, double giaTien, float lePhiTruocBa, String maSoThue, String tenNguoiKhaiThue) {
         this.loaiXe = loaiXe;
@@ -103,7 +88,18 @@ public class Vehicle implements TinhThue{
         this.maSoThue = maSoThue;
         this.tenNguoiKhaiThue = tenNguoiKhaiThue;
     }
-
+    public double TinhLePhiDangKyXeMoi(double giaTien){
+        double LePhiDangKyXe = 0;
+        if (giaTien <= 15000000){
+            LePhiDangKyXe = 500000;
+        } else if (giaTien>15000000 || giaTien<=40000000 ) {
+            LePhiDangKyXe = 1000000;
+        }else {
+            LePhiDangKyXe = 2000000;
+        }
+        return LePhiDangKyXe;
+    }
+    public abstract double TinhThueGiaTriGiaTang(double giaTien);
     @Override
     public String toString() {
         return "{" +

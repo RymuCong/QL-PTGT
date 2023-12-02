@@ -24,6 +24,9 @@ public class XeMay extends Vehicle  {
         this.dungTichDongCo = dungTichDongCo;
     }
 
+
+
+
     @Override
     public String toString() {
         return "XeMay{" +
@@ -37,5 +40,10 @@ public class XeMay extends Vehicle  {
                 ", maSoThue='" + maSoThue + '\'' +
                 ", tenNguoiKhaiThue='" + tenNguoiKhaiThue + '\'' +
                 '}';
+    }
+
+    @Override
+    public double TinhThueGiaTriGiaTang(double giaTien) {
+        return 0;
     }
 }

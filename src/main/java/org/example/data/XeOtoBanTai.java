@@ -60,4 +60,9 @@ public class XeOtoBanTai extends Vehicle{
         this.taiTrong = taiTrong;
         this.chieuDaiThungXe = chieuDaiThungXe;
     }
+
+    @Override
+    public double TinhThueGiaTriGiaTang(double giaTien) {
+        return 0;
+    }
 }

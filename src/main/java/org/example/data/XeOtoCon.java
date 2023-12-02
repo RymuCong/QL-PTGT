@@ -10,6 +10,12 @@ public class XeOtoCon extends Vehicle{
         this.dungTichCop = dungTichCop;
     }
 
+
+    @Override
+    public double TinhThueGiaTriGiaTang(double giaTien) {
+        return 0;
+    }
+
     @Override
     public String toString() {
         return "XeOtoCon{" +
@@ -41,5 +47,5 @@ public class XeOtoCon extends Vehicle{
     public void setDungTichCop(int dungTichCop) {
         this.dungTichCop = dungTichCop;
     }
-    
+
 }
