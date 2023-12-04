@@ -7,7 +7,6 @@ import org.example.data.*;
 import java.io.*;
 
 import org.example.data.action.Crud;
-import org.example.data.action.IOJson;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -18,7 +17,7 @@ import java.util.*;
 import java.text.Normalizer;
 import java.util.regex.Pattern;
 
-public class Manager implements Crud, IOJson {
+public class Manager implements Crud{
     static String filePath = "DataPTGT.json";
     ArrayList<Vehicle> vehicles = readData();
     @Override
@@ -539,6 +538,7 @@ public class Manager implements Crud, IOJson {
         }
         return false;
     }
+    @Override
     public ArrayList<Vehicle> readData() {
         ArrayList<Vehicle> dataFromFile = new ArrayList<>();
 
@@ -985,6 +985,7 @@ public class Manager implements Crud, IOJson {
         System.out.println("1. Loại xe.");
         System.out.println("2. Hãng sản xuất.");
         System.out.println("3. Năm sản xuất.");
+        System.out.println("4. Tính thuế");
         System.out.println("0. Thoát.");
         Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
@@ -1000,6 +1001,9 @@ public class Manager implements Crud, IOJson {
             case 3: {
                 thongkeTheoNamSanXuat();
             }
+            case 4:{
+                tinhThue();
+            }
             case 0: {
                 break;
             }
@@ -1008,6 +1012,9 @@ public class Manager implements Crud, IOJson {
             }
         }
         pause();
+    }
+
+    private void tinhThue() {
     }
 
     public void thongkeTheoLoaiXe() {
