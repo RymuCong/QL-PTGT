@@ -26,7 +26,6 @@ public class XeMay extends Vehicle  {
 
 
 
-
     @Override
     public String toString() {
         return "XeMay{" +
@@ -44,6 +43,6 @@ public class XeMay extends Vehicle  {
 
     @Override
     public double TinhThueGiaTriGiaTang(double giaTien) {
-        return 0;
+        return giaTien*10%100;
     }
 }

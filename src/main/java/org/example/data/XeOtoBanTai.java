@@ -63,6 +63,6 @@ public class XeOtoBanTai extends Vehicle{
 
     @Override
     public double TinhThueGiaTriGiaTang(double giaTien) {
-        return 0;
+        return giaTien*10%100;
     }
 }
