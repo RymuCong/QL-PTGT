@@ -1015,6 +1015,10 @@ public class Manager implements Crud{
     }
 
     private void tinhThue() {
+
+        // TODO: 04/12/2023  Tính thuế theo mã số thuế nhập vào từ bàn phím
+        //  hiển thị TinhThueGiaTriGiaTang, TinhLePhiDangKyXeMoi, TinhThueTruocBa và hiển thị tổng các thuế cần đóng
+
     }
 
     public void thongkeTheoLoaiXe() {
