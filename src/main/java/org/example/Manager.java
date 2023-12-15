@@ -7,6 +7,12 @@ import org.example.data.*;
 import java.io.*;
 
 import org.example.data.action.Crud;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.ui.RefineryUtilities;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -51,17 +57,25 @@ public class Manager implements Crud{
                     }
                 } while (!hang_san_xuat.matches("[a-zA-Z]+"));
                 // System.out.println("nhập năm sản xuất ");
-                int nam_san_xuat;
+
+                int nam_hien_tai = java.time.Year.now().getValue();
+                int nam_san_xuat = 0;
+
                 do {
-                    System.out.println("Nhập năm sản xuất: ");
-                    if (scanner.hasNextInt()) {
-                        nam_san_xuat = scanner.nextInt();
-                        break;
-                    } else {
+                    try {
+                        System.out.println("Nhập năm sản xuất:");
+                        nam_san_xuat = Integer.parseInt(scanner.nextLine());
+                        if (nam_san_xuat > nam_hien_tai) {
+                            System.out.println("Năm sản xuất không được vượt quá năm hiện tại.");
+                        } else {
+                            break;
+                        }
+                    } catch (NumberFormatException e) {
                         System.out.println("Năm sản xuất không hợp lệ. Vui lòng nhập lại.");
-                        scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
                     }
                 } while (true);
+
+
                 int dung_tich;
                 do {
                     System.out.println("Nhập dung tích xe: ");
@@ -103,7 +117,7 @@ public class Manager implements Crud{
                 String ma_so_thue;
                 do {
                     System.out.println("Nhập mã số thuế : ");
-                    ma_so_thue = scanner.nextLine();
+                    ma_so_thue = scanner.next();
                     if (maSoThueChecker(vehicles,ma_so_thue)){
                         System.out.println("Mã số thuế không hợp lệ");
                     }
@@ -111,7 +125,7 @@ public class Manager implements Crud{
 
                 XeMay xeMay = new XeMay("XeMay", tenxe, hang_san_xuat, nam_san_xuat, gia_tien, le_phi_truoc_ba, ma_so_thue, ten_nguoi_khai_thue, dung_tich);
 
-                // thêm đối tượng xe máy vào danh sach vehicles \
+                // thêm đối tượng xe máy vào danh sach vehicles
                 vehicles.add(xeMay);
                 System.out.print("Thêm vehicle thành công: ");
                 //  lưu danh sách vehicles vào tệp tin
@@ -139,17 +153,25 @@ public class Manager implements Crud{
                     }
                 } while (!hang_san_xuat.matches("[a-zA-Z]+"));
                 // System.out.println("nhập năm sản xuất ");
-                int nam_san_xuat;
+
+                int nam_hien_tai = java.time.Year.now().getValue();
+                int nam_san_xuat = 0;
+
                 do {
-                    System.out.println("Nhập năm sản xuất: ");
-                    if (scanner.hasNextInt()) {
-                        nam_san_xuat = scanner.nextInt();
-                        break;
-                    } else {
+                    try {
+                        System.out.println("Nhập năm sản xuất:");
+                        nam_san_xuat = Integer.parseInt(scanner.nextLine());
+                        if (nam_san_xuat > nam_hien_tai) {
+                            System.out.println("Năm sản xuất không được vượt quá năm hiện tại.");
+                        } else {
+                            break;
+                        }
+                    } catch (NumberFormatException e) {
                         System.out.println("Năm sản xuất không hợp lệ. Vui lòng nhập lại.");
-                        scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
                     }
                 } while (true);
+
+
                 int dung_tich;
                 do {
                     System.out.println("Nhập dung tích xe: ");
@@ -238,17 +260,37 @@ public class Manager implements Crud{
                     }
                 } while (!hang_san_xuat.matches("[a-zA-Z]+"));
                 // System.out.println("nhập năm sản xuất ");
-                int nam_san_xuat;
+
+
+                // do {
+                //     System.out.println("Nhập năm sản xuất: ");
+                //     if (scanner.hasNextInt()) {
+                //         nam_san_xuat = scanner.nextInt();
+                //         break;
+                //     }
+
+                //     else {
+                //         System.out.println("Năm sản xuất không hợp lệ. Vui lòng nhập lại.");
+                //         scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
+                //     }
+                // } while (true);
+                int nam_hien_tai = java.time.Year.now().getValue();
+                int nam_san_xuat = 0;
+
                 do {
-                    System.out.println("Nhập năm sản xuất: ");
-                    if (scanner.hasNextInt()) {
-                        nam_san_xuat = scanner.nextInt();
-                        break;
-                    } else {
+                    try {
+                        System.out.println("Nhập năm sản xuất:");
+                        nam_san_xuat = Integer.parseInt(scanner.nextLine());
+                        if (nam_san_xuat > nam_hien_tai) {
+                            System.out.println("Năm sản xuất không được vượt quá năm hiện tại.");
+                        } else {
+                            break;
+                        }
+                    } catch (NumberFormatException e) {
                         System.out.println("Năm sản xuất không hợp lệ. Vui lòng nhập lại.");
-                        scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
                     }
                 } while (true);
+
                 int tai_trong;
                 do {
                     System.out.println("Nhập Tải trọng xe: ");
@@ -651,7 +693,7 @@ public class Manager implements Crud{
                         scanner.nextLine(); // Bỏ qua dòng trống
 
                         System.out.println("Nhập tên người khai thuế cần sửa");
-                        String nguoikhaithue = scanner.nextLine();
+                        String nguoikhaithue = scanner.next();
                         xeMay.setTenNguoiKhaiThue(nguoikhaithue);
 
                         // Thực hiện các thay đổi khác tùy theo yêu cầu
@@ -680,7 +722,7 @@ public class Manager implements Crud{
                         XeOtoCon xe_oto_con = (XeOtoCon) vehicle;
                         found = true;
                         System.out.println("Nhập tên cần sửa");
-                        String name = scanner.nextLine();
+                        String name = scanner.next();
                         // Sử dụng các phương thức của lớp XeMay để sửa đổi thông tin
                         xe_oto_con.setTenPhuongTien(name);
 
@@ -691,7 +733,7 @@ public class Manager implements Crud{
                         scanner.nextLine(); // Bỏ qua dòng trống
 
                         System.out.println("Nhập tên hãng cần sửa");
-                        String ten_hang = scanner.nextLine();
+                        String ten_hang = scanner.next();
                         xe_oto_con.setHangSanXuat(ten_hang);
 
                         System.out.println("Nhập năm sản xuất cần sửa");
@@ -713,7 +755,7 @@ public class Manager implements Crud{
                         scanner.nextLine(); // Bỏ qua dòng trống
 
                         System.out.println("Nhập tên người khai thuế cần sửa");
-                        String nguoikhaithue = scanner.nextLine();
+                        String nguoikhaithue = scanner.next();
                         xe_oto_con.setTenNguoiKhaiThue(nguoikhaithue);
 
                         // Thực hiện các thay đổi khác tùy theo yêu cầu
@@ -754,7 +796,7 @@ public class Manager implements Crud{
                         scanner.nextLine(); // Bỏ qua dòng trống
 
                         System.out.println("Nhập tên hãng cần sửa");
-                        String ten_hang = scanner.nextLine();
+                        String ten_hang = scanner.next();
                         xe_oto_ban_tai.setHangSanXuat(ten_hang);
 
                         System.out.println("Nhập năm sản xuất cần sửa");
@@ -780,7 +822,7 @@ public class Manager implements Crud{
                         scanner.nextLine(); // Bỏ qua dòng trống
 
                         System.out.println("Nhập tên người khai thuế cần sửa");
-                        String nguoikhaithue = scanner.nextLine();
+                        String nguoikhaithue = scanner.next();
                         xe_oto_ban_tai.setTenNguoiKhaiThue(nguoikhaithue);
 
                         // Thực hiện các thay đổi khác tùy theo yêu cầu
@@ -1000,9 +1042,11 @@ public class Manager implements Crud{
             }
             case 3: {
                 thongkeTheoNamSanXuat();
+                break;
             }
             case 4:{
                 tinhThue();
+                break;
             }
             case 0: {
                 break;
@@ -1014,12 +1058,37 @@ public class Manager implements Crud{
         pause();
     }
 
-    private void tinhThue() {
+    public void tinhThue() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Nhập mã số thuế xe: ");
+        String maSoThue = scanner.next();
+        for (Vehicle xe : vehicles) {
+            if (xe.getMaSoThue().equals(maSoThue)) {
+                if (xe instanceof XeMay) {
+                    XeMay xeMay = (XeMay) xe;
+                    tinhThueTheoPhuongTien(xeMay);
+                } else if (xe instanceof XeOtoCon) {
+                    XeOtoCon xeOtoCon = (XeOtoCon) xe;
+                    tinhThueTheoPhuongTien(xeOtoCon);
+                } else if (xe instanceof XeOtoBanTai) {
+                    XeOtoBanTai xeOtoBanTai = (XeOtoBanTai) xe;
+                    tinhThueTheoPhuongTien(xeOtoBanTai);
+                }
+            }
+        }
+        System.out.println("Không tìm thấy xe với mã số thuế đã nhập.");
+    }
+    public void tinhThueTheoPhuongTien(Vehicle vehicle){
+        double giaTriThue = vehicle.TinhThueGiaTriGiaTang(vehicle.getGiaTien());
+        double lePhiDangKyXe = vehicle.TinhLePhiDangKyXeMoi(vehicle.getGiaTien());
+        double thueTruocBa = vehicle.TinhThueTruocBa(vehicle.getGiaTien(), vehicle.getLePhiTruocBa());
+        System.out.println("Giá xe là : "+vehicle.getGiaTien());
+        System.out.println("Giá trị thuế là: " + String.format("%,d", Math.round(giaTriThue)).replace(",", "."));
+        System.out.println("Lệ phí đăng ký xe mới là: " + String.format("%,d", Math.round(lePhiDangKyXe)).replace(",", "."));
+        System.out.println("Thuế trước bạ là: " + String.format("%,d", Math.round(thueTruocBa)).replace(",", "."));
 
-
-        // TODO: 04/12/2023  Tính thuế theo mã số thuế nhập vào từ bàn phím
-        //  hiển thị TinhThueGiaTriGiaTang, TinhLePhiDangKyXeMoi, TinhThueTruocBa và hiển thị tổng các thuế cần đóng
-
+        double tongThue = giaTriThue + lePhiDangKyXe + thueTruocBa;
+        System.out.println("Tổng các thuế cần đóng là: " + String.format("%,d", Math.round(tongThue)).replace(",", "."));
     }
 
     public void thongkeTheoLoaiXe() {
@@ -1074,33 +1143,86 @@ public class Manager implements Crud{
             }
         }
     }
+    // public void thongkeTheoNamSanXuat() {
+
+    //     // Mảng chứa dữ liệu thống kê
+    //     int[] sl = new int[vehicles.size()]; // mỗi phần tử = 0
+    //     Arrays.fill(sl, 1); // gán phần tử = 1
+
+    //     // Tinh chỉnh dữ liệu thống kê
+    //     for (int i = 0; i < vehicles.size(); i++) {
+    //         for (int j = i + 1; j < vehicles.size(); j++) {
+    //             var i_j_cùng_loại = (vehicles.get(i).getNamSanXuat() == vehicles.get(j).getNamSanXuat());
+
+    //             if// nếu
+    //             (i_j_cùng_loại && sl[j] != 0) {
+    //                 sl[i]++;
+    //                 sl[j]--;
+    //             }
+    //         }
+    //     }
+
+    //     // In dữ liệu thống kê, phân loại ra màn hình
+    //     for (int i = 0; i < sl.length; i++) {
+    //         if (sl[i] != 0) {
+    //             System.out.printf("\n Phương tiện giao thông sản xuất năm %s có %d chiếc.", vehicles.get(i).getNamSanXuat(), sl[i]);
+    //         }
+    //     }
+    // }
+
+
+
     public void thongkeTheoNamSanXuat() {
+        int[] sl = new int[vehicles.size()];
+        Arrays.fill(sl, 1);
 
-        // Mảng chứa dữ liệu thống kê
-        int[] sl = new int[vehicles.size()]; // mỗi phần tử = 0
-        Arrays.fill(sl, 1); // gán phần tử = 1
-
-        // Tinh chỉnh dữ liệu thống kê
-        for (int i = 0; i < vehicles.size(); i++) {
-            for (int j = i + 1; j < vehicles.size(); j++) {
-                var i_j_cùng_loại = (vehicles.get(i).getNamSanXuat() == vehicles.get(j).getNamSanXuat());
-
-                if// nếu
-                (i_j_cùng_loại && sl[j] != 0) {
+        for(int i = 0;i< vehicles.size();i++)
+        {
+            for(int j  = i+1 ;j< vehicles.size();j++)
+            {
+                var i_j_cungloai = (vehicles.get(i).getNamSanXuat() == vehicles.get(j).getNamSanXuat());
+                if(i_j_cungloai && sl[j] != 0)
+                {
                     sl[i]++;
                     sl[j]--;
                 }
             }
         }
+        // Tạo dataset cho biểu đồ
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        // In dữ liệu thống kê, phân loại ra màn hình
-        for (int i = 0; i < sl.length; i++) {
-            if (sl[i] != 0) {
-                System.out.printf("\n Phương tiện giao thông sản xuất năm %s có %d chiếc.", vehicles.get(i).getNamSanXuat(), sl[i]);
+        // Tính toán số lượng phương tiện theo năm sản xuất
+        // for (Vehicle vehicle : vehicles) {
+        //     int namSanXuat = vehicle.getNamSanXuat();
+        //     dataset.addValue(1, "Số lượng", String.valueOf(namSanXuat));
+        // }
+        for(int i = 0;i< sl.length ;i++)
+        {
+
+            if (sl[i]!=0)
+            {
+                dataset.addValue(sl[i], "số lượng" , String.valueOf(vehicles.get(i).getNamSanXuat()));
             }
         }
-    }
 
+        // Tạo biểu đồ cột từ dataset
+        JFreeChart chart = ChartFactory.createBarChart(
+                "Thống kê theo năm sản xuất", // Tiêu đề biểu đồ
+                "Năm sản xuất", // Nhãn trục x
+                "Số lượng", // Nhãn trục y
+                dataset, // Dữ liệu
+                PlotOrientation.VERTICAL, // Hướng biểu đồ
+                true, // Có hiển thị chú thích không
+                true, // Có hiển thị URL không
+                false // Có tạo tooltips không
+        );
+
+        // Hiển thị biểu đồ trong cửa sổ
+        ChartFrame frame = new ChartFrame("Biểu đồ thống kê", chart);
+        frame.pack();
+        RefineryUtilities.centerFrameOnScreen(frame);
+        frame.setVisible(true);
+    }
     public static String xoaDauTV(String s) {
         String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
         Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
