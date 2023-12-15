@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args){
         Manager manager = new Manager();
         while (true) {
             System.out.println("\n+-------------------------------------------------------------------------------------------------------+");
@@ -56,6 +56,9 @@ public class Main {
                 case 7:
                     // làm việc 7
                     manager.timKiem();
+                    break;
+                case 8: 
+                    manager.testData();
                     break;
                 case 0:
                     System.out.println("\n Đang thoát...");

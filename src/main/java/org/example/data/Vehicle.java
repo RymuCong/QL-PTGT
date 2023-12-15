@@ -1,5 +1,7 @@
 package org.example.data;
 
+import java.util.Scanner;
+
 public abstract class Vehicle {
     public String loaiXe ="";
     protected String tenPhuongTien;
@@ -42,7 +44,27 @@ public abstract class Vehicle {
         return namSanXuat;
     }
 
-    public void setNamSanXuat(int namSanXuat) {
+    public void setNamSanXuat(int namSanXuat) 
+    {
+        // Scanner scanner = new Scanner(System.in);
+        // boolean isValid = false;
+        // int nam_hien_tai = java.time.Year.now().getValue();
+        // while (isValid) {
+        //     try{
+        //         if(namSanXuat < nam_hien_tai)
+        //         {
+        //             throw new Exception("năm không hợp lệ");
+        //         }
+        //     }
+        //     catch(Exception e)
+        //     {
+        //         System.out.print(e.getMessage());
+        //         System.err.print("vui lòng nhập lại năm sản xuất");
+        //         namSanXuat = scanner.nextInt();
+        //     }
+        // }
+        
+
         this.namSanXuat = namSanXuat;
     }
 
@@ -100,6 +122,7 @@ public abstract class Vehicle {
         return LePhiDangKyXe;
     }
     public abstract double TinhThueGiaTriGiaTang(double giaTien);
+
     @Override
     public String toString() {
         return "{" +

@@ -8,7 +8,9 @@ package org.example.data;
  *
  * @author 01689
  */
-public class XeMay extends Vehicle  {
+
+
+public class XeMay extends  Vehicle  {
     private int dungTichDongCo;
 
     public int getDungTichDongCo() {
@@ -43,6 +45,6 @@ public class XeMay extends Vehicle  {
 
     @Override
     public double TinhThueGiaTriGiaTang(double giaTien) {
-        return giaTien*10%100;
+        return giaTien*10/100;
     }
 }
