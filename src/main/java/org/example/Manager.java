@@ -57,10 +57,10 @@ public class Manager implements Crud{
                     }
                 } while (!hang_san_xuat.matches("[a-zA-Z]+"));
                 // System.out.println("nhập năm sản xuất ");
-                
+
                 int nam_hien_tai = java.time.Year.now().getValue();
                 int nam_san_xuat = 0;
-                
+
                 do {
                     try {
                         System.out.println("Nhập năm sản xuất:");
@@ -72,6 +72,7 @@ public class Manager implements Crud{
                         }
                     } catch (NumberFormatException e) {
                         System.out.println("Năm sản xuất không hợp lệ. Vui lòng nhập lại.");
+                        scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
                     }
                 } while (true);
 
@@ -117,7 +118,7 @@ public class Manager implements Crud{
                 String ma_so_thue;
                 do {
                     System.out.println("Nhập mã số thuế : ");
-                    ma_so_thue = scanner.next();
+                    ma_so_thue = scanner.nextLine();
                     if (maSoThueChecker(vehicles,ma_so_thue)){
                         System.out.println("Mã số thuế không hợp lệ");
                     }
@@ -125,7 +126,7 @@ public class Manager implements Crud{
 
                 XeMay xeMay = new XeMay("XeMay", tenxe, hang_san_xuat, nam_san_xuat, gia_tien, le_phi_truoc_ba, ma_so_thue, ten_nguoi_khai_thue, dung_tich);
 
-                // thêm đối tượng xe máy vào danh sach vehicles 
+                // thêm đối tượng xe máy vào danh sach vehicles \
                 vehicles.add(xeMay);
                 System.out.print("Thêm vehicle thành công: ");
                 //  lưu danh sách vehicles vào tệp tin
@@ -153,10 +154,10 @@ public class Manager implements Crud{
                     }
                 } while (!hang_san_xuat.matches("[a-zA-Z]+"));
                 // System.out.println("nhập năm sản xuất ");
-                
+
                 int nam_hien_tai = java.time.Year.now().getValue();
                 int nam_san_xuat = 0;
-                
+
                 do {
                     try {
                         System.out.println("Nhập năm sản xuất:");
@@ -168,10 +169,11 @@ public class Manager implements Crud{
                         }
                     } catch (NumberFormatException e) {
                         System.out.println("Năm sản xuất không hợp lệ. Vui lòng nhập lại.");
+                        scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
                     }
                 } while (true);
-                
-                
+
+
                 int dung_tich;
                 do {
                     System.out.println("Nhập dung tích xe: ");
@@ -260,15 +262,15 @@ public class Manager implements Crud{
                     }
                 } while (!hang_san_xuat.matches("[a-zA-Z]+"));
                 // System.out.println("nhập năm sản xuất ");
-                
+
 
                 // do {
                 //     System.out.println("Nhập năm sản xuất: ");
                 //     if (scanner.hasNextInt()) {
                 //         nam_san_xuat = scanner.nextInt();
                 //         break;
-                //     } 
-                    
+                //     }
+
                 //     else {
                 //         System.out.println("Năm sản xuất không hợp lệ. Vui lòng nhập lại.");
                 //         scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi bộ đệm của scanner
@@ -276,7 +278,7 @@ public class Manager implements Crud{
                 // } while (true);
                 int nam_hien_tai = java.time.Year.now().getValue();
                 int nam_san_xuat = 0;
-                
+
                 do {
                     try {
                         System.out.println("Nhập năm sản xuất:");
@@ -1042,11 +1044,9 @@ public class Manager implements Crud{
             }
             case 3: {
                 thongkeTheoNamSanXuat();
-                break;
             }
             case 4:{
                 tinhThue();
-                break;
             }
             case 0: {
                 break;
@@ -1062,27 +1062,27 @@ public class Manager implements Crud{
         // Scanner scanner = new Scanner(System.in);
         // System.out.println("nhập mã số thuế xe ");
         // String maSoThue = scanner.next();
-        
+
         // // TODO: 04/12/2023  Tính thuế theo mã số thuế nhập vào từ bàn phím
         // //  hiển thị TinhThueGiaTriGiaTang , TinhLePhiDangKyXeMoi , TinhThueTruocBa và hiển thị tổng các thuế cần đóng
         //  for (Vehicle vehicle : vehicles) {
         //      if (vehicle instanceof XeMay && vehicle.getMaSoThue().equals(maSoThue)) {
         //         XeMay xeMay = (XeMay) vehicle;
-                
+
         //         double giatrithue = xeMay.TinhThueGiaTriGiaTang(xeMay.getGiaTien());
-        //         System.out.println("giá trị thuế là : " + giatrithue); 
+        //         System.out.println("giá trị thuế là : " + giatrithue);
 
         //         double gia_tri_thue_moi = vehicle.TinhLePhiDangKyXeMoi(xeMay.getGiaTien());
-        //         System.out.println("giá trị thuế moi là : " + gia_tri_thue_moi); 
+        //         System.out.println("giá trị thuế moi là : " + gia_tri_thue_moi);
         //     }
         //     else
         //     {
         //         System.err.println("ma so thue khong ton tai");
-        //     }        
+        //     }
         //  }
     //     XeMay xeMay = new XeMay("XeMay","Wave","honda",2015,10007000,1.5F,"TN986876GV76","Ta Tuan Anh",100);
     //     double tinhThueGiaTriGiaTang = xeMay.TinhThueGiaTriGiaTang(15550);
-        
+
     //     System.out.println("Giá trị thuế GTGT: " + tinhThueGiaTriGiaTang);
     // }
     public void tinhThue() {
@@ -1091,7 +1091,7 @@ public class Manager implements Crud{
         System.out.println("Nhập mã số thuế xe: ");
         String maSoThue = scanner.next();
 
-        
+
 
         if (xeMay.getMaSoThue().equals("TN986876GV76")) {
             double giaTriThue = xeMay.TinhThueGiaTriGiaTang(xeMay.getGiaTien());
@@ -1217,10 +1217,10 @@ public void thongkeTheoNamSanXuat() {
     // }
     for(int i = 0;i< sl.length ;i++)
     {
-     
+
         if (sl[i]!=0)
         {
-            dataset.addValue(sl[i], "số lượng" , String.valueOf(vehicles.get(i).getNamSanXuat()));       
+            dataset.addValue(sl[i], "số lượng" , String.valueOf(vehicles.get(i).getNamSanXuat()));
         }
     }
 
