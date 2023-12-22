@@ -549,8 +549,7 @@ public class Manager implements Crud{
         int stt = 1;
         for (Vehicle vehicle : vehicles) {
             if (vehicle.loaiXe.equalsIgnoreCase("XeMay")){
-                if (vehicle instanceof XeMay) {
-                    XeMay xeMay = (XeMay) vehicle;
+                if (vehicle instanceof XeMay xeMay) {
                     Dong(xeMay, stt);
                     stt++;
                 }
@@ -662,8 +661,7 @@ public class Manager implements Crud{
                 scanner.nextLine(); // Bỏ qua dòng trống
                 boolean found = false;
                 for (Vehicle vehicle : vehicles) {
-                    if (vehicle instanceof XeMay && vehicle.getMaSoThue().equals(maSoThue)) {
-                        XeMay xeMay = (XeMay) vehicle;
+                    if (vehicle instanceof XeMay xeMay && vehicle.getMaSoThue().equals(maSoThue)) {
                         found = true;
                         System.out.println("Nhập tên cần sửa");
                         String name = scanner.nextLine();
@@ -720,8 +718,7 @@ public class Manager implements Crud{
                 scanner.nextLine(); // Bỏ qua dòng trống
                 boolean found = false;
                 for (Vehicle vehicle : vehicles) {
-                    if (vehicle instanceof XeOtoCon && vehicle.getMaSoThue().equals(maSoThue)) {
-                        XeOtoCon xe_oto_con = (XeOtoCon) vehicle;
+                    if (vehicle instanceof XeOtoCon xe_oto_con && vehicle.getMaSoThue().equals(maSoThue)) {
                         found = true;
                         System.out.println("Nhập tên cần sửa");
                         String name = scanner.next();
@@ -783,8 +780,7 @@ public class Manager implements Crud{
                 scanner.nextLine(); // Bỏ qua dòng trống
                 boolean found = false;
                 for (Vehicle vehicle : vehicles) {
-                    if (vehicle instanceof XeOtoBanTai && vehicle.getMaSoThue().equals(maSoThue)) {
-                        XeOtoBanTai xe_oto_ban_tai = (XeOtoBanTai) vehicle;
+                    if (vehicle instanceof XeOtoBanTai xe_oto_ban_tai && vehicle.getMaSoThue().equals(maSoThue)) {
                         found = true;
                         System.out.println("Nhập tên cần sửa");
                         String name = scanner.nextLine();
@@ -1004,14 +1000,11 @@ public class Manager implements Crud{
         String maSoThue = scanner.next();
         for (Vehicle xe : vehicles) {
             if (xe.getMaSoThue().equals(maSoThue)) {
-                if (xe instanceof XeMay) {
-                    XeMay xeMay = (XeMay) xe;
+                if (xe instanceof XeMay xeMay) {
                     tinhThueTheoPhuongTien(xeMay);
-                } else if (xe instanceof XeOtoCon) {
-                    XeOtoCon xeOtoCon = (XeOtoCon) xe;
+                } else if (xe instanceof XeOtoCon xeOtoCon) {
                     tinhThueTheoPhuongTien(xeOtoCon);
-                } else if (xe instanceof XeOtoBanTai) {
-                    XeOtoBanTai xeOtoBanTai = (XeOtoBanTai) xe;
+                } else if (xe instanceof XeOtoBanTai xeOtoBanTai) {
                     tinhThueTheoPhuongTien(xeOtoBanTai);
                 }
             }
