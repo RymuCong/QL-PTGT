@@ -1032,87 +1032,17 @@ public class Manager implements Crud{
     }
 
     public void thongkeTheoLoaiXe() {
-
-
-        // Mảng chứa dữ liệu thống kê
-        int[] sl = new int[vehicles.size()]; // mỗi phần tử = 0
-        Arrays.fill(sl, 1); // gán phần tử = 1
-
-        // Tinh chỉnh dữ liệu thống kê
-        for (int i = 0; i < vehicles.size(); i++) {
-            for (int j = i + 1; j < vehicles.size(); j++) {
-                var i_j_cùng_loại = vehicles.get(i).getLoaiXe().equals(vehicles.get(j).getLoaiXe());
-
-                if// nếu
-                (i_j_cùng_loại && sl[j] != 0) {
-                    sl[i]++;
-                    sl[j]--;
-                }
+        Map<String, Long> stringMap = vehicles.stream().collect(Collectors.groupingBy(Vehicle::getLoaiXe,Collectors.counting()));
+            for (Map.Entry<String, Long> stringListEntry : stringMap.entrySet()) {
+                System.out.printf("\n Phương tiện giao thông %s có %d chiếc.", stringListEntry.getKey(), stringListEntry.getValue());
             }
-        }
-
-        // In dữ liệu thống kê, phân loại ra màn hình
-        for (int i = 0; i < sl.length; i++) {
-            if (sl[i] != 0) {
-                System.out.printf("\n Phương tiện giao thông %s có %d chiếc.", vehicles.get(i).getLoaiXe(), sl[i]);
-            }
-        }
     }
     public void thongkeTheoHang() {
-
-        // Mảng chứa dữ liệu thống kê
-        int[] sl = new int[vehicles.size()]; // mỗi phần tử = 0
-        Arrays.fill(sl, 1); // gán phần tử = 1
-
-        // Tinh chỉnh dữ liệu thống kê
-        for (int i = 0; i < vehicles.size(); i++) {
-            for (int j = i + 1; j < vehicles.size(); j++) {
-                var i_j_cùng_loại = vehicles.get(i).getHangSanXuat().equals(vehicles.get(j).getHangSanXuat());
-
-                if// nếu
-                (i_j_cùng_loại && sl[j] != 0) {
-                    sl[i]++;
-                    sl[j]--;
-                }
-            }
-        }
-
-        // In dữ liệu thống kê, phân loại ra màn hình
-        for (int i = 0; i < sl.length; i++) {
-            if (sl[i] != 0) {
-                System.out.printf("\n Phương tiện giao thông hãng %s có %d chiếc.", vehicles.get(i).getHangSanXuat(), sl[i]);
-            }
+        Map<String, Long> stringMap = vehicles.stream().collect(Collectors.groupingBy(Vehicle::getHangSanXuat,Collectors.counting()));
+        for (Map.Entry<String, Long> stringListEntry : stringMap.entrySet()) {
+            System.out.printf("\n Phương tiện giao thông hãng %s có %d chiếc.", stringListEntry.getKey(), stringListEntry.getValue());
         }
     }
-    // public void thongkeTheoNamSanXuat() {
-
-    //     // Mảng chứa dữ liệu thống kê
-    //     int[] sl = new int[vehicles.size()]; // mỗi phần tử = 0
-    //     Arrays.fill(sl, 1); // gán phần tử = 1
-
-    //     // Tinh chỉnh dữ liệu thống kê
-    //     for (int i = 0; i < vehicles.size(); i++) {
-    //         for (int j = i + 1; j < vehicles.size(); j++) {
-    //             var i_j_cùng_loại = (vehicles.get(i).getNamSanXuat() == vehicles.get(j).getNamSanXuat());
-
-    //             if// nếu
-    //             (i_j_cùng_loại && sl[j] != 0) {
-    //                 sl[i]++;
-    //                 sl[j]--;
-    //             }
-    //         }
-    //     }
-
-    //     // In dữ liệu thống kê, phân loại ra màn hình
-    //     for (int i = 0; i < sl.length; i++) {
-    //         if (sl[i] != 0) {
-    //             System.out.printf("\n Phương tiện giao thông sản xuất năm %s có %d chiếc.", vehicles.get(i).getNamSanXuat(), sl[i]);
-    //         }
-    //     }
-    // }
-
-
-
     public void thongkeTheoNamSanXuat() {
         int[] sl = new int[vehicles.size()];
         Arrays.fill(sl, 1);
@@ -1131,12 +1061,6 @@ public class Manager implements Crud{
         }
         // Tạo dataset cho biểu đồ
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-
-        // Tính toán số lượng phương tiện theo năm sản xuất
-        // for (Vehicle vehicle : vehicles) {
-        //     int namSanXuat = vehicle.getNamSanXuat();
-        //     dataset.addValue(1, "Số lượng", String.valueOf(namSanXuat));
-        // }
         for(int i = 0;i< sl.length ;i++)
         {
 
