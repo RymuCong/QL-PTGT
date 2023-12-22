@@ -22,6 +22,8 @@ import java.util.*;
 // thư viện để tìm kiếm được chữ cái tiếng việt
 import java.text.Normalizer;
 import java.util.regex.Pattern;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class Manager implements Crud{
     static String filePath = "DataPTGT.json";
@@ -927,98 +929,36 @@ public class Manager implements Crud{
     }
     public void sortGiaTienGiamDan ()
     {
-        for (int i = 0; i < vehicles.size() - 1; i++)
-        {
-            for (int j = i; j < vehicles.size(); j++)
-            {
-                if (vehicles.get(i).getGiaTien() < vehicles.get(j).getGiaTien())
-                {
-                    Vehicle tam = vehicles.get(i);
-                    vehicles.set(i,vehicles.get(j));
-                    vehicles.set(j,tam);
-                }
-            }
-        }
+        vehicles.sort(Comparator.comparing(Vehicle::getGiaTien));
+        Collections.reverse(vehicles);
     }
 
     public void sortGiaTienTangDan ()
     {
-        for (int i = 0; i < vehicles.size() - 1; i++)
-        {
-            for (int j = i; j < vehicles.size(); j++)
-            {
-                if (vehicles.get(i).getGiaTien() > vehicles.get(j).getGiaTien())
-                {
-                    Vehicle tam = vehicles.get(i);
-                    vehicles.set(i,vehicles.get(j));
-                    vehicles.set(j,tam);
-                }
-            }
-        }
+        vehicles.sort(Comparator.comparing(Vehicle::getGiaTien));
     }
 
     public void sortNamSanXuatGiamDan ()
     {
-        for (int i = 0; i < vehicles.size() - 1; i++)
-        {
-            for (int j = i; j < vehicles.size(); j++)
-            {
-                if (vehicles.get(i).getNamSanXuat() < vehicles.get(j).getNamSanXuat())
-                {
-                    Vehicle tam = vehicles.get(i);
-                    vehicles.set(i,vehicles.get(j));
-                    vehicles.set(j,tam);
-                }
-            }
-        }
+        vehicles.sort(Comparator.comparing(Vehicle::getNamSanXuat));
+        Collections.reverse(vehicles);
     }
 
     public void sortNamSanXuatTangDan ()
     {
-        for (int i = 0; i < vehicles.size() - 1; i++)
-        {
-            for (int j = i; j < vehicles.size(); j++)
-            {
-                if (vehicles.get(i).getNamSanXuat() > vehicles.get(j).getNamSanXuat())
-                {
-                    Vehicle tam = vehicles.get(i);
-                    vehicles.set(i,vehicles.get(j));
-                    vehicles.set(j,tam);
-                }
-            }
-        }
+        vehicles.sort(Comparator.comparing(Vehicle::getNamSanXuat));
     }
 
     public void sortLePhiTruocBaGiamDan ()
     {
-        for (int i = 0; i < vehicles.size() - 1; i++)
-        {
-            for (int j = i; j < vehicles.size(); j++)
-            {
-                if (vehicles.get(i).getLePhiTruocBa() > vehicles.get(j).getLePhiTruocBa())
-                {
-                    Vehicle tam = vehicles.get(i);
-                    vehicles.set(i,vehicles.get(j));
-                    vehicles.set(j,tam);
-                }
-            }
-        }
+        vehicles.sort(Comparator.comparing(Vehicle::getLePhiTruocBa));
+        Collections.reverse(vehicles);
     }
 
     public void sortLePhiTruocBaTangDan ()
     {
-        for (int i = 0; i < vehicles.size() - 1; i++)
-        {
-            for (int j = i; j < vehicles.size(); j++)
-            {
-                if (vehicles.get(i).getLePhiTruocBa() < vehicles.get(j).getLePhiTruocBa())
-                {
-                    Vehicle tam = vehicles.get(i);
-                    vehicles.set(i,vehicles.get(j));
-                    vehicles.set(j,tam);
-                }
-            }
-        }
+        vehicles.sort(Comparator.comparing(Vehicle::getLePhiTruocBa));
+
     }
 
     public void thongKe(){
@@ -1092,6 +1032,7 @@ public class Manager implements Crud{
     }
 
     public void thongkeTheoLoaiXe() {
+
 
         // Mảng chứa dữ liệu thống kê
         int[] sl = new int[vehicles.size()]; // mỗi phần tử = 0
