@@ -1016,13 +1016,13 @@ public class Manager implements Crud{
         double giaTriThue = vehicle.TinhThueGiaTriGiaTang(vehicle.getGiaTien());
         double lePhiDangKyXe = vehicle.TinhLePhiDangKyXeMoi(vehicle.getGiaTien());
         double thueTruocBa = vehicle.TinhThueTruocBa(vehicle.getGiaTien(), vehicle.getLePhiTruocBa());
-        System.out.println("Giá xe là : "+vehicle.getGiaTien());
-        System.out.println("Giá trị thuế là: " + String.format("%,d", Math.round(giaTriThue)).replace(",", "."));
-        System.out.println("Lệ phí đăng ký xe mới là: " + String.format("%,d", Math.round(lePhiDangKyXe)).replace(",", "."));
-        System.out.println("Thuế trước bạ là: " + String.format("%,d", Math.round(thueTruocBa)).replace(",", "."));
+        System.out.println("Giá xe là : "+String.format("%,d", Math.round(vehicle.getGiaTien())).replace(",", ".")+" VND");
+        System.out.println("Giá trị thuế là: " + String.format("%,d", Math.round(giaTriThue)).replace(",", ".")+" VND");
+        System.out.println("Lệ phí đăng ký xe mới là: " + String.format("%,d", Math.round(lePhiDangKyXe)).replace(",", ".")+" VND");
+        System.out.println("Thuế trước bạ là: " + String.format("%,d", Math.round(thueTruocBa)).replace(",", ".")+" VND");
 
         double tongThue = giaTriThue + lePhiDangKyXe + thueTruocBa;
-        System.out.println("Tổng các thuế cần đóng là: " + String.format("%,d", Math.round(tongThue)).replace(",", "."));
+        System.out.println("Tổng các thuế cần đóng là: " + String.format("%,d", Math.round(tongThue)).replace(",", ".")+" VND");
     }
 
     public void thongkeTheoLoaiXe() {
@@ -1038,6 +1038,10 @@ public class Manager implements Crud{
         }
     }
     public void thongkeTheoNamSanXuat() {
+        Map<Integer, Long> stringMap = vehicles.stream().collect(Collectors.groupingBy(Vehicle::getNamSanXuat,Collectors.counting()));
+        for (Map.Entry<Integer, Long> stringListEntry : stringMap.entrySet()) {
+            System.out.printf("\n Phương tiện giao thông hãng %s có %d chiếc.", stringListEntry.getKey(), stringListEntry.getValue());
+        }
         int[] sl = new int[vehicles.size()];
         Arrays.fill(sl, 1);
 
