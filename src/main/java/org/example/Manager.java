@@ -22,6 +22,7 @@ import java.util.*;
 // thư viện để tìm kiếm được chữ cái tiếng việt
 import java.text.Normalizer;
 import java.util.regex.Pattern;
+
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -407,7 +408,7 @@ public class Manager implements Crud{
     static void Dong_print_oto_con(XeOtoCon xecon, int stt) {
         String formattedGiaTien = String.format("%,d", Math.round(xecon.getGiaTien())).replace(",", ".");
         // format giá tiền thành dạng có dấu chấm cách hàng nghìn sau đó thay thế dấu phẩy thành dấu chấm thành
-        System.out.printf("| %-3s | %-13s | %-7s | %-5s | %-7s | %-12s | %-8s | %-18s | %-16s | %-5s | %-12s |",
+        System.out.printf("| %-3s | %-13s | %-7s | %-5s | %-6s | %-12s | %-13s | %-18s | %-15s | %-4s | %-13s |",
                 stt, xecon.getMaSoThue(), xecon.loaiXe, xecon.getTenPhuongTien(), xecon.getHangSanXuat(),
                 xecon.getNamSanXuat(),formattedGiaTien, xecon.getLePhiTruocBa(), xecon.getTenNguoiKhaiThue(),
                 xecon.getDungTichDongCo(),xecon.getDungTichCop(),xecon.getDungTichCop());
@@ -416,19 +417,19 @@ public class Manager implements Crud{
     }
 
     static void cot_print_oto_ban_tai() {
-        System.out.println("+-------------------------------------------------------------------------------------------------------------------------------------------------+");
-        System.out.println("| STT | Mã số thuế | Loại xe | Tên | Hãng | Năm sản xuất | Giá Tiền | Lệ phí trước bạ(%) | người khai thuế | CC | Tai trong | Chieu dai thung xe  |");
-        System.out.println("+-------------------------------------------------------------------------------------------------------------------------------------------------+");
+        System.out.println("+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+");
+        System.out.println("| STT |   Mã số thuế   |   Loại xe   |    Tên    |   Hãng   | Năm sản xuất | Giá Tiền | Lệ phí trước bạ(%) | Người khai thuế |   CC   | Tải trọng | Chiều dài thùng xe |");
+        System.out.println("+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+");
     }
     static void Dong_print_oto_ban_tai(XeOtoBanTai xe_ban_tai, int stt) {
         String formattedGiaTien = String.format("%,d", Math.round(xe_ban_tai.getGiaTien())).replace(",", ".");
         // format giá tiền thành dạng có dấu chấm cách hàng nghìn sau đó thay thế dấu phẩy thành dấu chấm thành
-        System.out.printf("| %-3s | %-13s | %-7s | %-5s | %-7s | %-12s | %-8s | %-18s | %-19s | %-17s | %-13s |%-13s |",
+        System.out.printf("| %-3s | %-14s | %-11s | %-9s | %-8s | %-12s | %-8s | %-18s | %-15s | %-6s | %-9s | %-18s |",
                 stt, xe_ban_tai.getMaSoThue(), xe_ban_tai.loaiXe, xe_ban_tai.getTenPhuongTien(), xe_ban_tai.getHangSanXuat(),
                 xe_ban_tai.getNamSanXuat(), formattedGiaTien, xe_ban_tai.getLePhiTruocBa(), xe_ban_tai.getTenNguoiKhaiThue(),
                 xe_ban_tai.getDungTichDongCo(),xe_ban_tai.getTaiTrong(),xe_ban_tai.getChieuDaiThungXe());
         // System.out.println(formattedRow);
-        System.out.println("\n+-----------------------------------------------------------------------------------------------------------------------------------------------+");
+        System.out.println("\n+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+");
     }
     public void testData(){
         XeMay xeMay = new XeMay("XeMay","Wave","honda",2015,10007000,1.5F,"TN986876GV76","Ta Tuan Anh",100);
@@ -995,8 +996,6 @@ public class Manager implements Crud{
     }
 
     public void tinhThue() {
-        System.out.println("Tính thuế phương tiện giao thông");
-        showData();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập mã số thuế xe: ");
         String maSoThue = scanner.next();
@@ -1010,18 +1009,20 @@ public class Manager implements Crud{
                     tinhThueTheoPhuongTien(xeOtoBanTai);
                 }
             }
-        }}
+        }
+        System.out.println("Không tìm thấy xe với mã số thuế đã nhập.");
+    }
     public void tinhThueTheoPhuongTien(Vehicle vehicle){
         double giaTriThue = vehicle.TinhThueGiaTriGiaTang(vehicle.getGiaTien());
         double lePhiDangKyXe = vehicle.TinhLePhiDangKyXeMoi(vehicle.getGiaTien());
         double thueTruocBa = vehicle.TinhThueTruocBa(vehicle.getGiaTien(), vehicle.getLePhiTruocBa());
-        System.out.println("Giá xe là : "+String.format("%,d", Math.round(vehicle.getGiaTien())).replace(",", ".")+" VND");
-        System.out.println("Giá trị thuế là: " + String.format("%,d", Math.round(giaTriThue)).replace(",", ".")+" VND");
-        System.out.println("Lệ phí đăng ký xe mới là: " + String.format("%,d", Math.round(lePhiDangKyXe)).replace(",", ".")+" VND");
-        System.out.println("Thuế trước bạ là: " + String.format("%,d", Math.round(thueTruocBa)).replace(",", ".")+" VND");
+        System.out.println("Giá xe là : "+vehicle.getGiaTien());
+        System.out.println("Giá trị thuế là: " + String.format("%,d", Math.round(giaTriThue)).replace(",", "."));
+        System.out.println("Lệ phí đăng ký xe mới là: " + String.format("%,d", Math.round(lePhiDangKyXe)).replace(",", "."));
+        System.out.println("Thuế trước bạ là: " + String.format("%,d", Math.round(thueTruocBa)).replace(",", "."));
 
         double tongThue = giaTriThue + lePhiDangKyXe + thueTruocBa;
-        System.out.println("Tổng các thuế cần đóng là: " + String.format("%,d", Math.round(tongThue)).replace(",", ".")+" VND");
+        System.out.println("Tổng các thuế cần đóng là: " + String.format("%,d", Math.round(tongThue)).replace(",", "."));
     }
 
     public void thongkeTheoLoaiXe() {
@@ -1037,10 +1038,6 @@ public class Manager implements Crud{
         }
     }
     public void thongkeTheoNamSanXuat() {
-        Map<Integer, Long> stringMap = vehicles.stream().collect(Collectors.groupingBy(Vehicle::getNamSanXuat,Collectors.counting()));
-        for (Map.Entry<Integer, Long> stringListEntry : stringMap.entrySet()) {
-            System.out.printf("\n Phương tiện giao thông hãng %s có %d chiếc.", stringListEntry.getKey(), stringListEntry.getValue());
-        }
         int[] sl = new int[vehicles.size()];
         Arrays.fill(sl, 1);
 
@@ -1155,6 +1152,7 @@ public class Manager implements Crud{
                         Dong_print_oto_ban_tai(xeOtoBanTai, stt);
                         stt++;
                     }
+
                 }
                 if (stt == 1)
                     System.out.println("Không tìm thấy phương tiện phù hợp");
